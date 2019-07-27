@@ -14,8 +14,34 @@
 #import <WebKit/WebKit.h>
 #import "WYTimeManager.h"
 #import "ZXHTTPCookieManager.h"
-
-
+/*
+ {
+ "meta" : {
+ "api" : "mtop.cc.getAdv",
+ "v" : "1.0",
+ "lang" : "",
+ "mat" : "",
+ "teminal" : "iphone",
+ "ttid" : "3.7.7.3_ysb@iphone"
+ },
+ "result" : {
+ "code" : "",
+ "data" : {
+ 
+ },
+ "success" : true,
+ "msg" : ""
+ }
+ }
+ */
+/*
+ "result" : {
+ "code" : "password_error",
+ "data" : null,
+ "success" : false,
+ "msg" : "密码错误"
+ }
+ */
 @implementation BaseHttpAPI
 
 
@@ -26,6 +52,8 @@ static NSInteger const kRequestSuccess_Value = 1;
 static NSString *const kRequestSuccess_Key = @"success";//请求是否成功key
 static NSString *const kRequestSuccess_ErrorMsg = @"msg"; //请求成功，接收错误信息
 
+static NSString *const kAPP_BaseURL = @"";
+
 /**
  *  请求发生错误的自定义参数
  */
@@ -34,29 +62,31 @@ static NSInteger const kAPPErrorCode = 5000;
 
 NSInteger const kAPPErrorCode_Token = 5001;
 
-
+- (NSURL *)baseURL
+{
+    NSString *baseURLString =[WYUserDefaultManager getkAPP_BaseURL];
+    NSURL *baseURL = [NSURL URLWithString:baseURLString];
+    //    NSURL *baseURL =  [NSURL URLWithString:kAPP_BaseURL];
+    return baseURL;
+}
 
 
 -(void)postRequest:(NSString *)path parameters:(NSDictionary *)parameter success:(CompleteBlock)success failure:(ErrorBlock)failure
 {
     NSMutableDictionary *postDictionary = [NSMutableDictionary dictionaryWithDictionary:parameter];
     postDictionary =[self addRequestPostData:postDictionary apiName:path];
-//    NSURL *baseURL = [NSURL URLWithString:kAPP_BaseURL];
-    NSString *kBaseURL =[WYUserDefaultManager getkAPP_BaseURL];
-    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
-
-    //    用于添加更多参数
-    ZX_NSLog_HTTPURL(kBaseURL, @"/m", postDictionary);
+    NSURL *baseURL = [self baseURL];
+    ZX_NSLog_HTTPURL(baseURL.absoluteString, @"/m", postDictionary);
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
-//        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//    AFJSONResponseSerializer *response =[AFJSONResponseSerializer serializer];
-//    response.removesKeysWithNullValues = YES;
-//    manager.responseSerializer = response;
+    //        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //    AFJSONResponseSerializer *response =[AFJSONResponseSerializer serializer];
+    //    response.removesKeysWithNullValues = YES;
+    //    manager.responseSerializer = response;
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     manager.requestSerializer.timeoutInterval =10.f;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-//    manager.requestSerializer.HTTPShouldHandleCookies = NO;
-
+    //    manager.requestSerializer.HTTPShouldHandleCookies = NO;
+    
     WS(weakSelf);
     [manager POST:@"/m" parameters:postDictionary progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -88,45 +118,43 @@ NSInteger const kAPPErrorCode_Token = 5001;
 {
     NSMutableDictionary *postDictionary = [NSMutableDictionary dictionaryWithDictionary:parameter];
     postDictionary =[self addRequestPostData:postDictionary apiName:path];
-
-//    NSURL *baseURL = [NSURL URLWithString:kAPP_BaseURL];
-    NSString *kBaseURL =[WYUserDefaultManager getkAPP_BaseURL];
-    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    
+    NSURL *baseURL = [self baseURL];
     //    用于添加更多参数
-    ZX_NSLog_HTTPURL(kBaseURL, @"/m", postDictionary);
+    ZX_NSLog_HTTPURL(baseURL.absoluteString, @"/m", postDictionary);
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//    AFJSONResponseSerializer *response =[AFJSONResponseSerializer serializer];
-//    response.removesKeysWithNullValues = YES;
-//    manager.responseSerializer = response;
-
+    //    AFJSONResponseSerializer *response =[AFJSONResponseSerializer serializer];
+    //    response.removesKeysWithNullValues = YES;
+    //    manager.responseSerializer = response;
+    
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     manager.requestSerializer.timeoutInterval =10.f;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-//    manager.requestSerializer.HTTPShouldHandleCookies = NO;
-
-//    NSLog(@"%@",manager.requestSerializer.HTTPRequestHeaders);
+    //    manager.requestSerializer.HTTPShouldHandleCookies = NO;
+    
+    //    NSLog(@"%@",manager.requestSerializer.HTTPRequestHeaders);
     WS(weakSelf);
     [manager GET:@"/m" parameters:postDictionary progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         // 响应的不可能有cookie的
-//        NSLog(@"%@",task.response.URL);
-//        NSHTTPURLResponse *response =  (NSHTTPURLResponse *)task.response;
-//        NSDictionary *allHeaderFields = response.allHeaderFields;
-//        NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:response.allHeaderFields forURL:task.response.URL];
-//        NSLog(@"cookies =%@",cookies);
-//        NSString *cookie = [allHeaderFields valueForKey:@"Set-Cookie"];
-//        NSString *statusCode = [NSHTTPURLResponse localizedStringForStatusCode:response.statusCode];
-//        NSLog(@"response.allHeaderFields=%@,cookie = %@,statusCode = %@",allHeaderFields,cookie,statusCode);
-
+        //        NSLog(@"%@",task.response.URL);
+        //        NSHTTPURLResponse *response =  (NSHTTPURLResponse *)task.response;
+        //        NSDictionary *allHeaderFields = response.allHeaderFields;
+        //        NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:response.allHeaderFields forURL:task.response.URL];
+        //        NSLog(@"cookies =%@",cookies);
+        //        NSString *cookie = [allHeaderFields valueForKey:@"Set-Cookie"];
+        //        NSString *statusCode = [NSHTTPURLResponse localizedStringForStatusCode:response.statusCode];
+        //        NSLog(@"response.allHeaderFields=%@,cookie = %@,statusCode = %@",allHeaderFields,cookie,statusCode);
+        
         [weakSelf requestSuccessDealWithResponseObeject:responseObject success:success failure:failure];
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-//        NSLog(@"%@",task.response.URL);
+        //        NSLog(@"%@",task.response.URL);
         NSLog(@"%@,%@",error,@(error.code));
         
         //        NSLog(@"\n error.domain=%@ \n error.code=%ld \n error.userInfo=%@,\n error.localizedDescription=%@",error.domain,error.code,error.userInfo,error.localizedDescription);
@@ -149,17 +177,17 @@ NSInteger const kAPPErrorCode_Token = 5001;
     NSString *str = [NSString zhGetJSONSerializationStringFromObject:responseObject];
     
     NSLog(@"%@",str);
-
-//    NSLog(@"\n+++++++%@",responseObject);
+    
+    //    NSLog(@"\n+++++++%@",responseObject);
     NSDictionary *meta = [responseObject objectForKey:@"meta"];
     NSString *token = [meta objectForKey:@"mat"];
     if (token.length>0)
     {
-//       NSString *message =[NSString stringWithFormat:@"新token:%@,\n 老token：%@",token,[UserInfoUDManager getToken]];
-//       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token变了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//       [alert show];
-//       [self requestHeaderFieldsWithCookieToken:token];
-       [UserInfoUDManager setToken:token];
+        //       NSString *message =[NSString stringWithFormat:@"新token:%@,\n 老token：%@",token,[UserInfoUDManager getToken]];
+        //       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token变了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        //       [alert show];
+        //       [self requestHeaderFieldsWithCookieToken:token];
+        [UserInfoUDManager setToken:token];
     }
     else
     {
@@ -179,20 +207,21 @@ NSInteger const kAPPErrorCode_Token = 5001;
     
     
     NSDictionary *result = [responseObject objectForKey:@"result"];
-    
+    //如果success是成功的，则会返回data数据：NSArray/NSDictionary；如果success是失败的，则不返回data数据，msg：返回提示中文；
     if ([[result objectForKey:kRequestSuccess_Key] integerValue] == kRequestSuccess_Value)
     {
-//        如果没有这个data参数，则返回id对象；
+        //        如果没有这个data参数，则返回id对象；
         success([result objectForKey:@"data"]);
     }
     else
     {
         NSString *code = [result objectForKey:@"code"];
+        //如果code标志是token错误，则特殊处理
         if ([code isEqualToString:kToken_Code_Value_Invalid] ||[code isEqualToString:kToken_Code_Value_Disabled])
         {
-//            NSString *message =[NSString stringWithFormat:@"您的登录已失效，请重新登录！\n 老token：%@",[UserInfoUDManager getToken]];
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token坏了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
+            //            NSString *message =[NSString stringWithFormat:@"您的登录已失效，请重新登录！\n 老token：%@",[UserInfoUDManager getToken]];
+            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token坏了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            //            [alert show];
             NSError * error = [self customErrorWithObject:@"您的登录已失效，请重新登录！" errorCode:kAPPErrorCode_Token userInfoErrorCode:nil];
             //可以区分不同api，处理不同业务
             [UserInfoUDManager reLoginingWithTokenErrorAPI:[meta objectForKey:@"api"]];
@@ -200,7 +229,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
             {
                 failure(error);
             }
- 
+            
         }
         else
         {
@@ -222,14 +251,14 @@ NSInteger const kAPPErrorCode_Token = 5001;
     [cookieProperties setObject:token forKey:NSHTTPCookieValue];
     [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
     [cookieProperties setObject:[WYUserDefaultManager getkCookieDomain] forKey:NSHTTPCookieOriginURL];
-//    [cookieProperties setObject:@"604800" forKey:NSHTTPCookieMaximumAge];
-//    [cookieProperties setObject:@"1" forKey:NSHTTPCookieVersion];
+    //    [cookieProperties setObject:@"604800" forKey:NSHTTPCookieMaximumAge];
+    //    [cookieProperties setObject:@"1" forKey:NSHTTPCookieVersion];
     [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:604800];
     [cookieProperties setObject:date forKey:NSHTTPCookieExpires];
     NSHTTPCookie *cookie_token = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:cookie_token];
-////    po [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies
+    ////    po [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies
     if (Device_SYSTEMVERSION.floatValue>8 && Device_SYSTEMVERSION.floatValue<11)
     {
         [[WYTimeManager shareTimeManager]setCurrentTimeWithLastLogin];
@@ -238,7 +267,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
     {
         WKHTTPCookieStore *cookieStore = [WKWebsiteDataStore defaultDataStore].httpCookieStore;
         // 这里获取到的是最新的cookie的value = 最新的token
-//        [cookieStore addObserver:self];
+        //        [cookieStore addObserver:self];
         NSHTTPCookie *cookie = [[ZXHTTPCookieManager sharedInstance]getHTTPCookieFromNSHTTPCookieStorageWithCookieName:@"mat"];
         NSString *str = [NSString stringWithFormat:@"cookie =%@, mat = %@",cookie,token];
         NSLog(@"%@",str);
@@ -248,14 +277,14 @@ NSInteger const kAPPErrorCode_Token = 5001;
             NSLog(@"cookie已经存储到WKWebView存储器");
             
             // 获取回来的cookie，有时候是上面最新的token，有时候是以前老的； 连数据线的时候，肯定是最新的；
-//            为什么设置最新cookie成功了，再去getAllCookies获取，怎么有时候还不是最新cookie的token呢；好奇怪啊，苹果bug；难道是获取缓存？还是设置方法的block并不是回调真正存储成功；
+            //            为什么设置最新cookie成功了，再去getAllCookies获取，怎么有时候还不是最新cookie的token呢；好奇怪啊，苹果bug；难道是获取缓存？还是设置方法的block并不是回调真正存储成功；
             [SELF getAllCookies:^(NSArray<NSHTTPCookie *> * _Nonnull cookies) {
                 
                 NSLog(@"cookies =%@",cookies);
-//                NSHTTPCookie *cookie = [[ZXHTTPCookieManager sharedInstance]getHTTPCookieFromCookesArray:cookies withCookieName:@"mat"];
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:token message:cookie.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alert show];
-
+                //                NSHTTPCookie *cookie = [[ZXHTTPCookieManager sharedInstance]getHTTPCookieFromCookesArray:cookies withCookieName:@"mat"];
+                //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:token message:cookie.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                //                [alert show];
+                
             }];
         }];
     }
@@ -274,17 +303,17 @@ NSInteger const kAPPErrorCode_Token = 5001;
         case NSURLErrorUnsupportedURL:title = NSLocalizedString(@"您的请求URL格式有误", nil); break;//-1002
         case NSURLErrorCannotFindHost:title = NSLocalizedString(@"没有找到服务器", nil);break;//-1003
         case NSURLErrorCannotConnectToHost:title = NSLocalizedString(@"未能连接到服务器", nil);  break; //Could not connect to the server -1004
-
+            
         case NSURLErrorNetworkConnectionLost:title = NSLocalizedString(@"老板，你的网断了，检查下哇", @"网络连接中断");break;//The network connection was lost -1005
         case NSURLErrorNotConnectedToInternet:title = NSLocalizedString(@"老板，你的网断了，检查下哇", @"您没有连接网络");  break;//The Internet connection appears to be offline.-1009
         case NSURLErrorTimedOut:title = NSLocalizedString(@"网络有点不稳定呀~", @"您的网络有问题，请稍后重试");  break;//The request timed out -1001
         case NSURLErrorDNSLookupFailed:title = NSLocalizedString(@"程序开小差了，请稍后再试哦", @"很抱歉,我们服务器发生错误\n域名系统查找失败");break; //-1006
         case NSURLErrorBadServerResponse:title = NSLocalizedString(@"程序开小差了，请稍后再试哦", @"服务器发生错误");  break;//-1011
-    
-//            NSCocoaErrorDomain
+            
+            //            NSCocoaErrorDomain
         case NSURLErrorCannotDecodeContentData:title = NSLocalizedString(@"unacceptable content-type: text/javascript", nil);
             break; //-1016
-        //"JSON text did not start with array or object and option to allow fragments not set."
+            //"JSON text did not start with array or object and option to allow fragments not set."
         case 3840:title = NSLocalizedString(@"程序开小差了，请稍后再试哦", nil); break; //502
         case NSURLErrorCallIsActive:title = NSLocalizedString(@"网络请求被电话中断，请稍后再试哦", nil); break;//-1019
         default: return error;
@@ -329,8 +358,16 @@ NSInteger const kAPPErrorCode_Token = 5001;
         [dicParam setObject:[dicArgument objectForKey:HEAD_API_VERSION] forKey:HEAD_API_VERSION];
         [dicArgument removeObjectForKey:HEAD_API_VERSION];
     }
-    [dicParam setObject:[BaseHttpAPI getCurrentAppVersion] forKey:HEAD_TTID];
-
+    if ([aApi isEqualToString:kUSER_VERIFYCODE_URL]) {
+        
+        NSArray *arr = @[@"4.17_ysb@iphone",@"4.17_ysb@android"];
+        NSString *begain = [arr objectAtIndex:arc4random()%2];
+        [dicParam setObject:begain forKey:HEAD_TTID];
+    }else
+    {
+        [dicParam setObject:[BaseHttpAPI getCurrentAppVersion] forKey:HEAD_TTID];
+    }
+    
     if (!dicArgument)
     {
         [dicParam setObject:@"" forKey:@"data"];
@@ -341,7 +378,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
         NSString *dataString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         [dicParam setObject:dataString forKey:@"data"];
     }
-  
+    
     NSString *authtoken = USER_TOKEN;
     
     if (authtoken) {
@@ -350,11 +387,12 @@ NSInteger const kAPPErrorCode_Token = 5001;
         [dicParam setObject:@"" forKey:HEAD_AUTHTOKEN];
     }
     [dicParam setObject:[BaseHttpAPI getCurrentDatetime] forKey:HEAD_TS];
-    [dicParam setObject:[[UIDevice currentDevice]getIDFAUUIDString] forKey:HEAD_DID];
+    [dicParam setObject:[[UIDevice currentDevice]getUUID] forKey:HEAD_DID];
+    //    [dicParam setObject:[[UIDevice currentDevice]getIDFAUUIDString] forKey:HEAD_DID];
     [dicParam setObject:@"" forKey:HEAD_LNG];
     [dicParam setObject:@"" forKey:HEAD_LAT];
     
-
+    
     NSArray *keysArray = @[@"api",HEAD_API_VERSION,HEAD_TTID,@"data",HEAD_AUTHTOKEN,HEAD_TS,HEAD_DID,HEAD_LNG,HEAD_LAT];
     
     [dicParam setValue:[BaseHttpAPI MD5stringWithDict:dicParam sortKeyArray:keysArray] forKey:@"sign"];
@@ -362,11 +400,23 @@ NSInteger const kAPPErrorCode_Token = 5001;
     return dicParam;
 }
 
+-(NSString *)getRandomStr
+{
+    char data[6];
+    for (int x=0;x < 6;data[x++] = (char)('A' + (arc4random_uniform(26))));
+    NSString *randomStr = [[NSString alloc] initWithBytes:data length:6 encoding:NSUTF8StringEncoding];
+    NSString *string = [NSString stringWithFormat:@"%@",randomStr];
+    NSLog(@"获取随机字符串 %@",string);
+    return string;
+}
+
+
+
 + (NSString *)MD5stringWithDict:(NSDictionary*)dict sortKeyArray:(NSArray *)sortKeys{
     
     __block NSString *str = @"";
     [sortKeys enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-       
+        
         id value = [dict objectForKey:obj];
         if([str length] !=0) {
             str = [str stringByAppendingString:@"&"];
@@ -374,7 +424,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
         str = [str stringByAppendingFormat:@"%@=%@",obj,value];
     }];
     
-//    NSString *md5String = [[str md5String]copy];
+    //    NSString *md5String = [[str md5String]copy];
     NSString *md5String = [[NSString zhCreatedMD5String:str]copy];
     return md5String;
 }
@@ -414,33 +464,32 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
            progress:(void (^)(NSProgress *uploadProgress))uploadProgress
             success:(CompleteBlock)success failure:(ErrorBlock)failure
 {
-        NSMutableDictionary *postDictionary = [NSMutableDictionary dictionaryWithDictionary:parameters];
-        postDictionary =[self addRequestPostData:postDictionary apiName:path];
-        //    用于添加更多参数
-        NSString *kBaseURL =[WYUserDefaultManager getkAPP_BaseURL];
-        NSURL *baseURL = [NSURL URLWithString:kBaseURL];
-        //    用于添加更多参数
-        ZX_NSLog_HTTPURL(kBaseURL, @"/m", postDictionary);
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSMutableDictionary *postDictionary = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    postDictionary =[self addRequestPostData:postDictionary apiName:path];
+    //    用于添加更多参数
+    NSURL *baseURL = [self baseURL];
+    //    用于添加更多参数
+    ZX_NSLog_HTTPURL(baseURL.absoluteString, @"/m", postDictionary);
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-        [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-        manager.requestSerializer.timeoutInterval =10.f;
-        [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    manager.requestSerializer.timeoutInterval =10.f;
+    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     WS(weakSelf);
     [manager POST:@"/m" parameters:postDictionary constructingBodyWithBlock:block progress:uploadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [weakSelf requestSuccessDealWithResponseObeject:responseObject success:success failure:failure];
-
+        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-            if (failure)
-            {
-                error = [self getErrorFromError:error];
-                failure(error);
-            }
-        }];
+        if (failure)
+        {
+            error = [self getErrorFromError:error];
+            failure(error);
+        }
+    }];
 }
 
 //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -474,12 +523,10 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
 {
     NSMutableDictionary *postDictionary = [NSMutableDictionary dictionaryWithDictionary:parameter];
     postDictionary =[self addRequestPostData:postDictionary apiName:path];
-    //    NSURL *baseURL = [NSURL URLWithString:kAPP_BaseURL];
-    NSString *kBaseURL =[WYUserDefaultManager getkAPP_BaseURL];
-    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    NSURL *baseURL = [self baseURL];
     
     //    用于添加更多参数
-    ZX_NSLog_HTTPURL(kBaseURL, @"/m", postDictionary);
+    ZX_NSLog_HTTPURL(baseURL.absoluteString, @"/m", postDictionary);
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -498,8 +545,9 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
         {
             failure (error);
         }
-
+        
     }];
 }
 
 @end
+

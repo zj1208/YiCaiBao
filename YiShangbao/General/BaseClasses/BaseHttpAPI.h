@@ -131,38 +131,38 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
  
  - (void)headerRefresh
  {
-    WS(weakSelf);
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-     
-         [[[AppAPIHelper shareInstance] getThemeModelAPI]getThemeHomeListWithPageNo:1 pageSize:@(10) success:^(id data) {
+ WS(weakSelf);
+ self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
  
-             [weakSelf.dataMArray removeAllObjects];
-             [weakSelf.dataMArray addObjectsFromArray:data];
-             [weakSelf.collectionView reloadData];
-             _pageNo = 1;
-             [weakSelf.collectionView.mj_header endRefreshing];
-             [weakSelf.collectionView.mj_footer endRefreshing];
-             
-             [weakSelf footerWithRefreshing];
-             if ([data count]<10)
-             {
-                 [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
-             }
-         
-             static dispatch_once_t onceToken;
-             dispatch_once(&onceToken, ^{
-             
-             [self lauchFirstNewFunction];
-             
-             });
-         
-         } failure:^(NSError *error) {
-         
-             [weakSelf.collectionView.mj_header endRefreshing];
-             [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
-         }];
-     
-     }];
+ [[[AppAPIHelper shareInstance] getThemeModelAPI]getThemeHomeListWithPageNo:1 pageSize:@(10) success:^(id data) {
+ 
+ [weakSelf.dataMArray removeAllObjects];
+ [weakSelf.dataMArray addObjectsFromArray:data];
+ [weakSelf.collectionView reloadData];
+ _pageNo = 1;
+ [weakSelf.collectionView.mj_header endRefreshing];
+ [weakSelf.collectionView.mj_footer endRefreshing];
+ 
+ [weakSelf footerWithRefreshing];
+ if ([data count]<10)
+ {
+ [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+ }
+ 
+ static dispatch_once_t onceToken;
+ dispatch_once(&onceToken, ^{
+ 
+ [self lauchFirstNewFunction];
+ 
+ });
+ 
+ } failure:^(NSError *error) {
+ 
+ [weakSelf.collectionView.mj_header endRefreshing];
+ [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
+ }];
+ 
+ }];
  }
  
  
@@ -170,36 +170,36 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
  
  - (void)footerWithRefreshing
  {
-     if (self.dataMArray.count==0)
-     {
-         if (self.collectionView.mj_footer)
-         {
-             self.collectionView.mj_footer = nil;
-         }
-         return;
-     }
+ if (self.dataMArray.count==0)
+ {
+ if (self.collectionView.mj_footer)
+ {
+ self.collectionView.mj_footer = nil;
+ }
+ return;
+ }
  WS(weakSelf);
  self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
  
-     NSLog(@"%@",@(_pageNo));
-     [[[AppAPIHelper shareInstance] getThemeModelAPI]getThemeHomeListWithPageNo:_pageNo+1 pageSize:@(10) success:^(id data) {
+ NSLog(@"%@",@(_pageNo));
+ [[[AppAPIHelper shareInstance] getThemeModelAPI]getThemeHomeListWithPageNo:_pageNo+1 pageSize:@(10) success:^(id data) {
  
-         [weakSelf.dataMArray addObjectsFromArray:data];
-         [weakSelf.collectionView reloadData];
-         [weakSelf.collectionView.mj_footer endRefreshing];
-         
-         _pageNo ++;
-         if ([data count]<10)
-         {
-             [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
-         }
-     
-     } failure:^(NSError *error) {
-     
-         [weakSelf.collectionView.mj_footer endRefreshing];
-         [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
-         }];
-     }];
+ [weakSelf.dataMArray addObjectsFromArray:data];
+ [weakSelf.collectionView reloadData];
+ [weakSelf.collectionView.mj_footer endRefreshing];
+ 
+ _pageNo ++;
+ if ([data count]<10)
+ {
+ [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+ }
+ 
+ } failure:^(NSError *error) {
+ 
+ [weakSelf.collectionView.mj_footer endRefreshing];
+ [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
+ }];
+ }];
  }
  
  
@@ -207,60 +207,61 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
  */
 // 上传图片
 /*
-- (void)putData:(id)data type:(NSNumber *)type  subjectId:(NSNumber *)themeId operationId:(NSNumber *)operationId photoTime:(NSString *)photoTime progress:(void (^)(NSProgress *uploadProgress))uploadProgress
-success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-{
-    NSDictionary *parameters = @{
-                                 @"type":type,
-                                 @"subjectId":themeId,
-                                 @"id":operationId,
-                                 @"originalTime":photoTime
-                                 };
-    __block CGFloat compression =0.f; //压缩量
-    
-    [self postRequest:kUPLOAD_PIC_URL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        
-        if ([data isKindOfClass:[GrowthSavePhotoModel class]])
-        {
-            GrowthSavePhotoModel *photoModel = (GrowthSavePhotoModel *)data;
-            NSString *imgKey = [GrowthDataManager getPhotoImageKey:photoModel.uploadId sortId:photoModel.sort];
-            SDImageCache *cache=[SDImageCache sharedImageCache];
-            if ([cache diskImageExistsWithKey:imgKey])
-            {
-                cache.shouldCacheImagesInMemory = NO;
-            }
-            else
-            {
-                cache.shouldCacheImagesInMemory = YES;
-            }
-            UIImage *image = [cache imageFromDiskCacheForKey:imgKey];
-            NSLog(@"image =%@",image);
-            //如果是压缩的，保存的图片已经压缩过了；
-            if (photoModel.isCompression)
-            {
-                compression = 1.f;
-            }
-            else
-            {
-                compression = 0.6f;
-            }
-            if (image)
-            {
-                //                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-                NSData *imageData = UIImageJPEGRepresentation(image, compression);
-                NSLog(@"imageData=%ld",imageData.length);
-                [formData appendPartWithFileData:imageData name:@"multipartFile" fileName:imgKey mimeType:@"image/jpeg"];
-            }
-            else
-            {
-                NSLog(@"图片为空了，检查是不是已经删除了");
-            }
-            
-        }
-        
-    } progress:uploadProgress success:success failure:failure];
-}
-*/
+ - (void)putData:(id)data type:(NSNumber *)type  subjectId:(NSNumber *)themeId operationId:(NSNumber *)operationId photoTime:(NSString *)photoTime progress:(void (^)(NSProgress *uploadProgress))uploadProgress
+ success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+ failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+ {
+ NSDictionary *parameters = @{
+ @"type":type,
+ @"subjectId":themeId,
+ @"id":operationId,
+ @"originalTime":photoTime
+ };
+ __block CGFloat compression =0.f; //压缩量
  
+ [self postRequest:kUPLOAD_PIC_URL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+ 
+ 
+ if ([data isKindOfClass:[GrowthSavePhotoModel class]])
+ {
+ GrowthSavePhotoModel *photoModel = (GrowthSavePhotoModel *)data;
+ NSString *imgKey = [GrowthDataManager getPhotoImageKey:photoModel.uploadId sortId:photoModel.sort];
+ SDImageCache *cache=[SDImageCache sharedImageCache];
+ if ([cache diskImageExistsWithKey:imgKey])
+ {
+ cache.shouldCacheImagesInMemory = NO;
+ }
+ else
+ {
+ cache.shouldCacheImagesInMemory = YES;
+ }
+ UIImage *image = [cache imageFromDiskCacheForKey:imgKey];
+ NSLog(@"image =%@",image);
+ //如果是压缩的，保存的图片已经压缩过了；
+ if (photoModel.isCompression)
+ {
+ compression = 1.f;
+ }
+ else
+ {
+ compression = 0.6f;
+ }
+ if (image)
+ {
+ //                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+ NSData *imageData = UIImageJPEGRepresentation(image, compression);
+ NSLog(@"imageData=%ld",imageData.length);
+ [formData appendPartWithFileData:imageData name:@"multipartFile" fileName:imgKey mimeType:@"image/jpeg"];
+ }
+ else
+ {
+ NSLog(@"图片为空了，检查是不是已经删除了");
+ }
+ 
+ }
+ 
+ } progress:uploadProgress success:success failure:failure];
+ }
+ */
+
+

@@ -12,17 +12,72 @@
 #import "PhoneSetPasswordViewController.h"
 @interface WYPhoneLoginViewController ()<UITextFieldDelegate>
 
+
+//@property (nonatomic, copy, getter=theNewArrayI) NSArray *newArrayI;
+//
+//@property (nonatomic, copy) NSArray *aCopyArrayI;
 @end
 
 @implementation WYPhoneLoginViewController
 
+
 #pragma mark - life cycle
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createUI];
+    
+    //    NSMutableArray *arrayM = [NSMutableArray arrayWithObjects:@"1", @"2", nil];
+    //    // copy深拷贝容器对象，创建的是不可变副本容器对象
+    //    self.newArrayI=arrayM;
+    //
+    //    NSLog(@"arr_p:%p,class:%@",arrayM,[arrayM class]);
+    //    NSLog(@"copyArr_p:%p,class:%@",self.newArrayI,[self.newArrayI class]);
+    
+    //    [arrayM removeObjectAtIndex:0];
+    //    NSLog(@"arr_p:%p,class:%@,count= %@",arrayM,[arrayM class],@(arrayM.count));
+    //    NSLog(@"copyArr_p:%p,class:%@,count= %@",self.aCopyArrayI,[self.aCopyArrayI class],@(_aCopyArrayI.count));
+    
+    
+    
+    
+    //    NSString *path =[[NSBundle mainBundle]pathForResource:@"11" ofType:@"jpg"];
+    //    NSMutableData *data1 = [NSMutableData dataWithContentsOfFile:path];
+    //    NSData *data2 = [data1 copy];
+    //    NSData *data3 = [data1 mutableCopy];
+    //    NSLog(@"p : %p, class: %@", data1, [data1 class]);
+    //    NSLog(@"p : %p, class: %@", data2, [data2 class]);
+    //    NSLog(@"p : %p, class: %@", data3, [data3 class]);
+    
+    
+    __block NSInteger num = 0;
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSArray *arr_yiDon = @[@"134",@"135",@"136",@"137",@"138",@"139",@"147",@"150",@"151",@"152",@"157",@"158",@"159",@"172",@"178",@"182",@"183",@"184",@"187",@"188",@"198"];
+        NSArray *arr_lianTong = @[@"130",@"131",@"132",@"145",@"155",@"156",@"166",@"171",@"175",@"176",@"185",@"186",@"166"];
+        //        NSMutableArray *mArray = [NSMutableArray arrayWithArray:arr_yiDon];
+        NSMutableArray *mArray = [arr_yiDon mutableCopy];
+        [mArray addObjectsFromArray:arr_lianTong];
+        
+        NSString *begainNum = [mArray objectAtIndex:arc4random()%mArray.count];
+        double afterNum = [self zhGetRandomNumberWithFrom:10000000 to:99999999];
+        
+        NSString *phone = [NSString stringWithFormat:@"%@%.f",begainNum,afterNum];
+        [[[AppAPIHelper shareInstance] getUserModelAPI] getSendVerifyCodeMobile:phone countryCode:@"+86" type:@"3" success:^(id data) {
+            num ++;
+            [self zhHUD_showSuccessWithStatus:[NSString stringWithFormat:@"发送验证码成功-%@",@(num)]];
+            
+        } failure:^(NSError *error) {
+            [self zhHUD_showErrorWithStatus:[error localizedDescription]];
+        }];
+    }];
+    [timer fire];
+    
 }
-
+- (int)zhGetRandomNumberWithFrom:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to-from + 1)));
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -46,7 +101,7 @@
     [view.codeCell.btn addTarget:self action:@selector(chooseCode) forControlEvents:UIControlEventTouchUpInside];
     [view.btn_send addTarget:self action:@selector(sendCodeTap) forControlEvents:UIControlEventTouchUpInside];
     [view.btn_confirm addTarget:self action:@selector(confirmTap) forControlEvents:UIControlEventTouchUpInside];
-//    [view.btn_read addTarget:self action:@selector(readTap) forControlEvents:UIControlEventTouchUpInside];
+    //    [view.btn_read addTarget:self action:@selector(readTap) forControlEvents:UIControlEventTouchUpInside];
     [self changeLabelText:view.label_agree];
 }
 
@@ -120,7 +175,7 @@
     WYPhoneLoginVIew *view = (WYPhoneLoginVIew *)self.view;
     NSString *phone = view.txtField_phoneNumber.text;
     NSString *countryCode = view.codeCell.label.text;
-
+    
     [self zhHUD_showHUDAddedTo:self.view labelText:nil];
     [[[AppAPIHelper shareInstance] getUserModelAPI] getSendVerifyCodeMobile:phone countryCode:countryCode type:@"3" success:^(id data) {
         [self zhHUD_showSuccessWithStatus:@"发送验证码成功"];
@@ -141,13 +196,13 @@
     [[[AppAPIHelper shareInstance] getUserModelAPI] getFastLoginWithMobile:mobile verificationCode:verifyCode countryCode:countryCode success:^(id data) {
         [view.btn_send hideIndicator];
         [self zhHUD_hideHUD];
-         [weakSelf getShopInfo];
+        [weakSelf getShopInfo];
         if ([[NSUserDefaults standardUserDefaults] objectForKey:ud_GTClientId]) {
             NSDictionary *dic = @{
                                   @"roleType":@([WYUserDefaultManager getUserTargetRoleType]),
                                   @"type":@"0",
 #if !TARGET_IPHONE_SIMULATOR //真机
-//                                  @"token":[[NSUserDefaults standardUserDefaults] objectForKey:ud_deviceToken],
+                                  //                                  @"token":[[NSUserDefaults standardUserDefaults] objectForKey:ud_deviceToken],
                                   @"did":[[UIDevice currentDevice]getIDFAUUIDString],
 #endif
                                   @"systemVersion": CurrentSystemVersion,
@@ -164,10 +219,10 @@
             } failure:^(NSError *error) {
             }];
         }
-//            PhoneSetPasswordViewController *vc = [[PhoneSetPasswordViewController alloc] init];
-//            vc.phone = mobile;
-//            [self.navigationController pushViewController:vc animated:YES];
-       
+        //            PhoneSetPasswordViewController *vc = [[PhoneSetPasswordViewController alloc] init];
+        //            vc.phone = mobile;
+        //            [self.navigationController pushViewController:vc animated:YES];
+        
     } failure:^(NSError *error) {
         [view.btn_send hideIndicator];
         [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
@@ -193,15 +248,15 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     WYPhoneLoginVIew *view = (WYPhoneLoginVIew *)self.view;
-//    if (textField == view.txtField_phoneNumber) {
-//        if (string.length == 0) return YES;
-//        NSInteger existedLength = textField.text.length;
-//        NSInteger selectedLength = range.length;
-//        NSInteger replaceLength = string.length;
-//        if (existedLength - selectedLength + replaceLength > 11) {
-//            return NO;
-//        }
-//    }
+    //    if (textField == view.txtField_phoneNumber) {
+    //        if (string.length == 0) return YES;
+    //        NSInteger existedLength = textField.text.length;
+    //        NSInteger selectedLength = range.length;
+    //        NSInteger replaceLength = string.length;
+    //        if (existedLength - selectedLength + replaceLength > 11) {
+    //            return NO;
+    //        }
+    //    }
     if (textField == view.txtField_smsNumber) {
         if (string.length == 0) return YES;
         NSInteger existedLength = textField.text.length;
@@ -228,3 +283,6 @@
 }
 
 @end
+
+
+
