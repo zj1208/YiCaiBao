@@ -1,0 +1,57 @@
+//
+//  YiShangbao.pch
+//  YiShangbao
+//
+//  Created by Lance on 16/12/3.
+//  Copyright © 2016年 Lance. All rights reserved.
+//
+
+#ifndef YiShangbao_pch
+#define YiShangbao_pch
+
+#ifdef __OBJC__
+#import "YiShangbaoMacro.h"
+
+#import "WYUIStyle.h"
+#import "WYShareViewController.h"
+#import "WYUtility.h"
+#import "WYUserDefaultManager.h"
+#import "UserInfoUDManager.h"
+#import "UIViewController+isLoginAction.h"
+
+#import "AppAPIHelper.h"
+#import "ZXEmptyViewController.h"
+#import "ZXMHeader.h"
+
+#import <Masonry/Masonry.h>
+#import "AFNetworking.h"
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import <UMMobClick/MobClick.h>
+#import <NIMSDK/NIMSDK.h>
+#import "NIMKit.h"
+
+#import "LocalHtmlStringManager.h"
+
+//
+#import "UIButton+Indicator.h"
+#import "UIButton+countDown.h"
+#import "UIColor+Extension.h"
+#import "UIButton+WYMoreClickZone.h"
+
+#endif
+
+
+//// 线上个推开发者网站中申请App时，注册的AppId、AppKey、AppSecret
+//#define kGtAppId           @"nI9gJsDGb99qGnwylak4I1"
+//#define kGtAppKey          @"8lEwqfov90AKQziEqSvd31"
+//#define kGtAppSecret       @"zR9M7HHU3X6k64XZiJ7sh6"
+
+
+/// 测试个推开发者网站中申请App时，注册的AppId、AppKey、AppSecret
+//#define kGtAppId           @"j74eHeJgVe9AXSQNJ0upTA"
+//#define kGtAppKey          @"L6SNGaRRQ37zQbdq88nmo5"
+//#define kGtAppSecret       @"icUSGInym69NcKxSjm7DW"
+
+#endif /* YiShangbao_pch */
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PurchaserTuiJianCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="188" height="268"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="188" height="268"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pBi-UI-XBQ">
+                        <rect key="frame" x="0.0" y="0.0" width="188" height="188"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="pBi-UI-XBQ" secondAttribute="height" multiplier="1:1" id="hyb-Ew-o1B"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="去看看这些商铺，您想要的产品我们这里都有哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5p8-vy-7f4">
+                        <rect key="frame" x="4" y="200" width="172.5" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥999.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgk-3z-o3R">
+                        <rect key="frame" x="4" y="246.5" width="64.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" red="0.96078431369999995" green="0.56078431370000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchxianzuo" translatesAutoresizingMaskIntoConstraints="NO" id="1ef-c5-cl0">
+                        <rect key="frame" x="143" y="248.5" width="30" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="aBa-iJ-SYn"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pBi-UI-XBQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Dcd-QQ-u1i"/>
+                <constraint firstItem="5p8-vy-7f4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Dio-tR-kcd"/>
+                <constraint firstItem="1ef-c5-cl0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cgk-3z-o3R" secondAttribute="trailing" constant="10" id="FHK-dx-9Fn"/>
+                <constraint firstAttribute="trailing" secondItem="pBi-UI-XBQ" secondAttribute="trailing" id="PHv-fL-ukg"/>
+                <constraint firstItem="cgk-3z-o3R" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="QzG-SO-GjI"/>
+                <constraint firstAttribute="bottom" secondItem="cgk-3z-o3R" secondAttribute="bottom" constant="2" id="YGL-Ld-bUK"/>
+                <constraint firstAttribute="trailing" secondItem="1ef-c5-cl0" secondAttribute="trailing" constant="15" id="eS7-HS-DJ9"/>
+                <constraint firstItem="1ef-c5-cl0" firstAttribute="centerY" secondItem="cgk-3z-o3R" secondAttribute="centerY" id="nfY-y0-a4y"/>
+                <constraint firstItem="5p8-vy-7f4" firstAttribute="top" secondItem="pBi-UI-XBQ" secondAttribute="bottom" constant="12" id="oDh-av-aE4"/>
+                <constraint firstItem="pBi-UI-XBQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pEg-vP-pH6"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5p8-vy-7f4" secondAttribute="trailing" constant="5" id="tH5-OT-xF0"/>
+            </constraints>
+            <size key="customSize" width="50" height="293"/>
+            <connections>
+                <outlet property="descLabel" destination="5p8-vy-7f4" id="eaR-2c-Uo8"/>
+                <outlet property="imageView" destination="pBi-UI-XBQ" id="KEX-UG-vq4"/>
+                <outlet property="priceLabel" destination="cgk-3z-o3R" id="QL0-Bm-mjx"/>
+                <outlet property="xianhuoimageView" destination="1ef-c5-cl0" id="mpA-gX-0Lv"/>
+            </connections>
+            <point key="canvasLocation" x="37.5" y="-67.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="searchxianzuo" width="30" height="16"/>
+    </resources>
+</document>

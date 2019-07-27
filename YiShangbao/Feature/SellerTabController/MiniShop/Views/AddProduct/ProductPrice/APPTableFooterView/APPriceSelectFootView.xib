@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="APPriceSelectFootView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOj-Ph-WMo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注意：设置面议后采购商无法在线购买产品，请慎重选择" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fv3-ms-5sT">
+                            <rect key="frame" x="15" y="14" width="344.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Fv3-ms-5sT" firstAttribute="leading" secondItem="rOj-Ph-WMo" secondAttribute="leading" constant="15" id="19e-ow-eXe"/>
+                        <constraint firstItem="Fv3-ms-5sT" firstAttribute="centerX" secondItem="rOj-Ph-WMo" secondAttribute="centerX" id="P7P-XF-eLY"/>
+                        <constraint firstItem="Fv3-ms-5sT" firstAttribute="top" secondItem="rOj-Ph-WMo" secondAttribute="top" constant="14" id="rPA-Fz-X0L"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="rOj-Ph-WMo" secondAttribute="trailing" id="2g5-2g-sL5"/>
+                <constraint firstItem="rOj-Ph-WMo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="C0z-jD-0vQ"/>
+                <constraint firstAttribute="bottom" secondItem="rOj-Ph-WMo" secondAttribute="bottom" id="RhJ-Z5-9u2"/>
+                <constraint firstItem="rOj-Ph-WMo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hOj-pc-esr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="messageLabel" destination="Fv3-ms-5sT" id="jW9-Dh-vzQ"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="-21"/>
+        </view>
+    </objects>
+</document>

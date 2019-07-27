@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="WYCommentShopTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="112.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商铺评价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwY-3q-NSb">
+                        <rect key="frame" x="45" y="10" width="69.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卖家服务" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12I-vR-oro">
+                        <rect key="frame" x="15" y="46" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发货速度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPX-5P-Czk">
+                        <rect key="frame" x="15" y="79.5" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dianpu" translatesAutoresizingMaskIntoConstraints="NO" id="BJE-XQ-u95">
+                        <rect key="frame" x="15" y="10.5" width="20" height="20"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edF-4N-Vo9" customClass="JLStartView">
+                        <rect key="frame" x="86.5" y="42.5" width="150" height="25"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="eMe-Ds-dDM"/>
+                            <constraint firstAttribute="width" constant="150" id="h0K-4p-N7t"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Liv-tY-PZU" customClass="JLStartView">
+                        <rect key="frame" x="86.5" y="76" width="150" height="25"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="5Sw-ng-NXJ"/>
+                            <constraint firstAttribute="width" constant="150" id="o3g-tN-Zoe"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超赞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uid-2d-gb1">
+                        <rect key="frame" x="244" y="47" width="29" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超赞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwD-x2-CdX">
+                        <rect key="frame" x="244" y="80" width="29" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wwD-x2-CdX" firstAttribute="centerY" secondItem="Liv-tY-PZU" secondAttribute="centerY" id="128-nC-ZiG"/>
+                    <constraint firstItem="BJE-XQ-u95" firstAttribute="centerY" secondItem="OwY-3q-NSb" secondAttribute="centerY" id="2sO-g1-bsl"/>
+                    <constraint firstItem="edF-4N-Vo9" firstAttribute="centerY" secondItem="12I-vR-oro" secondAttribute="centerY" id="3S1-np-dEK"/>
+                    <constraint firstItem="Uid-2d-gb1" firstAttribute="leading" secondItem="edF-4N-Vo9" secondAttribute="trailing" constant="8" id="5zc-nE-dsU"/>
+                    <constraint firstItem="12I-vR-oro" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="46" id="Knz-JO-ghb"/>
+                    <constraint firstItem="BJE-XQ-u95" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="OIA-MC-rCR"/>
+                    <constraint firstItem="wwD-x2-CdX" firstAttribute="leading" secondItem="Liv-tY-PZU" secondAttribute="trailing" constant="8" id="OVL-Qq-e5i"/>
+                    <constraint firstItem="DPX-5P-Czk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="WUk-20-4bl"/>
+                    <constraint firstItem="OwY-3q-NSb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="ZsE-0J-3Im"/>
+                    <constraint firstItem="edF-4N-Vo9" firstAttribute="leading" secondItem="12I-vR-oro" secondAttribute="trailing" constant="10" id="aww-RN-Krf"/>
+                    <constraint firstItem="Uid-2d-gb1" firstAttribute="centerY" secondItem="edF-4N-Vo9" secondAttribute="centerY" id="fce-pn-cbh"/>
+                    <constraint firstAttribute="bottom" secondItem="DPX-5P-Czk" secondAttribute="bottom" constant="15" id="kcu-zN-8t2"/>
+                    <constraint firstItem="Liv-tY-PZU" firstAttribute="centerY" secondItem="DPX-5P-Czk" secondAttribute="centerY" id="mvL-A0-Mll"/>
+                    <constraint firstItem="OwY-3q-NSb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="nO0-La-qbO"/>
+                    <constraint firstItem="Liv-tY-PZU" firstAttribute="leading" secondItem="DPX-5P-Czk" secondAttribute="trailing" constant="10" id="uIs-HR-ksU"/>
+                    <constraint firstItem="12I-vR-oro" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="xG3-0i-kxj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="servicestartView" destination="edF-4N-Vo9" id="5Hm-Lb-Ao2"/>
+                <outlet property="startServiceDescLabel" destination="Uid-2d-gb1" id="67i-Pd-kMV"/>
+                <outlet property="startVelocDescLabel" destination="wwD-x2-CdX" id="Ory-zg-a9x"/>
+                <outlet property="velocityStartView" destination="Liv-tY-PZU" id="4VI-s3-eZF"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="54.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_dianpu" width="20" height="20"/>
+    </resources>
+</document>

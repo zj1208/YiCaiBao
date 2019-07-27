@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="301" id="KGk-i7-Jjw" customClass="NoChartDataCommonCell">
+            <rect key="frame" x="0.0" y="0.0" width="422" height="301"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="422" height="300.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nf-qu-pBR" userLabel="chartContainerView">
+                        <rect key="frame" x="0.0" y="0.0" width="422" height="213"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="213" id="hFw-Bi-0NA"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rts-kj-Yn3" userLabel="line">
+                        <rect key="frame" x="0.0" y="213" width="422" height="0.5"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="VIP-f0-9nr"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVx-mF-anl" userLabel="chartContainerView">
+                        <rect key="frame" x="0.0" y="213.5" width="422" height="87"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂时没有数据哦，快去开单吧～" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O05-HO-V40">
+                                <rect key="frame" x="104" y="35" width="214.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="O05-HO-V40" firstAttribute="centerY" secondItem="mVx-mF-anl" secondAttribute="centerY" id="N7S-KC-mk9"/>
+                            <constraint firstItem="O05-HO-V40" firstAttribute="centerX" secondItem="mVx-mF-anl" secondAttribute="centerX" id="OTd-ds-Gpe"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8nf-qu-pBR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="L7A-5G-qhy"/>
+                    <constraint firstItem="mVx-mF-anl" firstAttribute="top" secondItem="Rts-kj-Yn3" secondAttribute="bottom" id="SVb-4Z-P49"/>
+                    <constraint firstItem="Rts-kj-Yn3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="T8w-8V-RfQ"/>
+                    <constraint firstItem="mVx-mF-anl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VJP-UR-Bgf"/>
+                    <constraint firstAttribute="trailing" secondItem="mVx-mF-anl" secondAttribute="trailing" id="VwC-rf-nNa"/>
+                    <constraint firstAttribute="bottom" secondItem="mVx-mF-anl" secondAttribute="bottom" id="aMn-4C-fzH"/>
+                    <constraint firstItem="8nf-qu-pBR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="geb-gb-0l9"/>
+                    <constraint firstItem="Rts-kj-Yn3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ocV-uj-px4"/>
+                    <constraint firstItem="8nf-qu-pBR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vUP-Ed-zKq"/>
+                    <constraint firstItem="Rts-kj-Yn3" firstAttribute="top" secondItem="8nf-qu-pBR" secondAttribute="bottom" id="zug-qF-ew8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="5" y="93.5"/>
+        </tableViewCell>
+    </objects>
+</document>

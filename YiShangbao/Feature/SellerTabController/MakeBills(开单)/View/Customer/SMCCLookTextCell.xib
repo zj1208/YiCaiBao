@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SMCCLookTextCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbd-0K-4w9">
+                        <rect key="frame" x="15" y="12" width="46" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="t3a-Dq-GCl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马云先生" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykJ-1g-UAX">
+                        <rect key="frame" x="75" y="12" width="285" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5V-lh-etD" userLabel="line">
+                        <rect key="frame" x="15" y="49.5" width="360" height="0.5"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="vlF-ve-Gmm"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="6AB-No-mVA">
+                        <rect key="frame" x="352.5" y="18" width="7.5" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="9Dh-H7-IXQ"/>
+                            <constraint firstAttribute="width" secondItem="6AB-No-mVA" secondAttribute="height" multiplier="15:28" id="y30-gg-YNF"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="L5V-lh-etD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="65s-aZ-c18"/>
+                <constraint firstItem="ykJ-1g-UAX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="75" id="7c7-qf-Oya"/>
+                <constraint firstAttribute="trailing" secondItem="6AB-No-mVA" secondAttribute="trailing" constant="15" id="Bjm-tD-UgC"/>
+                <constraint firstItem="ykJ-1g-UAX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="P1i-xT-T6V"/>
+                <constraint firstItem="Lbd-0K-4w9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="Vmv-jV-BCA"/>
+                <constraint firstAttribute="trailing" secondItem="L5V-lh-etD" secondAttribute="trailing" id="XLY-AD-TqO"/>
+                <constraint firstAttribute="trailing" secondItem="ykJ-1g-UAX" secondAttribute="trailing" constant="15" id="dTW-l5-KGz"/>
+                <constraint firstAttribute="bottom" secondItem="L5V-lh-etD" secondAttribute="bottom" id="iBu-oh-Pq5"/>
+                <constraint firstItem="6AB-No-mVA" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="oza-Eo-4kS"/>
+                <constraint firstItem="Lbd-0K-4w9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="upO-J0-t6T"/>
+            </constraints>
+            <connections>
+                <outlet property="contentLabel" destination="ykJ-1g-UAX" id="BmI-aW-6Pf"/>
+                <outlet property="rightIcon" destination="6AB-No-mVA" id="Fcm-Hy-cKy"/>
+                <outlet property="titleLabel" destination="Lbd-0K-4w9" id="ZZa-jM-oHz"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="right_arrow" width="7" height="14"/>
+    </resources>
+</document>

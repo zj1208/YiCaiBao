@@ -1,0 +1,87 @@
+
+/* Class = "UILabel"; text = "主营类目"; ObjectID = "4N3-C4-swV"; */
+"4N3-C4-swV.text" = "主营类目";
+
+/* Class = "UIButton"; normalTitle = "已接"; ObjectID = "4lm-cE-tP6"; */
+"4lm-cE-tP6.normalTitle" = "已接";
+
+/* Class = "UILabel"; text = "选择您的主营类目"; ObjectID = "BTD-yQ-MO8"; */
+"BTD-yQ-MO8.text" = "选择您的主营类目";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Eyc-wj-ViN"; */
+"Eyc-wj-ViN.title" = "Title";
+
+/* Class = "UIButton"; normalTitle = "最新发布"; ObjectID = "FDX-Hn-cdh"; */
+"FDX-Hn-cdh.normalTitle" = "最新发布";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "G9s-1S-YJs"; */
+"G9s-1S-YJs.title" = "Item";
+
+/* Class = "UILabel"; text = "您还没有完善店铺资料, 系统无法为您推荐匹配的生意哦～"; ObjectID = "H2n-mQ-Zm5"; */
+"H2n-mQ-Zm5.text" = "您还没有完善店铺资料, 系统无法为您推荐匹配的生意哦～";
+
+/* Class = "UISearchBar"; placeholder = "输入产品关键词、型号搜索产品"; ObjectID = "PQj-v6-JDN"; */
+"PQj-v6-JDN.placeholder" = "输入产品关键词、型号搜索产品";
+
+/* Class = "UIButton"; normalTitle = "测试环境"; ObjectID = "ReR-NT-b8E"; */
+"ReR-NT-b8E.normalTitle" = "测试环境";
+
+/* Class = "UILabel"; text = "99"; ObjectID = "T3c-bI-L3Z"; */
+"T3c-bI-L3Z.text" = "99";
+
+/* Class = "UILabel"; text = "(0/200)"; ObjectID = "Vxb-yq-DNT"; */
+"Vxb-yq-DNT.text" = "(0/200)";
+
+/* Class = "UIButton"; normalTitle = "线上环境"; ObjectID = "W4o-0l-8GS"; */
+"W4o-0l-8GS.normalTitle" = "线上环境";
+
+/* Class = "UILabel"; text = "及时获取生意推送、收发客户消息"; ObjectID = "XdL-Zb-iQV"; */
+"XdL-Zb-iQV.text" = "及时获取生意推送、收发客户消息";
+
+/* Class = "UIButton"; normalTitle = "现货库存"; ObjectID = "Xqf-p2-0Gw"; */
+"Xqf-p2-0Gw.normalTitle" = "现货库存";
+
+/* Class = "UINavigationItem"; title = "接生意设置"; ObjectID = "YW7-nx-yFk"; */
+"YW7-nx-yFk.title" = "接生意设置";
+
+/* Class = "UILabel"; text = "设置主营类目、产品，生意推送更精准"; ObjectID = "ZgF-ae-Maj"; */
+"ZgF-ae-Maj.text" = "设置主营类目、产品，生意推送更精准";
+
+/* Class = "UIButton"; normalTitle = " 立即完善资料"; ObjectID = "cOM-HQ-Wn4"; */
+"cOM-HQ-Wn4.normalTitle" = " 立即完善资料";
+
+/* Class = "UIButton"; normalTitle = "开发环境"; ObjectID = "ced-JM-0QD"; */
+"ced-JM-0QD.normalTitle" = "开发环境";
+
+/* Class = "UILabel"; text = "开启库存其他求购信息推送"; ObjectID = "fE0-6x-WOG"; */
+"fE0-6x-WOG.text" = "开启库存其他求购信息推送";
+
+/* Class = "UIButton"; normalTitle = "如何让生意推送更精准，查看生意推送规则 》"; ObjectID = "hyT-rc-ynh"; */
+"hyT-rc-ynh.normalTitle" = "如何让生意推送更精准，查看生意推送规则 》";
+
+/* Class = "UINavigationItem"; title = "消息"; ObjectID = "iT3-IL-oJP"; */
+"iT3-IL-oJP.title" = "消息";
+
+/* Class = "UIButton"; normalTitle = "系统推荐"; ObjectID = "ouT-qb-xRf"; */
+"ouT-qb-xRf.normalTitle" = "系统推荐";
+
+/* Class = "UIButton"; normalTitle = "去开启"; ObjectID = "pU9-dY-I0d"; */
+"pU9-dY-I0d.normalTitle" = "去开启";
+
+/* Class = "UINavigationItem"; title = "微铺"; ObjectID = "q8m-wg-AGl"; */
+"q8m-wg-AGl.title" = "微铺";
+
+/* Class = "UINavigationItem"; title = "经侦服务"; ObjectID = "qKp-WK-6yp"; */
+"qKp-WK-6yp.title" = "经侦服务";
+
+/* Class = "UILabel"; text = "生意语音提示"; ObjectID = "r5v-vw-pIu"; */
+"r5v-vw-pIu.text" = "生意语音提示";
+
+/* Class = "UILabel"; text = "接生意"; ObjectID = "t1I-Rw-7r3"; */
+"t1I-Rw-7r3.text" = "接生意";
+
+/* Class = "UILabel"; text = "主营产品"; ObjectID = "wjt-qI-fK3"; */
+"wjt-qI-fK3.text" = "主营产品";
+
+/* Class = "UILabel"; text = "开启系统通知"; ObjectID = "x97-1y-tD8"; */
+"x97-1y-tD8.text" = "开启系统通知";

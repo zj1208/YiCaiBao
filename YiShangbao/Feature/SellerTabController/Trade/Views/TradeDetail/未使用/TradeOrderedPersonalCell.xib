@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="290" id="KGk-i7-Jjw" customClass="TradeOrderedPersonalCell">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="290"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="289"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-DA-nmV">
+                        <rect key="frame" x="150" y="20" width="51" height="57"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="47"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人已接单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-s4-Juu">
+                        <rect key="frame" x="201" y="49" width="66" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NBY-F0-RCx" customClass="ZXProgressView">
+                        <rect key="frame" x="23" y="105" width="364" height="2"/>
+                        <color key="progressTintColor" red="0.8862745098" green="0.043137254899999998" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </progressView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW7-2d-tWl">
+                        <rect key="frame" x="193" y="80" width="25" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zof-kf-TLX">
+                        <rect key="frame" x="23" y="119" width="364" height="150"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ByE-I2-IH0" customClass="RemindSpaceLayout">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NBY-F0-RCx" firstAttribute="top" secondItem="QW7-2d-tWl" secondAttribute="bottom" constant="10" id="3dn-OZ-vH3"/>
+                    <constraint firstItem="ETd-s4-Juu" firstAttribute="leading" secondItem="4fa-DA-nmV" secondAttribute="trailing" id="3mo-tf-VDm"/>
+                    <constraint firstItem="zof-kf-TLX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="8bu-lv-M6w"/>
+                    <constraint firstItem="4fa-DA-nmV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="APd-ak-3Sf"/>
+                    <constraint firstItem="ETd-s4-Juu" firstAttribute="bottom" secondItem="4fa-DA-nmV" secondAttribute="bottom" constant="-8" id="BHt-CA-eGK"/>
+                    <constraint firstItem="QW7-2d-tWl" firstAttribute="top" secondItem="4fa-DA-nmV" secondAttribute="bottom" constant="3" id="Ll5-eT-cPf"/>
+                    <constraint firstItem="4fa-DA-nmV" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-30" id="Rsh-bo-afj"/>
+                    <constraint firstItem="zof-kf-TLX" firstAttribute="top" secondItem="NBY-F0-RCx" secondAttribute="bottom" constant="12" id="eL2-Dn-qoy"/>
+                    <constraint firstItem="QW7-2d-tWl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fmP-d1-a2B"/>
+                    <constraint firstItem="NBY-F0-RCx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="lbJ-2P-noB"/>
+                    <constraint firstAttribute="bottom" secondItem="zof-kf-TLX" secondAttribute="bottom" constant="20" id="ppn-6C-eZl"/>
+                    <constraint firstItem="NBY-F0-RCx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="suS-wZ-Fjc"/>
+                    <constraint firstItem="zof-kf-TLX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="yO2-Zj-cXM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionView" destination="zof-kf-TLX" id="5Th-lY-8uv"/>
+                <outlet property="flowLayout" destination="ByE-I2-IH0" id="Znw-SF-BpT"/>
+                <outlet property="numPersonalLab" destination="4fa-DA-nmV" id="70F-wd-5Na"/>
+                <outlet property="progressLab" destination="QW7-2d-tWl" id="LeQ-Y4-WUl"/>
+                <outlet property="progressView" destination="NBY-F0-RCx" id="5jL-tt-ljq"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="116"/>
+        </tableViewCell>
+    </objects>
+</document>

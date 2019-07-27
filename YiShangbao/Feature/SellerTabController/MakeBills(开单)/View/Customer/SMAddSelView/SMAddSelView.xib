@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SMAddSelView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0a-JK-yuz">
+                    <rect key="frame" x="205" y="64" width="150" height="130"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuO-IH-Utc">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="130.5"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tankuang" translatesAutoresizingMaskIntoConstraints="NO" id="qwA-2z-lBi">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="130.5"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DI9-V1-Pnr">
+                                    <rect key="frame" x="15" y="25" width="120" height="47.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="立即添加       " image="ic_add people">
+                                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="nowBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Z0m-a7-GU9"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zw-sQ-yoK">
+                                    <rect key="frame" x="15" y="73.5" width="120" height="47"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="从通讯录导入" image="tongxunlu">
+                                        <color key="titleColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="aal-nX-4x5"/>
+                                        <action selector="nowBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ntd-DU-CEs"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d37-5R-OgC" userLabel="line">
+                                    <rect key="frame" x="15" y="72.5" width="120" height="1"/>
+                                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="ntl-at-vgW"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="3zw-sQ-yoK" firstAttribute="top" secondItem="d37-5R-OgC" secondAttribute="bottom" id="0mO-XS-WfJ"/>
+                                <constraint firstAttribute="trailing" secondItem="d37-5R-OgC" secondAttribute="trailing" constant="15" id="4V0-cO-6DM"/>
+                                <constraint firstAttribute="bottom" secondItem="qwA-2z-lBi" secondAttribute="bottom" id="8GA-xG-xAa"/>
+                                <constraint firstAttribute="width" secondItem="JuO-IH-Utc" secondAttribute="height" multiplier="15:13" id="9Op-Kj-XIW"/>
+                                <constraint firstAttribute="trailing" secondItem="qwA-2z-lBi" secondAttribute="trailing" id="Eat-2s-2BZ"/>
+                                <constraint firstItem="d37-5R-OgC" firstAttribute="top" secondItem="DI9-V1-Pnr" secondAttribute="bottom" id="QBN-hc-S3G"/>
+                                <constraint firstItem="qwA-2z-lBi" firstAttribute="top" secondItem="JuO-IH-Utc" secondAttribute="top" id="QZ3-ja-v19"/>
+                                <constraint firstItem="3zw-sQ-yoK" firstAttribute="leading" secondItem="JuO-IH-Utc" secondAttribute="leading" constant="15" id="V1s-Jb-2oj"/>
+                                <constraint firstAttribute="bottom" secondItem="3zw-sQ-yoK" secondAttribute="bottom" constant="10" id="WCF-io-pYZ"/>
+                                <constraint firstItem="DI9-V1-Pnr" firstAttribute="top" secondItem="JuO-IH-Utc" secondAttribute="top" constant="25" id="bBT-2X-aw5"/>
+                                <constraint firstAttribute="width" constant="150" id="cx9-W0-bJI"/>
+                                <constraint firstItem="d37-5R-OgC" firstAttribute="leading" secondItem="JuO-IH-Utc" secondAttribute="leading" constant="15" id="ipY-tb-AQA"/>
+                                <constraint firstAttribute="trailing" secondItem="DI9-V1-Pnr" secondAttribute="trailing" constant="15" id="qJC-Vk-z5G"/>
+                                <constraint firstItem="DI9-V1-Pnr" firstAttribute="height" secondItem="3zw-sQ-yoK" secondAttribute="height" id="qSh-AL-lXD"/>
+                                <constraint firstAttribute="trailing" secondItem="3zw-sQ-yoK" secondAttribute="trailing" constant="15" id="rrl-4k-dWp"/>
+                                <constraint firstItem="DI9-V1-Pnr" firstAttribute="leading" secondItem="JuO-IH-Utc" secondAttribute="leading" constant="15" id="srZ-dt-aB2"/>
+                                <constraint firstItem="qwA-2z-lBi" firstAttribute="leading" secondItem="JuO-IH-Utc" secondAttribute="leading" id="tCr-no-NCK"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="JuO-IH-Utc" firstAttribute="top" secondItem="M0a-JK-yuz" secondAttribute="top" id="Itp-4H-SqB"/>
+                        <constraint firstAttribute="trailing" secondItem="JuO-IH-Utc" secondAttribute="trailing" id="ZBN-EY-h1V"/>
+                        <constraint firstAttribute="bottom" secondItem="JuO-IH-Utc" secondAttribute="bottom" id="ZtD-sI-Fuh"/>
+                        <constraint firstItem="JuO-IH-Utc" firstAttribute="leading" secondItem="M0a-JK-yuz" secondAttribute="leading" id="aWf-RM-atZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="M0a-JK-yuz" secondAttribute="trailing" constant="20" id="p2L-xb-b21"/>
+                <constraint firstItem="M0a-JK-yuz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="vLg-lu-Dbc"/>
+            </constraints>
+            <connections>
+                <outlet property="addressBookBtn" destination="3zw-sQ-yoK" id="uBY-qX-bPq"/>
+                <outlet property="menuContentView" destination="JuO-IH-Utc" id="EW8-OR-Om0"/>
+                <outlet property="mowBtn" destination="DI9-V1-Pnr" id="pO5-4R-7qk"/>
+                <outlet property="topConstrain" destination="vLg-lu-Dbc" id="kdx-vg-wbC"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_add people" width="15" height="15"/>
+        <image name="tankuang" width="148" height="128"/>
+        <image name="tongxunlu" width="16" height="16"/>
+    </resources>
+</document>

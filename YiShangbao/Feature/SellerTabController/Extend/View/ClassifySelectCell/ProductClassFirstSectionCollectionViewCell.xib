@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProductClassFirstSectionCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8c-kW-1fJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择一个类目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXm-a5-8xq">
+                                <rect key="frame" x="151" y="9.5" width="93" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_dianji.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xaf-mL-wB6">
+                                <rect key="frame" x="131" y="9" width="13" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="ZNb-Uq-11V"/>
+                                    <constraint firstAttribute="width" constant="13" id="l9i-Qy-L9U"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="il3-6H-FoS">
+                                <rect key="frame" x="76" y="17" width="40" height="1"/>
+                                <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="XvU-P2-RFD"/>
+                                    <constraint firstAttribute="width" constant="40" id="qf1-sv-g3B"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-XM-BNH">
+                                <rect key="frame" x="259" y="17" width="40" height="1"/>
+                                <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="WJB-Wq-Tm8"/>
+                                    <constraint firstAttribute="width" constant="40" id="Zog-NI-Qa6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Rwf-XM-BNH" firstAttribute="leading" secondItem="tXm-a5-8xq" secondAttribute="trailing" constant="15" id="Abt-6V-Jdb"/>
+                            <constraint firstItem="Rwf-XM-BNH" firstAttribute="centerY" secondItem="tXm-a5-8xq" secondAttribute="centerY" id="YaM-by-bYU"/>
+                            <constraint firstItem="Xaf-mL-wB6" firstAttribute="leading" secondItem="il3-6H-FoS" secondAttribute="trailing" constant="15" id="cNM-XI-uHk"/>
+                            <constraint firstItem="il3-6H-FoS" firstAttribute="centerY" secondItem="tXm-a5-8xq" secondAttribute="centerY" id="kne-wL-KSr"/>
+                            <constraint firstItem="tXm-a5-8xq" firstAttribute="leading" secondItem="Xaf-mL-wB6" secondAttribute="trailing" constant="7" id="mvH-CX-Tm6"/>
+                            <constraint firstItem="tXm-a5-8xq" firstAttribute="centerX" secondItem="G8c-kW-1fJ" secondAttribute="centerX" constant="10" id="otQ-jZ-jGE"/>
+                            <constraint firstItem="tXm-a5-8xq" firstAttribute="centerY" secondItem="G8c-kW-1fJ" secondAttribute="centerY" id="oxa-53-hlU"/>
+                            <constraint firstItem="Xaf-mL-wB6" firstAttribute="centerY" secondItem="tXm-a5-8xq" secondAttribute="centerY" id="v5M-E4-C9j"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="G8c-kW-1fJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="W9f-um-CJg"/>
+                <constraint firstAttribute="trailing" secondItem="G8c-kW-1fJ" secondAttribute="trailing" id="Xha-0z-a0t"/>
+                <constraint firstItem="G8c-kW-1fJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gjT-38-IMo"/>
+                <constraint firstAttribute="bottom" secondItem="G8c-kW-1fJ" secondAttribute="bottom" id="xia-jo-3rA"/>
+            </constraints>
+            <size key="customSize" width="541" height="178"/>
+            <connections>
+                <outlet property="selLabel" destination="tXm-a5-8xq" id="ESJ-yC-aRc"/>
+            </connections>
+            <point key="canvasLocation" x="175" y="84"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="pic_dianji.png" width="13" height="17"/>
+    </resources>
+</document>

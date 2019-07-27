@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SODProductsRefundDetailCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mdp-Ur-499">
+                        <rect key="frame" x="10" y="8" width="94" height="94"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Mdp-Ur-499" secondAttribute="height" multiplier="1:1" id="RQE-5G-MHy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车载娃娃diy材料蕾丝涤纶蕾丝服装是淡淡的载娃娃载娃娃载娃娃载娃娃载淡淡..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bp-D2-XjQ">
+                        <rect key="frame" x="117" y="8" width="237" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1050mm*100*3200mm；天蓝色；天蓝色（不其它）；1050mm*100*3200mm；1050mm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsd-ah-g2M">
+                        <rect key="frame" x="117" y="42.5" width="243" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.69411764705882351" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Mdp-Ur-499" secondAttribute="bottom" constant="7.5" id="1Tr-XF-JKO"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bsd-ah-g2M" secondAttribute="trailing" constant="15" id="6kI-9a-Sc2"/>
+                <constraint firstItem="8bp-D2-XjQ" firstAttribute="top" secondItem="Mdp-Ur-499" secondAttribute="top" id="Lec-S3-V5A"/>
+                <constraint firstItem="Mdp-Ur-499" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="7.5" id="Q0c-pC-igp"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8bp-D2-XjQ" secondAttribute="trailing" constant="15" id="d7O-RZ-ZF1"/>
+                <constraint firstItem="Mdp-Ur-499" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="hiI-HS-X7K"/>
+                <constraint firstItem="bsd-ah-g2M" firstAttribute="leading" secondItem="8bp-D2-XjQ" secondAttribute="leading" id="iqa-AV-2N1"/>
+                <constraint firstItem="8bp-D2-XjQ" firstAttribute="leading" secondItem="Mdp-Ur-499" secondAttribute="trailing" constant="13" id="oGn-vs-TJQ"/>
+                <constraint firstItem="bsd-ah-g2M" firstAttribute="top" secondItem="8bp-D2-XjQ" secondAttribute="bottom" constant="3" id="y8k-VU-IIy"/>
+            </constraints>
+            <connections>
+                <outlet property="IMV" destination="Mdp-Ur-499" id="mY0-fQ-ZaO"/>
+                <outlet property="productLabel" destination="8bp-D2-XjQ" id="yS8-hK-Tsg"/>
+                <outlet property="productSizeLabel" destination="bsd-ah-g2M" id="WgQ-iV-Is3"/>
+            </connections>
+            <point key="canvasLocation" x="105.5" y="54"/>
+        </collectionViewCell>
+    </objects>
+</document>

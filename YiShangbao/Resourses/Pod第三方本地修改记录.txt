@@ -1,0 +1,31 @@
+/* 
+  Pod第三方本地修改记录.strings
+  YiShangbao
+
+  Created by simon on 2018/7/9.
+  Copyright © 2018年 com.Microants. All rights reserved.
+*/
+
+1. TZImagePickerController
+
+（1）TZImagePickerController.m:574行，注释定位代码；
+
+2. NIMKit   目前太多，以后记录；
+
+3.QIYU_iOS_SDK
+#  跟云信有冲突,改为文件导入
+#  pod 'QIYU_iOS_SDK', '~> 4.2.1'
+
+4.SDCycleScrollView
+#  有冲突，PageControl;目前先删除本地PageControl部分，保留这个第三方的内部PageControl；
+pod 'SDCycleScrollView', '~> 1.75'
+
+
+
+
+
+兜信有关的第三方：
+lottie-iOS:动画框架；
+SDK：七鱼
+TalkingData：应用统计
+

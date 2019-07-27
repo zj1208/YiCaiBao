@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SMAddCustomerCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasda啊 dasdasdasda啊 dasdasdasda啊 dasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6F-i7-LqS">
+                        <rect key="frame" x="50" y="12.5" width="136" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="157571263879" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVh-Ul-sSW">
+                        <rect key="frame" x="190" y="14" width="100" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="raj-BU-NUP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQA-96-vvP">
+                        <rect key="frame" x="15" y="11.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="3C6-vb-5CN"/>
+                            <constraint firstAttribute="width" secondItem="YQA-96-vvP" secondAttribute="height" multiplier="1:1" id="DpE-EY-a9C"/>
+                        </constraints>
+                        <state key="normal" image="ic_weixuanzhongyinhangka"/>
+                        <state key="selected" image="ic_shijianzhou_yiwancheng"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YQA-96-vvP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0rR-xU-xCn"/>
+                    <constraint firstItem="zVh-Ul-sSW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3hc-bH-KaE"/>
+                    <constraint firstItem="X6F-i7-LqS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8hG-TI-fIW"/>
+                    <constraint firstItem="zVh-Ul-sSW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X6F-i7-LqS" secondAttribute="trailing" constant="4" id="Bhy-hE-lh0"/>
+                    <constraint firstAttribute="trailing" secondItem="zVh-Ul-sSW" secondAttribute="trailing" constant="30" id="JZw-1I-0Hd"/>
+                    <constraint firstItem="YQA-96-vvP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ql0-tH-eoM"/>
+                    <constraint firstItem="X6F-i7-LqS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="blo-Vg-yXe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconBtn" destination="YQA-96-vvP" id="mys-w2-aPa"/>
+                <outlet property="nameLabel" destination="X6F-i7-LqS" id="XvO-uR-ahn"/>
+                <outlet property="phoneLabel" destination="zVh-Ul-sSW" id="Ykf-r1-wsi"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_shijianzhou_yiwancheng" width="15" height="15"/>
+        <image name="ic_weixuanzhongyinhangka" width="15" height="15"/>
+    </resources>
+</document>

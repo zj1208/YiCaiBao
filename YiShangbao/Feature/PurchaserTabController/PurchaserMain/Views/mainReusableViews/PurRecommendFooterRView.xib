@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pNU-ov-Fes" customClass="PurRecommendFooterRView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="诶呀，没有啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jU-LV-R5e">
+                    <rect key="frame" x="148" y="14" width="80" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5W-To-1VV">
+                    <rect key="frame" x="90" y="21" width="50" height="0.5"/>
+                    <color key="backgroundColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="EPo-Kx-BTf"/>
+                        <constraint firstAttribute="width" constant="50" id="auc-DH-7OD"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qC-IW-CXf">
+                    <rect key="frame" x="236" y="21.5" width="50" height="0.5"/>
+                    <color key="backgroundColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="E2E-50-L6L"/>
+                        <constraint firstAttribute="width" constant="50" id="fZk-m6-KAi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="1jU-LV-R5e" firstAttribute="centerY" secondItem="pNU-ov-Fes" secondAttribute="centerY" id="00s-CP-siB"/>
+                <constraint firstItem="1jU-LV-R5e" firstAttribute="leading" secondItem="e5W-To-1VV" secondAttribute="trailing" constant="8" id="07g-66-5Lg"/>
+                <constraint firstItem="1jU-LV-R5e" firstAttribute="centerX" secondItem="pNU-ov-Fes" secondAttribute="centerX" id="gZP-NA-Yzb"/>
+                <constraint firstItem="1qC-IW-CXf" firstAttribute="centerY" secondItem="1jU-LV-R5e" secondAttribute="centerY" id="hrP-eO-0UQ"/>
+                <constraint firstItem="e5W-To-1VV" firstAttribute="centerY" secondItem="1jU-LV-R5e" secondAttribute="centerY" id="lMO-zS-GzC"/>
+                <constraint firstItem="1qC-IW-CXf" firstAttribute="leading" secondItem="1jU-LV-R5e" secondAttribute="trailing" constant="8" id="qV0-hW-MXn"/>
+            </constraints>
+            <connections>
+                <outlet property="titleLabel" destination="1jU-LV-R5e" id="adS-cB-6C3"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>

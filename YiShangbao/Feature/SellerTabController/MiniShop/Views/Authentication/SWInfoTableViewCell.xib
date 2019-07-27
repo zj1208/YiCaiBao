@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="286" id="KGk-i7-Jjw" customClass="SWInfoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="344"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="343.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FY2-0L-uUC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="344"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="douxin_background" translatesAutoresizingMaskIntoConstraints="NO" id="moQ-QF-XXE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="b6m-V5-tUw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最高可借20万，随借随还！极速放贷，资金短缺不求人！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNP-Fy-OCc">
+                                <rect key="frame" x="15" y="27" width="345" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_douxin" translatesAutoresizingMaskIntoConstraints="NO" id="mYC-uV-VGU">
+                                <rect key="frame" x="152.5" y="105" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="QeK-MI-LB0"/>
+                                    <constraint firstAttribute="height" constant="70" id="cj2-Sg-sV7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兜信商户钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyA-Za-fyk">
+                                <rect key="frame" x="147.5" y="183" width="80" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="为更好的满足您的借贷需求，需要您授权兜信查询您的以下信息：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-sU-hOQ">
+                                <rect key="frame" x="15" y="223" width="345" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• 获取您的公开信息（商铺名称、头像、地址等）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4F5-d5-0XY">
+                                <rect key="frame" x="15" y="266.5" width="345" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• 获取您的身份信息" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAB-lh-NqC">
+                                <rect key="frame" x="15" y="293.5" width="345" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4F5-d5-0XY" firstAttribute="leading" secondItem="FY2-0L-uUC" secondAttribute="leading" constant="15" id="7Vn-fc-X3w"/>
+                            <constraint firstItem="mYC-uV-VGU" firstAttribute="top" secondItem="moQ-QF-XXE" secondAttribute="bottom" constant="-35" id="8fS-tG-HTm"/>
+                            <constraint firstItem="moQ-QF-XXE" firstAttribute="top" secondItem="FY2-0L-uUC" secondAttribute="top" id="9RO-VS-lZS"/>
+                            <constraint firstItem="DyA-Za-fyk" firstAttribute="centerX" secondItem="FY2-0L-uUC" secondAttribute="centerX" id="C6o-BN-rQP"/>
+                            <constraint firstItem="TNP-Fy-OCc" firstAttribute="centerX" secondItem="FY2-0L-uUC" secondAttribute="centerX" id="DkK-28-Myx"/>
+                            <constraint firstItem="TNP-Fy-OCc" firstAttribute="leading" secondItem="FY2-0L-uUC" secondAttribute="leading" constant="15" id="E6C-VQ-iSz"/>
+                            <constraint firstItem="DyA-Za-fyk" firstAttribute="top" secondItem="mYC-uV-VGU" secondAttribute="bottom" constant="8" id="Kox-Kb-0vR"/>
+                            <constraint firstItem="Gjc-sU-hOQ" firstAttribute="top" secondItem="moQ-QF-XXE" secondAttribute="bottom" constant="83" id="Kum-Iy-7lh"/>
+                            <constraint firstAttribute="trailing" secondItem="gAB-lh-NqC" secondAttribute="trailing" constant="15" id="UTX-6m-4Yx"/>
+                            <constraint firstItem="gAB-lh-NqC" firstAttribute="top" secondItem="4F5-d5-0XY" secondAttribute="bottom" constant="10" id="VAN-KW-Jjm"/>
+                            <constraint firstItem="moQ-QF-XXE" firstAttribute="leading" secondItem="FY2-0L-uUC" secondAttribute="leading" id="YEx-JZ-uI9"/>
+                            <constraint firstItem="TNP-Fy-OCc" firstAttribute="top" secondItem="FY2-0L-uUC" secondAttribute="top" constant="27" id="aWC-w0-Bab"/>
+                            <constraint firstItem="Gjc-sU-hOQ" firstAttribute="leading" secondItem="FY2-0L-uUC" secondAttribute="leading" constant="15" id="eim-Fu-8yc"/>
+                            <constraint firstAttribute="trailing" secondItem="moQ-QF-XXE" secondAttribute="trailing" id="f89-CP-u28"/>
+                            <constraint firstItem="gAB-lh-NqC" firstAttribute="leading" secondItem="FY2-0L-uUC" secondAttribute="leading" constant="15" id="ghs-qt-9SK"/>
+                            <constraint firstAttribute="trailing" secondItem="Gjc-sU-hOQ" secondAttribute="trailing" constant="15" id="hNh-d3-uuq"/>
+                            <constraint firstAttribute="trailing" secondItem="4F5-d5-0XY" secondAttribute="trailing" constant="15" id="hkz-ME-7NV"/>
+                            <constraint firstAttribute="trailing" secondItem="TNP-Fy-OCc" secondAttribute="trailing" constant="15" id="s0Y-rT-W14"/>
+                            <constraint firstAttribute="height" constant="344" id="uhr-AU-oJr"/>
+                            <constraint firstItem="4F5-d5-0XY" firstAttribute="top" secondItem="Gjc-sU-hOQ" secondAttribute="bottom" constant="10" id="wQn-wY-n4j"/>
+                            <constraint firstItem="mYC-uV-VGU" firstAttribute="centerX" secondItem="FY2-0L-uUC" secondAttribute="centerX" id="xZD-El-Jba"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FY2-0L-uUC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Fqk-qu-6CT"/>
+                    <constraint firstAttribute="bottom" secondItem="FY2-0L-uUC" secondAttribute="bottom" id="YWg-wi-jgT"/>
+                    <constraint firstItem="FY2-0L-uUC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rcm-Wy-e15"/>
+                    <constraint firstAttribute="trailing" secondItem="FY2-0L-uUC" secondAttribute="trailing" id="srs-TL-emk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="TNP-Fy-OCc" id="SJf-Z2-S1l"/>
+            </connections>
+            <point key="canvasLocation" x="53.5" y="193"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="douxin_background" width="375" height="140"/>
+        <image name="logo_douxin" width="71" height="71"/>
+    </resources>
+</document>

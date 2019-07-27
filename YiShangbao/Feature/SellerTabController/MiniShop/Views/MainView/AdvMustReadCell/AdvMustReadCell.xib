@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AdvMustReadCell">
+            <rect key="frame" x="0.0" y="0.0" width="499" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="499" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jyn-UQ-Akx" customClass="JLCycleScrollerView">
+                        <rect key="frame" x="117.5" y="0.0" width="337.5" height="80"/>
+                        <color key="backgroundColor" red="0.8862745098" green="0.2156862745" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必看通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjw-co-9P1">
+                        <rect key="frame" x="15" y="32" width="53.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                        <color key="textColor" red="0.88627450980392153" green="0.21568627450980393" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bikantongzhi" translatesAutoresizingMaskIntoConstraints="NO" id="JBL-SR-uQJ">
+                        <rect key="frame" x="72.5" y="34" width="12" height="12"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic-jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="kXi-Rq-F1N">
+                        <rect key="frame" x="475" y="31.5" width="9" height="17"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badge_dot_red.png" translatesAutoresizingMaskIntoConstraints="NO" id="aVm-md-4mo">
+                        <rect key="frame" x="461" y="35.5" width="9" height="9"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Wjw-co-9P1" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="7NL-fm-ipO"/>
+                <constraint firstAttribute="bottom" secondItem="jyn-UQ-Akx" secondAttribute="bottom" id="Cc9-2F-Po8"/>
+                <constraint firstItem="jyn-UQ-Akx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Cfz-k5-8qr"/>
+                <constraint firstAttribute="trailing" secondItem="kXi-Rq-F1N" secondAttribute="trailing" constant="15" id="ISw-m8-uXW"/>
+                <constraint firstItem="kXi-Rq-F1N" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Obd-OC-ANz"/>
+                <constraint firstItem="JBL-SR-uQJ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="OvJ-8O-Oa7"/>
+                <constraint firstItem="JBL-SR-uQJ" firstAttribute="leading" secondItem="Wjw-co-9P1" secondAttribute="trailing" constant="4" id="Vg0-Ir-amT"/>
+                <constraint firstItem="aVm-md-4mo" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Y9M-Km-tkX"/>
+                <constraint firstItem="kXi-Rq-F1N" firstAttribute="leading" secondItem="jyn-UQ-Akx" secondAttribute="trailing" constant="20" id="hGb-zR-iXM"/>
+                <constraint firstItem="kXi-Rq-F1N" firstAttribute="leading" secondItem="aVm-md-4mo" secondAttribute="trailing" constant="5" id="mvz-Ix-HeD"/>
+                <constraint firstItem="Wjw-co-9P1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="pDg-jn-Ohi"/>
+                <constraint firstItem="jyn-UQ-Akx" firstAttribute="leading" secondItem="JBL-SR-uQJ" secondAttribute="trailing" constant="33" id="xMV-td-cZT"/>
+            </constraints>
+            <size key="customSize" width="499" height="80"/>
+            <connections>
+                <outlet property="briefLab" destination="Wjw-co-9P1" id="QsG-DC-d7C"/>
+                <outlet property="cycleTitleView" destination="jyn-UQ-Akx" id="HHT-x0-fyA"/>
+                <outlet property="dotImageView" destination="aVm-md-4mo" id="Li4-O3-EMt"/>
+            </connections>
+            <point key="canvasLocation" x="21.5" y="25"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="badge_dot_red.png" width="9" height="9"/>
+        <image name="ic_bikantongzhi" width="12" height="12"/>
+        <image name="pic-jiantou" width="9" height="17"/>
+    </resources>
+</document>

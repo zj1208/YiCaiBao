@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="NoticeServiceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJJ-YN-EDe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_shichanggonggao" translatesAutoresizingMaskIntoConstraints="NO" id="1EL-kw-Cde">
+                                <rect key="frame" x="15" y="9" width="37" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="s49-Ul-qgd"/>
+                                    <constraint firstAttribute="height" constant="39" id="sx9-o8-034"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="震惊！微蚁科技科技科技科的产品经理居" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yx-H1-y3j">
+                                <rect key="frame" x="64.5" y="9.5" width="239" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="tln-Kb-LEr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这个地方限制字数最多只能多少个字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN1-o8-xYq">
+                                <rect key="frame" x="64.5" y="33.5" width="212.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aN1-o8-xYq" firstAttribute="top" secondItem="5Yx-H1-y3j" secondAttribute="bottom" constant="5" id="28H-OS-X4H"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aN1-o8-xYq" secondAttribute="trailing" constant="5" id="8aC-qA-AHa"/>
+                            <constraint firstItem="1EL-kw-Cde" firstAttribute="leading" secondItem="xJJ-YN-EDe" secondAttribute="leading" constant="15" id="GWd-Wt-4xJ"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Yx-H1-y3j" secondAttribute="trailing" constant="5" id="Jum-Vz-nTf"/>
+                            <constraint firstAttribute="height" priority="750" constant="64" id="MuK-UH-Lfk"/>
+                            <constraint firstItem="1EL-kw-Cde" firstAttribute="top" secondItem="xJJ-YN-EDe" secondAttribute="top" constant="9" id="YCv-73-o8C"/>
+                            <constraint firstItem="1EL-kw-Cde" firstAttribute="centerY" secondItem="xJJ-YN-EDe" secondAttribute="centerY" id="aIv-gg-b2L"/>
+                            <constraint firstItem="5Yx-H1-y3j" firstAttribute="top" secondItem="xJJ-YN-EDe" secondAttribute="top" constant="9" id="bVz-4h-eVf"/>
+                            <constraint firstItem="aN1-o8-xYq" firstAttribute="leading" secondItem="5Yx-H1-y3j" secondAttribute="leading" id="dQY-Qe-eL2"/>
+                            <constraint firstItem="5Yx-H1-y3j" firstAttribute="leading" secondItem="1EL-kw-Cde" secondAttribute="trailing" constant="12.5" id="nAo-wU-EOK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="xJJ-YN-EDe" secondAttribute="bottom" id="3lj-ZR-Ds7"/>
+                    <constraint firstItem="xJJ-YN-EDe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="AgP-Ls-jZW"/>
+                    <constraint firstItem="xJJ-YN-EDe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="H3r-Wx-UGt"/>
+                    <constraint firstAttribute="trailing" secondItem="xJJ-YN-EDe" secondAttribute="trailing" id="x8B-Mj-ucp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel1" destination="5Yx-H1-y3j" id="kmr-ut-GoJ"/>
+                <outlet property="titleLabel2" destination="aN1-o8-xYq" id="vLM-mi-16v"/>
+            </connections>
+            <point key="canvasLocation" x="69" y="138"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pic_shichanggonggao" width="35" height="36"/>
+    </resources>
+</document>

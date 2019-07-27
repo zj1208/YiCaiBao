@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PurchaserLunBoLabellingCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="震惊！义采宝上线啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgE-iH-0MC">
+                        <rect key="frame" x="53" y="11.5" width="119.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73M-nu-BKQ">
+                        <rect key="frame" x="10" y="12" width="33" height="16.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="73M-nu-BKQ" secondAttribute="height" multiplier="2:1" id="GXs-hJ-5is"/>
+                            <constraint firstAttribute="width" constant="33" id="oyG-34-kpc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="热门" backgroundImage="ic_hot_bg.png">
+                            <color key="titleColor" red="0.96470588235294119" green="0.5607843137254902" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="dgE-iH-0MC" firstAttribute="leading" secondItem="73M-nu-BKQ" secondAttribute="trailing" constant="10" id="1SC-nN-ney"/>
+                <constraint firstItem="73M-nu-BKQ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="8A8-S9-naM"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dgE-iH-0MC" secondAttribute="trailing" id="JIM-ND-jrh"/>
+                <constraint firstItem="dgE-iH-0MC" firstAttribute="centerY" secondItem="73M-nu-BKQ" secondAttribute="centerY" id="W5N-3T-Sm8"/>
+                <constraint firstItem="73M-nu-BKQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="v3b-FH-6q3"/>
+            </constraints>
+            <connections>
+                <outlet property="biaoqianBtn" destination="73M-nu-BKQ" id="bI7-xN-YuY"/>
+                <outlet property="titleLabel" destination="dgE-iH-0MC" id="mCc-Uf-UVG"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_hot_bg.png" width="26" height="13"/>
+    </resources>
+</document>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JLDynamicMenuCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="59" height="74"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="59" height="74"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gay-hB-WWJ">
+                        <rect key="frame" x="0.0" y="0.0" width="59" height="74"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toolbar_+" translatesAutoresizingMaskIntoConstraints="NO" id="aVT-Oq-fvT">
+                        <rect key="frame" x="9.5" y="8" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="hMK-ev-8xC"/>
+                            <constraint firstAttribute="height" constant="40" id="y1d-e4-XI7"/>
+                        </constraints>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_dot" translatesAutoresizingMaskIntoConstraints="NO" id="KKg-jy-0sJ">
+                        <rect key="frame" x="37.5" y="6" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="15" id="bPP-nf-iDN"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="15" id="pck-Z4-Myl"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置代理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsh-FC-Wzw">
+                        <rect key="frame" x="3" y="59" width="53.5" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="3Eo-PI-DhZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="KKg-jy-0sJ" firstAttribute="top" secondItem="aVT-Oq-fvT" secondAttribute="top" constant="-2" id="9Tw-PR-2pL"/>
+                <constraint firstItem="aVT-Oq-fvT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="9hT-tp-xno"/>
+                <constraint firstItem="Gay-hB-WWJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Fbe-zO-O22"/>
+                <constraint firstItem="aVT-Oq-fvT" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="HKE-cK-ifR"/>
+                <constraint firstAttribute="bottom" secondItem="vsh-FC-Wzw" secondAttribute="bottom" id="N9D-Lm-Ykl"/>
+                <constraint firstItem="vsh-FC-Wzw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="P1U-7e-x0n"/>
+                <constraint firstAttribute="bottom" secondItem="Gay-hB-WWJ" secondAttribute="bottom" id="UVZ-dz-ADj"/>
+                <constraint firstItem="Gay-hB-WWJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XhC-C7-JM4"/>
+                <constraint firstItem="KKg-jy-0sJ" firstAttribute="trailing" secondItem="aVT-Oq-fvT" secondAttribute="trailing" constant="3" id="nbR-hb-r2c"/>
+                <constraint firstAttribute="trailing" secondItem="Gay-hB-WWJ" secondAttribute="trailing" id="qCI-oO-Gnm"/>
+            </constraints>
+            <connections>
+                <outlet property="backgroundIMV" destination="Gay-hB-WWJ" id="gCy-31-0Za"/>
+                <outlet property="iconHeihtConstraint" destination="y1d-e4-XI7" id="NhB-jn-Eb9"/>
+                <outlet property="iconIMV" destination="aVT-Oq-fvT" id="tge-ho-A7Q"/>
+                <outlet property="iconWidthConstraint" destination="hMK-ev-8xC" id="KHa-f0-N4w"/>
+                <outlet property="iocnRightIMV" destination="KKg-jy-0sJ" id="N6m-J7-uAY"/>
+                <outlet property="rightIconHeightContraint" destination="bPP-nf-iDN" id="d5b-Kf-MXs"/>
+                <outlet property="rightIconWidthContraint" destination="bPP-nf-iDN" id="UmA-YF-7aZ"/>
+                <outlet property="rightIcon_AlignTop_IconIMV_Contraint" destination="9Tw-PR-2pL" id="5u9-59-ILa"/>
+                <outlet property="rightIcon_AlignTrailing_IconIMV_Contraint" destination="nbR-hb-r2c" id="kx8-Ax-ol0"/>
+                <outlet property="titleLabel" destination="vsh-FC-Wzw" id="fYT-je-b2A"/>
+                <outlet property="title_height_Contraint" destination="3Eo-PI-DhZ" id="D9l-iw-c8R"/>
+                <outlet property="topIconConstraint" destination="9hT-tp-xno" id="hpS-bU-UKy"/>
+            </connections>
+            <point key="canvasLocation" x="77" y="27"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="pic_dot" width="23" height="19"/>
+        <image name="toolbar_+" width="75" height="75"/>
+    </resources>
+</document>
