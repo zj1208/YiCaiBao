@@ -397,16 +397,18 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 #pragma mark - 请求广告弹窗图
 - (void)launchHomeAdvViewOrUNNotificationAlert
 {
+    [self presentNotiAlert];
+    /*
     WS(weakSelf);
     [[[AppAPIHelper shareInstance] getMessageAPI] GetAdvWithType:@1005 success:^(id data) {
         
-        _advmodel = (AdvModel *)data;
-        if (_advmodel.advArr.count>0)
+        weakSelf.advmodel = (AdvModel *)data;
+        if (weakSelf.advmodel.advArr.count>0)
         {
             [WYUserDefaultManager addTodayAppLanchAdvTimes];
-            if ([WYUserDefaultManager isCanLanchAdvWithMaxTimes:@(_advmodel.num)])
+            if ([WYUserDefaultManager isCanLanchAdvWithMaxTimes:@(weakSelf.advmodel.num)])
             {
-                advArrModel *advItemModel = [_advmodel.advArr firstObject];
+                advArrModel *advItemModel = [weakSelf.advmodel.advArr firstObject];
                 [weakSelf launchHomeAdvView:advItemModel];
             }
             else
@@ -423,6 +425,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
         
         [weakSelf addUNNotificationAlert];
     }];
+     */
 }
 
 #pragma mark - 广告图动画UIViewControllerTransitionDelegate
@@ -490,7 +493,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
         [self.tabBarController addChildViewController:alertView];
         [self.tabBarController.view addSubview:alertView.view];
         alertView.view.frame = self.tabBarController.view.frame;
-        __block ZXNotiAlertViewController *SELF = alertView;
+        ZXNotiAlertViewController * __weak SELF = alertView;
         alertView.cancleActionHandleBlock = ^{
             
             [SELF removeFromParentViewController];

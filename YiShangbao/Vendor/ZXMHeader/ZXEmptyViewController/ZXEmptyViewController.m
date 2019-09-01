@@ -50,7 +50,10 @@ static NSInteger  kAPPErrorCode_Token2 = 5001;
 //    }
 //}
 
-
+- (void)dealloc
+{
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

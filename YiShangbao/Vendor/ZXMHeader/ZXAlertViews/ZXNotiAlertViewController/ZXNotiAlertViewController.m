@@ -24,6 +24,11 @@
 
 }
 
+- (void)dealloc
+{
+    
+}
+
 
 //设置圆角
 - (void)setView:(UIView *)view cornerRadius:(CGFloat)radius borderWidth:(CGFloat)width borderColor:(UIColor *)color
