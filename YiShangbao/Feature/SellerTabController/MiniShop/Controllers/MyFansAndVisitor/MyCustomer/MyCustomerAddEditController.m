@@ -227,12 +227,12 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == self.nameTextFild) {
-        BOOL should = [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:15 remainTextNum:^(NSInteger remainLength) {
+        BOOL should = [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:15 remainTextNum:^(NSInteger remainLength) {
         }];
         return should;
     }
     if (textField == self.mobieTextFild) {
-        BOOL should = [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:20 remainTextNum:^(NSInteger remainLength) {
+        BOOL should = [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:20 remainTextNum:^(NSInteger remainLength) {
         }];
         return should;
     }

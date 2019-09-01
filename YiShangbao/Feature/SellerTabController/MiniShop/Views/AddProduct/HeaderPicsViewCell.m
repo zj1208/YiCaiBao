@@ -90,7 +90,7 @@
 //        NSURL *picUrl = [NSURL ossImageWithResizeType:OSSImageResizeType_w200_hX relativeToImgPath:model.p];
 //        [imageView sd_setImageWithURL:picUrl placeholderImage:AppPlaceholderImage];
 //        
-//        [cell setCornerRadius:5.f borderWidth:1.f borderColor:nil];
+//        [cell zx_setCornerRadius:5.f borderWidth:1.f borderColor:nil];
 //    }
 //    return cell;
 //}

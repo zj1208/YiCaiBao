@@ -219,7 +219,7 @@
 
 #pragma mark -Action
 - (void)imageTap:(id)sender{
-    if ([self xm_performIsLoginActionWithPopAlertView:NO])
+    if ([self zx_performIsLoginActionWithPopAlertView:NO])
     {
         PersonalInfoViewController *vc = [[PersonalInfoViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -231,7 +231,7 @@
 //    [MobClick event:kUM_b_Mypushproduct];
 //
 //    //我推的产品
-//    if ([self xm_performIsLoginActionWithPopAlertView:NO]) {
+//    if ([self zx_performIsLoginActionWithPopAlertView:NO]) {
 //        NSString *url = [NSString stringWithFormat:@"%@/yicaibao/myRecommend?shopId=%@",[WYUserDefaultManager getkAPP_H5URL],[UserInfoUDManager getShopId]];
 //        [self goWebViewWithUrl:url];
 //    }
@@ -242,7 +242,7 @@
 //    [MobClick event:kUM_b_Mypushinventory];
 //
 //    //    我推的库存
-//    if ([self xm_performIsLoginActionWithPopAlertView:NO]) {
+//    if ([self zx_performIsLoginActionWithPopAlertView:NO]) {
 //        NSString *url = [NSString stringWithFormat:@"%@/yicaibao/myStock?shopId=%@",[WYUserDefaultManager getkAPP_H5URL],[UserInfoUDManager getShopId]];
 //        [self goWebViewWithUrl:url];
 //    }
@@ -252,8 +252,8 @@
 //-(void)acceptBusinessTap:(id)sender{
 //
 //    [MobClick event:kUM_b_Myyijie];
-//    if ([self xm_performIsLoginActionWithPopAlertView:NO]) {
-//        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_MyTradesController withData:nil];
+//    if ([self zx_performIsLoginActionWithPopAlertView:NO]) {
+//        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_MyTradesController withData:nil];
 //    }
 //}
 //
@@ -262,7 +262,7 @@
 //    [MobClick event:kUM_b_Mytobuy];
 //
 //    //    我的求购
-//    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+//    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
 //        NSString *url = [NSString stringWithFormat:@"%@/ycb/page/ycbPurchaseOrder.html",[WYUserDefaultManager getkAPP_H5URL]];
 //        [self goWebViewWithUrl:url];
 //    }
@@ -270,7 +270,7 @@
 
 //我的市场认证
 - (void)myMarketAuthentication{
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         if ([UserInfoUDManager isOpenShop])
         {
             [self myMarketAuthenticationRequest];
@@ -285,7 +285,7 @@
 //我的积分
 - (void)integralAction{
     [MobClick event:kUM_b_myintegral];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         [self goWebViewWithUrl:self.userModel.scoreUrl];
     }
 }
@@ -293,7 +293,7 @@
 //我订购的服务
 - (void)orderService{
     [MobClick event:kUM_b_my_service];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]) {
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]) {
 //        NSString *url = [NSString stringWithFormat:@"%@/ycb/page/myOrderedService.html",[WYUserDefaultManager getkAPP_H5URL]];
 //        [self goWebViewWithUrl:url];
         LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];
@@ -594,7 +594,7 @@
 
 //优选服务判断能否跳转
 - (BOOL)getIsRouteWithModel:(BadgeItemCommonModel *)model{
-    if (model.needLogin && ![self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:NO]){
+    if (model.needLogin && ![self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:NO]){
         return NO;
     }
     if (model.needOpenShop && ![UserInfoUDManager isOpenShop]) {

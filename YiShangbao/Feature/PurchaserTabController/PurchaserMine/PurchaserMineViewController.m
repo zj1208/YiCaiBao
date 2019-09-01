@@ -39,7 +39,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = WYUISTYLE.colorBGgrey;
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    [self.navigationController xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+    [self.navigationController zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
 //    [self creatUI];
     [self setNeedsStatusBarAppearanceUpdate];
 }

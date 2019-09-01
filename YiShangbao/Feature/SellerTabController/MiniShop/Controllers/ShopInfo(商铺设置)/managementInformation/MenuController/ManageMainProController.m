@@ -36,7 +36,7 @@ static NSString *editTagsCell = @"editTagsCell";
 //    
 
     
-    [self xm_navigationItem_titleCenter];
+    [self zx_navigationItem_titleCenter];
     
     self.textView.text = nil;
     _remainLab.text =@"还可输入300字";

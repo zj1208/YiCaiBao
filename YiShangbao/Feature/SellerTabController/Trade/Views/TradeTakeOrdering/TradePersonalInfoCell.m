@@ -14,11 +14,11 @@
 {
     [super awakeFromNib];
     
-//    [self.companyCerLab setCornerRadius:2.f borderWidth:1.f borderColor:WYUISTYLE.colorSblue];
-//    [self.personalCerLab setCornerRadius:2.f borderWidth:1.f borderColor:UIColorFromRGB(255.f, 132.f, 0)];
+//    [self.companyCerLab zx_setCornerRadius:2.f borderWidth:1.f borderColor:WYUISTYLE.colorSblue];
+//    [self.personalCerLab zx_setCornerRadius:2.f borderWidth:1.f borderColor:UIColorFromRGB(255.f, 132.f, 0)];
 //    self.personalCerLab.textColor = UIColorFromRGB(255.f, 132.f, 0);
 //
-//    [self.speciallyInviteLab setCornerRadius:2.f borderWidth:1.f borderColor:WYUISTYLE.colorMred];
+//    [self.speciallyInviteLab zx_setCornerRadius:2.f borderWidth:1.f borderColor:WYUISTYLE.colorMred];
 //    self.headBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     

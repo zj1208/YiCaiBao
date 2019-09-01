@@ -141,7 +141,7 @@
         }
     }
     if (textField == view.cell_openName.input) {
-      return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:12 remainTextNum:^(NSInteger remainLength) {
+      return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:12 remainTextNum:^(NSInteger remainLength) {
             
         }];
         

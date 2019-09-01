@@ -68,7 +68,7 @@
     }else{
         modelAarray = @[model];
     }
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"addProductPushType":@(AddProudctPushType_goBackShopClassifySetting),@"shopClassifys":modelAarray,@"controllerDoingType":@(ControllerDoingType_AddProduct)}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"addProductPushType":@(AddProudctPushType_goBackShopClassifySetting),@"shopClassifys":modelAarray,@"controllerDoingType":@(ControllerDoingType_AddProduct)}];
 }
 //批量管理
 - (IBAction)manageButtonAction:(id)sender {
@@ -76,7 +76,7 @@
         [MBProgressHUD zx_showError:@"老板，先添加几个产品吧～" toView:self.view];
         return;
     }
-    WYShopCateManageViewController *vc = (WYShopCateManageViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCateManageViewController];
+    WYShopCateManageViewController *vc = (WYShopCateManageViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCateManageViewController];
     vc.shopCatgId = self.shopCatgId;
     vc.shopCatgName = self.shopCatgName;
     vc.hidesBottomBarWhenPushed = YES;
@@ -105,7 +105,7 @@
     WYShopCategoryGoodsModel *model = [self.array objectAtIndex:indexPath.row];
     NSString *productId = [NSString stringWithFormat:@"%@",@(model.goodsId)];
     
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
     
 }
 
@@ -283,7 +283,7 @@
     WYShopCategoryGoodsModel *model = [self.array objectAtIndex:indexPath.row];
     NSString *productId = [NSString stringWithFormat:@"%@",@(model.goodsId)];
     
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
 }
 
 #pragma mark- Private

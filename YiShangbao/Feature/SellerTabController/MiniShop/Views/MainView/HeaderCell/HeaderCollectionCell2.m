@@ -16,11 +16,11 @@
     self.erWeiMaLab.font = [UIFont systemFontOfSize:LCDScale_5Equal6_To6plus(12.f)];
     self.isNewErWeiMaView.hidden = YES;
     [self.isNewErWeiMaView zx_setCornerRadius:self.isNewErWeiMaView.frame.size.height/2 borderWidth:0 borderColor:nil];
-    self.isNewErWeiMaView.image = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xE23728) andSize:self.isNewErWeiMaView.frame.size];
+    self.isNewErWeiMaView.image = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xE23728) andSize:self.isNewErWeiMaView.frame.size];
     
-    [self.headContainerView setCornerRadius:self.headContainerView.frame.size.height/2 borderWidth:1.f borderColor:nil];
+    [self.headContainerView zx_setCornerRadius:self.headContainerView.frame.size.height/2 borderWidth:1.f borderColor:nil];
     self.headContainerView.backgroundColor = [UIColor whiteColor];
-    [self.headImgView setCornerRadius:self.headImgView.frame.size.height/2 borderWidth:1.f borderColor:nil];
+    [self.headImgView zx_setCornerRadius:self.headImgView.frame.size.height/2 borderWidth:1.f borderColor:nil];
     self.companyNameLab.font = [UIFont boldSystemFontOfSize:LCDScale_5Equal6_To6plus(16.f)];
     
 
@@ -37,9 +37,9 @@
     self.tradeLevelBtn.titleLabel.font =  font;
 
 //    self.tradeLevelBtn.titleLabel.font = ;
-//    UIImage *levelBackgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(80, 30) startColor:UIColorFromRGB_HexValue(0xE32626) endColor:UIColorFromRGB_HexValue(0xFD5353)];
+//    UIImage *levelBackgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(80, 30) startColor:UIColorFromRGB_HexValue(0xE32626) endColor:UIColorFromRGB_HexValue(0xFD5353)];
 //    [self.tradeLevelBtn setBackgroundImage:levelBackgroundImage forState:UIControlStateNormal];
-    [self.tradeLevelBtn setCornerRadius:20.f/2 borderWidth:0.5 borderColor:UIColorFromRGB_HexValue(0xE32626)];
+    [self.tradeLevelBtn zx_setCornerRadius:20.f/2 borderWidth:0.5 borderColor:UIColorFromRGB_HexValue(0xE32626)];
 
     //    粉丝访客容器
     

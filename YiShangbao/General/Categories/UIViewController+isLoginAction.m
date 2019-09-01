@@ -11,9 +11,9 @@
 @implementation UIViewController (isLoginAction)
 
 
-- (BOOL)xm_performIsLoginActionWithPopAlertView:(BOOL)flag
+- (BOOL)zx_performIsLoginActionWithPopAlertView:(BOOL)flag
 {
-    return [self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:flag];
+    return [self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:flag];
 }
 
 @end

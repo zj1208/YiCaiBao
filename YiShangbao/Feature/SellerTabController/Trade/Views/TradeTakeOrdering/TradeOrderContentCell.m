@@ -85,7 +85,7 @@
         }
     }];
     
-    [self.containerTextView setCornerRadius:4.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0x9D9D9D)];
+    [self.containerTextView zx_setCornerRadius:4.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0x9D9D9D)];
     
     [self.containerTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -126,7 +126,7 @@
     self.customPriceField.font = [UIFont systemFontOfSize:15];
     self.customPriceField.delegate = self;
 //    self.customPriceField.userInteractionEnabled = self.actualPriceBtn.selected;
-//    [self.customPriceField setCornerRadius:1.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+//    [self.customPriceField zx_setCornerRadius:1.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     self.customPriceField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"请输入价格，不填则展示为面议", nil) attributes:@{NSForegroundColorAttributeName:UIColorFromRGB_HexValue(0xCCCCCC),NSFontAttributeName:[UIFont systemFontOfSize:14]}];
 
     self.orderCountField.enableTextRectInset = NO;
@@ -134,7 +134,7 @@
     self.orderCountField.tintColor = [UIColor colorWithHexString:@"EC1E11"];
     self.orderCountField.font = [UIFont systemFontOfSize:15];
     self.orderCountField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"请输入起订量及单位", nil) attributes:@{NSForegroundColorAttributeName:UIColorFromRGB_HexValue(0xCCCCCC),NSFontAttributeName:[UIFont systemFontOfSize:14]}];
-//    [self.orderCountField setCornerRadius:1.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+//    [self.orderCountField zx_setCornerRadius:1.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
 
 }
 
@@ -222,7 +222,7 @@
         }
         return YES;
     }
-    return [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:9 dotAfterBits:2];
+    return [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:9 dotAfterBits:2];
 }
 
 

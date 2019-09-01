@@ -81,7 +81,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
         [[NSNotificationCenter defaultCenter] postNotificationName:Noti_Order_update_OrderListAndDetail object:nil];
         
         
-        PurOrederSuccessfulDealViewController *vc = (PurOrederSuccessfulDealViewController *)[self xm_getControllerWithStoryboardName:@"Purchaser" controllerWithIdentifier:SBID_PurOrederSuccessfulDealViewController];
+        PurOrederSuccessfulDealViewController *vc = (PurOrederSuccessfulDealViewController *)[self zx_getControllerWithStoryboardName:@"Purchaser" controllerWithIdentifier:SBID_PurOrederSuccessfulDealViewController];
         vc.bizOrderId = bcBizOrderId;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -293,7 +293,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     {
         //橙色
         cell.titleLab.textColor = [UIColor whiteColor];
-        UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:cell.frame.size  startColor:UIColorFromRGB(255.f, 186.f, 73.f) endColor:UIColorFromRGB(255.f, 141.f, 50.f)];
+        UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:cell.frame.size  startColor:UIColorFromRGB(255.f, 186.f, 73.f) endColor:UIColorFromRGB(255.f, 141.f, 50.f)];
         cell.titleLab.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
         cell.titleLab.layer.borderColor = [UIColor clearColor].CGColor;
     }

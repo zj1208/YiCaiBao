@@ -23,7 +23,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.advIconLab setCornerRadius:10.f borderWidth:0.6f borderColor:UIColorFromRGB_HexValue(0x868686)];
+    [self.advIconLab zx_setCornerRadius:10.f borderWidth:0.6f borderColor:UIColorFromRGB_HexValue(0x868686)];
     self.advIconLab.textColor =UIColorFromRGB_HexValue(0x868686);
     self.advIconLab.hidden = YES;
     
@@ -32,7 +32,7 @@
     self.advImageView.clipsToBounds = YES;
     
 //   下一期优化：去掉containerView
-    [self.photoContainerView setCornerRadius:2.f borderWidth:1.f borderColor:nil];
+    [self.photoContainerView zx_setCornerRadius:2.f borderWidth:1.f borderColor:nil];
 
     [self.photoContainerView mas_updateConstraints:^(MASConstraintMaker *make) {
         

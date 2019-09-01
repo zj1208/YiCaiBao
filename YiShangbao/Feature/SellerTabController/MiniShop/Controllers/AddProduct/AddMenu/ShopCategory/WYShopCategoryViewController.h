@@ -12,5 +12,5 @@
 
 @end
 
-//WYShopCategoryViewController *vc = (WYShopCategoryViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCategoryViewController];
+//WYShopCategoryViewController *vc = (WYShopCategoryViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCategoryViewController];
 

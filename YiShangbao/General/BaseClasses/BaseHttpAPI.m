@@ -387,8 +387,8 @@ NSInteger const kAPPErrorCode_Token = 5001;
         [dicParam setObject:@"" forKey:HEAD_AUTHTOKEN];
     }
     [dicParam setObject:[BaseHttpAPI getCurrentDatetime] forKey:HEAD_TS];
-    [dicParam setObject:[[UIDevice currentDevice]getUUID] forKey:HEAD_DID];
-    //    [dicParam setObject:[[UIDevice currentDevice]getIDFAUUIDString] forKey:HEAD_DID];
+    [dicParam setObject:[[UIDevice currentDevice]zx_getUUID] forKey:HEAD_DID];
+    //    [dicParam setObject:[[UIDevice currentDevice]zx_getIDFAUUIDString] forKey:HEAD_DID];
     [dicParam setObject:@"" forKey:HEAD_LNG];
     [dicParam setObject:@"" forKey:HEAD_LAT];
     

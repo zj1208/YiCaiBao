@@ -37,7 +37,7 @@ static NSString *const kBMOB_APPID =  @"69c52eeb7424886debae08af8dad3e2f";
 
 //义采宝
 #define AppPlaceholderImage [UIImage imageNamed:@"默认图正方形"]
-//#define AppPlaceholderImage [UIImage zh_imageWithColor:UIColorFromRGB(229., 229., 229.) andSize:CGSizeMake(200, 200)]
+//#define AppPlaceholderImage [UIImage zx_imageWithColor:UIColorFromRGB(229., 229., 229.) andSize:CGSizeMake(200, 200)]
 //人头像
 #define AppPlaceholderHeadImage [UIImage imageNamed:@"ic_empty_person"]
 //商铺空头像

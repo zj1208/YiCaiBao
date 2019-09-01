@@ -336,7 +336,7 @@ static NSString *const cellReuse_SMCNowAddRemarkCell = @"SMCNowAddRemarkCell";
     if (lent == -1) {
         return YES;
     }
-    return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:lent remainTextNum:^(NSInteger remainLength) {
+    return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:lent remainTextNum:^(NSInteger remainLength) {
     }];
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

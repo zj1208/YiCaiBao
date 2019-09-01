@@ -8,7 +8,6 @@
 
 #import "ExtendProductViewController.h"
 #import "ProductClassViewController.h"
-#import "UIViewController+XMNavBarCustom.h"
 #import "ExtendProductFirstTableViewCell.h"
 #import "ExtendProductSecondTableViewCell.h"
 
@@ -165,9 +164,9 @@ typedef NS_ENUM(NSUInteger, ExtentUploadType) {
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
     if (LCDW >375.f) {  //单独处理plus自动偏移间距（plus多5.f）
-        self.navigationItem.rightBarButtonItems = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-7.f withItems:@[rightBarButtonItem]];
+        self.navigationItem.rightBarButtonItems = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7.f withItems:@[rightBarButtonItem]];
     }else{
-        self.navigationItem.rightBarButtonItems = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-2.f withItems:@[rightBarButtonItem]];
+        self.navigationItem.rightBarButtonItems = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-2.f withItems:@[rightBarButtonItem]];
     }
     
 }
@@ -322,7 +321,7 @@ typedef NS_ENUM(NSUInteger, ExtentUploadType) {
             [MobClick event:kUM_b_promotion_selectproduct];
         }
         
-        SEProductSelectController *vc = (SEProductSelectController *)[self xm_getControllerWithStoryboardName:sb_Extend controllerWithIdentifier:SBID_SEProductSelectController];
+        SEProductSelectController *vc = (SEProductSelectController *)[self zx_getControllerWithStoryboardName:sb_Extend controllerWithIdentifier:SBID_SEProductSelectController];
         NSInteger numPic = self.extendInitModel.picNum.integerValue-self.imagesProcutsArray.count;//张数限制
         vc.maxProsucts = numPic;
         vc.hidesBottomBarWhenPushed = YES;

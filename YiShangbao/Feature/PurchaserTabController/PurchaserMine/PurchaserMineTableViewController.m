@@ -190,13 +190,13 @@
 //我的积分
 - (void)integralAction{
     [MobClick event:kUM_c_myintegral];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         [self goWebViewWithUrl:self.userModel.scoreUrl];
     }
 }
 
 -(void)messageBadgeButtonAction:(id)sender{
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         [MobClick event:kUM_message];
         
         WYMessageListViewController * messageList =[[WYMessageListViewController alloc]init];
@@ -217,7 +217,7 @@
 
 //个人信息
 - (IBAction)personInfoAction:(id)sender {
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         if (self.userModel.link.length){
             [self goWebViewWithUrl:self.userModel.link];
         }
@@ -227,7 +227,7 @@
 //我的求购
 - (IBAction)myPurchaseAction:(id)sender {
     [MobClick event:kUM_c_mypurchase];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
 //        NSString * url = [NSString stringWithFormat:@"%@/ycb/page/ycbPurchaseOrder.html",[WYUserDefaultManager getkAPP_H5URL]];
 //        [self goWebViewWithUrl:url];
         LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];
@@ -238,7 +238,7 @@
 //我关注的商铺
 - (IBAction)myAttentionAction:(id)sender {
     [MobClick event:kUM_c_collectshop];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
 //        NSString * url = [NSString stringWithFormat:@"%@/ycbx/page/ycbPersonalConcernedShop.html",[WYUserDefaultManager getkAPP_H5URL]];
 //        [self goWebViewWithUrl:url];
         LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];
@@ -249,7 +249,7 @@
 //收藏的产品
 - (IBAction)myCollectAction:(id)sender {
     [MobClick event:kUM_c_collectproduct];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
 //        NSString * url = [NSString stringWithFormat:@"%@/ycbx/page/ycbPersonalConcernedGoods.html",[WYUserDefaultManager getkAPP_H5URL]];
 //        [self goWebViewWithUrl:url];
         LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];
@@ -261,7 +261,7 @@
 //我的订单
 - (void)myOrder{
     [MobClick event:kUM_c_moreorder];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         [self pushBuyserPageMenuControllerWithStatus:OrderListStatus_All];
     }
     
@@ -309,7 +309,7 @@
 
 - (void)pushBuyserPageMenuControllerWithStatus:(PurchaserOrderListStatus)status
 {
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         BuyerPageMenuController *pageVC = [[BuyerPageMenuController alloc] init];
         pageVC.hidesBottomBarWhenPushed = YES;
         [pageVC setSelectedPageIndexWithOrderListStatus:status];
@@ -558,7 +558,7 @@
 
 //认证状态
 - (void)authenticationStatus{
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         switch (self.userModel.authStatus.integerValue) {
             case 101:
             case 102:

@@ -123,7 +123,7 @@
 
 //设置主营产品
 -(void)setMainProductAction{
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:@"ManageMainProController" withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:@"ManageMainProController" withData:nil];
 }
 
 //选择所在区域

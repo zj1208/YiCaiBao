@@ -11,6 +11,6 @@
 @interface UIViewController (isLoginAction)
 
 
-- (BOOL)xm_performIsLoginActionWithPopAlertView:(BOOL)flag;
+- (BOOL)zx_performIsLoginActionWithPopAlertView:(BOOL)flag;
 
 @end

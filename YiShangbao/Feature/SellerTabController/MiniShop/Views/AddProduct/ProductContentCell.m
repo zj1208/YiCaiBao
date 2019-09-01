@@ -191,7 +191,7 @@
 //{
 //    if (textField == self.customPriceField)
 //    {
-//        return [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:8 dotAfterBits:2];
+//        return [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:8 dotAfterBits:2];
 //    }
 //    else if (textField ==self.orderCountField)
 //    {

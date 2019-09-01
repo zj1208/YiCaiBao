@@ -161,8 +161,8 @@ static NSString *const reuse_SecondCell  = @"SecondCell";
     self.bottomContainerView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     self.bottomContainerView.hidden = YES;
    
-    [self.bottomCallBtn zx_setRoundItem];
-    [self.bottomOrderingView zx_setRoundItem];
+    [self.bottomCallBtn zx_setBorderWithRoundItem];
+    [self.bottomOrderingView zx_setBorderWithRoundItem];
     
     UIImage *backgroundImage = [WYUIStyle imageFDAB53_FD7953:_bottomCallBtn.frame.size];
     [self.bottomCallBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
@@ -389,7 +389,7 @@ static NSString *const reuse_SecondCell  = @"SecondCell";
         UIButton* button = [[UIButton alloc] initWithFrame:self.bottomOrderingView.frame];
         [button setTitle:NSLocalizedString(@"在线沟通", nil) forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:17];
-        [button zx_setRoundItem];
+        [button zx_setBorderWithRoundItem];
         [button setImage:[UIImage imageNamed:@"im"] forState:UIControlStateNormal];
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         button.backgroundColor = [UIColor clearColor];
@@ -785,7 +785,7 @@ static NSString *const reuse_SecondCell  = @"SecondCell";
 {
     [MobClick event:kUM_b_toviewbuyer];
 
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":self.dataModel.unId, @"boolChat":@(NO)}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":self.dataModel.unId, @"boolChat":@(NO)}];
 }
 
 
@@ -898,7 +898,7 @@ static NSString *const reuse_SecondCell  = @"SecondCell";
             [MBProgressHUD zx_hideHUDForView:nil];
             [UIAlertController zx_presentGeneralAlertInViewController:self withTitle:[error localizedDescription]  message:nil cancelButtonTitle:NSLocalizedString(@"关闭", nil) cancleHandler:nil doButtonTitle:NSLocalizedString(@"去传产品", nil) doHandler:^(UIAlertAction * _Nonnull action) {
                 
-                [weakSelf xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ProductManageController withData:@{@"selectIndex":@(0)}];
+                [weakSelf zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ProductManageController withData:@{@"selectIndex":@(0)}];
             }];
         }
         else
@@ -919,7 +919,7 @@ static NSString *const reuse_SecondCell  = @"SecondCell";
     }
     else
     {
-//        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:@"TradeOrderSuccessViewController" withData:@{@"telString":self.dataModel.phoneNum,@"tradeId":self.dataModel.postId,@"isForeign":@(NO)}];
+//        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:@"TradeOrderSuccessViewController" withData:@{@"telString":self.dataModel.phoneNum,@"tradeId":self.dataModel.postId,@"isForeign":@(NO)}];
 //        return;
         [MobClick event:kUM_b_businesscall_2]; //已接
         

@@ -73,8 +73,8 @@
     [UIView zx_NSLogSubviewsFromView:self.segmentedControl andLevel:1];
     self.segmentedControl.tintColor = [UIColor whiteColor];
     self.numSegmentedControl.tintColor = [UIColor whiteColor];
-    [self.segmentedControl setBackgroundImage:[UIImage zh_imageWithColor:[UIColor clearColor] andSize:CGSizeMake(100, 49)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [self.segmentedControl setBackgroundImage:[UIImage zh_imageWithColor:[UIColor clearColor] andSize:CGSizeMake(100, 49)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [self.segmentedControl setBackgroundImage:[UIImage zx_imageWithColor:[UIColor clearColor] andSize:CGSizeMake(100, 49)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [self.segmentedControl setBackgroundImage:[UIImage zx_imageWithColor:[UIColor clearColor] andSize:CGSizeMake(100, 49)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     
     [self.segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(253.f, 118.f, 78.f),NSFontAttributeName:[UIFont boldSystemFontOfSize:13]} forState:UIControlStateSelected];
@@ -88,21 +88,21 @@
     [self.numSegmentedControl setTitle:@"0" forSegmentAtIndex:1];
     
     
-    UIImage *indicateImg = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xFD764E) andSize:CGSizeMake(60, 10)];
+    UIImage *indicateImg = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xFD764E) andSize:CGSizeMake(60, 10)];
     UIImageView *indicateView = [[UIImageView alloc] initWithImage:indicateImg];
     self.indicateImageView = indicateView;
     [self.segmentedContainerView addSubview:indicateView];
     self.indicateImageView.frame = [self getIndicateImageViewFrameWithIndex:0];
-    [indicateView setCornerRadius:CGRectGetHeight(self.indicateImageView.frame)/2 borderWidth:0 borderColor:nil];
+    [indicateView zx_setCornerRadius:CGRectGetHeight(self.indicateImageView.frame)/2 borderWidth:0 borderColor:nil];
 }
 
 
 - (void)addChildContrllerView
 {
     // 初始化2个子控制器
-    self.firstController = (SellingProductController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_SellingProductController];
-    self.secondController = (PrivacyProductsController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_PrivacyProductsController];
-    self.thirdController = (SoldOutProductController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_SoldOutProductController];
+    self.firstController = (SellingProductController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_SellingProductController];
+    self.secondController = (PrivacyProductsController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_PrivacyProductsController];
+    self.thirdController = (SoldOutProductController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_SoldOutProductController];
     self.firstController.view.frame = self.view.frame;
     
     [self addChildViewController:self.firstController];
@@ -246,7 +246,7 @@
         [self addShopAlert];
         return ;
     }
-    WYShopCategoryViewController *vc = (WYShopCategoryViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCategoryViewController];
+    WYShopCategoryViewController *vc = (WYShopCategoryViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCategoryViewController];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -473,11 +473,11 @@
 - (IBAction)searchAction:(UIBarButtonItem *)sender {
     
     [MobClick event:kUM_b_pd_search];
-  ProductSearchController *vc = (ProductSearchController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_ProductSearchController];
+  ProductSearchController *vc = (ProductSearchController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_ProductSearchController];
     
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-  [nav xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
-  [nav xm_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
+  [nav zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+  [nav zx_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
   [self presentViewController:nav animated:YES completion:nil];
 
 }

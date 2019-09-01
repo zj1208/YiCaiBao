@@ -106,8 +106,8 @@
 
 - (void)setUI
 {
-//    [self xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
-//    [self xm_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
+//    [self zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+//    [self zx_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
 
     self.view.backgroundColor = WYUISTYLE.colorBGgrey;
 
@@ -340,7 +340,7 @@
     MyProductSearchModel *model = [self.dataMArray objectAtIndex:indexPath.row];
     NSString *productId = model.productId;
     
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
     
 }
 

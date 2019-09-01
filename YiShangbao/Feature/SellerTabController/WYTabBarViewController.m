@@ -95,8 +95,8 @@
 {
     [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
-         [obj xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
-         [obj xm_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
+         [obj zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+         [obj zx_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
 
     }];
 }
@@ -105,17 +105,17 @@
 //设置基本数据
 - (void)setApperanceForAllController
 {
-    [UIViewController xm_navigationBar_appearance_backgroundImageName:nil ShadowImageName:nil orBackgroundColor:[UIColor whiteColor] titleColor:UIColorFromRGB_HexValue(0x222222) titleFont:[UIFont boldSystemFontOfSize:17.f]];
+    [UIViewController zx_navigationBar_appearance_backgroundImageName:nil ShadowImageName:nil orBackgroundColor:[UIColor whiteColor] titleColor:UIColorFromRGB_HexValue(0x222222) titleFont:[UIFont boldSystemFontOfSize:17.f]];
     
     [[UIBarButtonItem appearance]setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.f]} forState:UIControlStateNormal];
     [[UIBarButtonItem appearance]setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.f]} forState:UIControlStateHighlighted];
 
     
-    [UIViewController xm_navigationBar_UIBarButtonItem_appearance_systemBack_noTitle];
+    [UIViewController zx_navigationBar_UIBarButtonItem_appearance_systemBack_noTitle];
     
     [[UIButton appearance]setExclusiveTouch:YES];
     
-//    UIImage *backImage = [UIImage zh_imageWithColor:[UIColor orangeColor] andSize:CGSizeMake(10, 10)];
+//    UIImage *backImage = [UIImage zx_imageWithColor:[UIColor orangeColor] andSize:CGSizeMake(10, 10)];
 //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
@@ -125,11 +125,11 @@
     NSArray *imgSelectArray = @[@"toolbar_shangpu_sel",@"toolbar_message_sel",@"toolbar_fuwu-sel",@"toolbar_myCenter_sel"];
     NSArray *imgArray = @[@"toolbar_shangpu-nor",@"toolbar_message",@"toolbar_fuwu-nor",@"toolbar_myCenter_nor"];
 
-    [self xm_tabBarController_tabBarItem_ImageArray:imgArray selectImages:imgSelectArray slectedItemTintColor:nil unselectedItemTintColor:nil];
+    [self zx_tabBarController_tabBarItem_ImageArray:imgArray selectImages:imgSelectArray slectedItemTintColor:nil unselectedItemTintColor:nil];
     self.tabBar.translucent = NO;
-    UIImage *tabImage = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xFAFAFA) andSize:self.tabBar.frame.size];
+    UIImage *tabImage = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xFAFAFA) andSize:self.tabBar.frame.size];
     self.tabBar.backgroundImage = tabImage;
-    UIImage *shadowImage = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xD8D8D8) andSize:CGSizeMake(self.tabBar.frame.size.width, 0.5)];
+    UIImage *shadowImage = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xD8D8D8) andSize:CGSizeMake(self.tabBar.frame.size.width, 0.5)];
     self.tabBar.shadowImage = shadowImage;
 }
 
@@ -145,7 +145,7 @@
 //        if (!ISLOGIN)
 //        {
 //            UINavigationController *nav =tabBarController.selectedViewController;
-//            [nav.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_OpenShopController withData:nil];
+//            [nav.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_OpenShopController withData:nil];
 //            return NO;
 //        }
 //        else
@@ -164,12 +164,12 @@
 //                return YES;
 //            }
 //            UINavigationController *nav =tabBarController.selectedViewController;
-//            [nav.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_OpenShopController withData:nil];
+//            [nav.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_OpenShopController withData:nil];
 //            return NO;
 //        }
 //
 //    }
-    if ([messageNav isEqual:viewController] && ![self xm_performIsLoginActionWithPopAlertView:NO])
+    if ([messageNav isEqual:viewController] && ![self zx_performIsLoginActionWithPopAlertView:NO])
     {
         return NO;
     }

@@ -183,7 +183,7 @@
 //跳转到运费模版列表页
 - (void)goFreightListVC{
     WS(weakSelf)
-    AddProFreightListViewController *freightListVC = (AddProFreightListViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_AddProFreightListViewController];
+    AddProFreightListViewController *freightListVC = (AddProFreightListViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_AddProFreightListViewController];
     freightListVC.freightId = self.freightId;
     freightListVC.block = ^(NSNumber *freightId, NSString *freightName) {
         weakSelf.freightId = freightId;

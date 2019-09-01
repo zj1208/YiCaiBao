@@ -52,8 +52,8 @@
 {
     [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [obj xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
-        [obj xm_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
+        [obj zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+        [obj zx_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
 
     }];
 }
@@ -62,17 +62,17 @@
 //设置基本数据
 - (void)setApperanceForAllController
 {
-    [UIViewController xm_navigationBar_appearance_backgroundImageName:nil ShadowImageName:nil orBackgroundColor:[UIColor whiteColor] titleColor:UIColorFromRGB_HexValue(0x222222) titleFont:[UIFont boldSystemFontOfSize:17.f]];
+    [UIViewController zx_navigationBar_appearance_backgroundImageName:nil ShadowImageName:nil orBackgroundColor:[UIColor whiteColor] titleColor:UIColorFromRGB_HexValue(0x222222) titleFont:[UIFont boldSystemFontOfSize:17.f]];
     
     [[UIBarButtonItem appearance]setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.f]} forState:UIControlStateNormal];
     [[UIBarButtonItem appearance]setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.f]} forState:UIControlStateHighlighted];
     
     
-    [UIViewController xm_navigationBar_UIBarButtonItem_appearance_systemBack_noTitle];
+    [UIViewController zx_navigationBar_UIBarButtonItem_appearance_systemBack_noTitle];
     
     [[UIButton appearance]setExclusiveTouch:YES];
     
-    //    UIImage *backImage = [UIImage zh_imageWithColor:[UIColor orangeColor] andSize:CGSizeMake(10, 10)];
+    //    UIImage *backImage = [UIImage zx_imageWithColor:[UIColor orangeColor] andSize:CGSizeMake(10, 10)];
     //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
@@ -81,11 +81,11 @@
     NSArray *imgSelectArray = @[@"ic_kaidan",@"ic_shuju",@"ic_kehu"];
     NSArray *imgArray = @[@"ic_kaidan2",@"ic_shuju2",@"ic_kehu2"];
     
-    [self xm_tabBarController_tabBarItem_ImageArray:imgArray selectImages:imgSelectArray slectedItemTintColor:nil unselectedItemTintColor:nil];
+    [self zx_tabBarController_tabBarItem_ImageArray:imgArray selectImages:imgSelectArray slectedItemTintColor:nil unselectedItemTintColor:nil];
     self.tabBar.translucent = NO;
-    UIImage *tabImage = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xFAFAFA) andSize:self.tabBar.frame.size];
+    UIImage *tabImage = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xFAFAFA) andSize:self.tabBar.frame.size];
     self.tabBar.backgroundImage = tabImage;
-    UIImage *shadowImage = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xD8D8D8) andSize:CGSizeMake(self.tabBar.frame.size.width, 0.5)];
+    UIImage *shadowImage = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xD8D8D8) andSize:CGSizeMake(self.tabBar.frame.size.width, 0.5)];
     self.tabBar.shadowImage = shadowImage;
 }
 
@@ -221,19 +221,19 @@
 {
     UIViewController *VC;
     if (type == OBShowType_renewal) { //到期续费弹框
-        MakeBillServiceExpireViewController *expireVC = (MakeBillServiceExpireViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_MakeBillServiceExpireViewController];
+        MakeBillServiceExpireViewController *expireVC = (MakeBillServiceExpireViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_MakeBillServiceExpireViewController];
         [expireVC addServiceInfo:model];
         VC = expireVC;
     }else if (type == OBShowType_buyNow || type == OBShowType_must) { //《立即订购弹框》营销弹框
-        MakeBillServiceViewController *serviceVC = (MakeBillServiceViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_MakeBillServiceViewController];
+        MakeBillServiceViewController *serviceVC = (MakeBillServiceViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_MakeBillServiceViewController];
         [serviceVC addServiceInfo:model];
         VC = serviceVC;
     }else{
         return;
     }
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:VC];
-    [navi xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
-    [navi xm_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
+    [navi zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+    [navi zx_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
     [navi setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     
     [self.navigationController presentViewController:navi animated:NO completion:nil];

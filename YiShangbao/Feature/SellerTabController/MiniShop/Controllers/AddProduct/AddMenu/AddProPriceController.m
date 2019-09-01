@@ -425,18 +425,18 @@ static NSString *const foot_APPricePreviewFootView = @"foot_APPricePreviewFootVi
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField.tag == 1001 ) {
-        BOOL should = [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:10 remainTextNum:^(NSInteger remainLength) {
+        BOOL should = [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:10 remainTextNum:^(NSInteger remainLength) {
         }];
         return should;
     }else{
         if (textField.tag == 201) {
-            BOOL should = [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:9 remainTextNum:^(NSInteger remainLength) {
+            BOOL should = [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:9 remainTextNum:^(NSInteger remainLength) {
             }];
             return should;
         }
         else if (textField.tag == 202)
         {
-            BOOL should = [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:9 dotAfterBits:2];//小数点前9位
+            BOOL should = [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:9 dotAfterBits:2];//小数点前9位
             return should;
         }
     }

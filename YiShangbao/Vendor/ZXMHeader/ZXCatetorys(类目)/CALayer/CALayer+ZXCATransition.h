@@ -10,7 +10,10 @@
 //  首先要在framework中引入QuatrtzCore.framework,在头文件中需要
 //  #import <QuartzCore/QuartzCore.h>
 
-#import <QuartzCore/QuartzCore.h>
+//  2019.06.12  修改@import
+
+
+@import QuartzCore;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -60,7 +63,7 @@ NS_ASSUME_NONNULL_END
   [self.navigationController.view.layer zx_addCATansitionWithAnimationType:@"cube" directionOfTransitionSubtype:kCATransitionFromRight];
 
   例如：
-  WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+  ZXWKWebViewController *htmlVc = [[ZXWKWebViewController alloc] init];
   [htmlVc loadWebPageWithURLString:url];
   htmlVc.hidesBottomBarWhenPushed = YES;
   [self.navigationController.view.layer zx_addCATansitionWithAnimationType:@"cube" directionOfTransitionSubtype:kCATransitionFromRight];
@@ -70,7 +73,7 @@ NS_ASSUME_NONNULL_END
 （2）modal模态转场：
   [self.view.window.layer zx_addCATansitionWithAnimationType:@"cube" directionOfTransitionSubtype:kCATransitionFromRight];
   例如：
-  WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+  ZXWKWebViewController *htmlVc = [[ZXWKWebViewController alloc] init];
   [htmlVc loadWebPageWithURLString:url];
   htmlVc.hidesBottomBarWhenPushed = YES;
   [self.view.window.layer zx_addCATansitionWithAnimationType:@"cube" directionOfTransitionSubtype:kCATransitionFromRight];

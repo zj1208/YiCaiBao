@@ -37,7 +37,7 @@
 
     photoView.photoModelItemViewBlock = ^(UIView *itemView)
     {
-        [itemView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+        [itemView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     };
     [self.photosBackView addSubview:self.photosView];
     [photoView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -60,7 +60,7 @@
 #pragma mark 用户输入的信息
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:200 remainTextNum:^(NSInteger remainLength) {
+    return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:200 remainTextNum:^(NSInteger remainLength) {
         
     } ];
 }

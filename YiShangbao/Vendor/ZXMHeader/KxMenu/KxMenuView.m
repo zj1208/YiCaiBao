@@ -155,7 +155,7 @@ const CGFloat kMarginY = 0; // button 按钮 上下边距
 -(UIImage *)getHighlightedImage
 {
     UIColor *color = [[KxMenu sharedMenu] kxMenuSelectionBackgoundColor]?[[KxMenu sharedMenu] kxMenuSelectionBackgoundColor]:[UIColor clearColor];
-    UIImage *selectedImage = [UIImage zh_imageWithColor:color andSize:CGSizeMake(self.maxItemWidth, self.maxItemHeight+2)];
+    UIImage *selectedImage = [UIImage zx_imageWithColor:color andSize:CGSizeMake(self.maxItemWidth, self.maxItemHeight+2)];
     return selectedImage;
 }
 
@@ -168,7 +168,7 @@ const CGFloat kMarginY = 0; // button 按钮 上下边距
     UIEdgeInsets contentViewEdge = [[KxMenu sharedMenu]contentViewEdge];
     if (style ==KxMenuCellSeperateStyleLine)
     {
-        gradientLine = [UIImage zh_imageWithColor:[UIColor colorWithWhite:0.9 alpha:1] andSize:(CGSize){self.maxItemWidth+contentViewEdge.left+contentViewEdge.right, 1}];
+        gradientLine = [UIImage zx_imageWithColor:[UIColor colorWithWhite:0.9 alpha:1] andSize:(CGSize){self.maxItemWidth+contentViewEdge.left+contentViewEdge.right, 1}];
     }
     if (style ==KxMenuCellSeperateStyleNone)
     {

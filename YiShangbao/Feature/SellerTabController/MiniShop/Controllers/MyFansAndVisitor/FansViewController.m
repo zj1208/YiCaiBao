@@ -207,7 +207,7 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
     } failure:^(NSError *error) {
         
         [weakSelf.tableView.mj_footer endRefreshing];
-        [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
+        [MBProgressHUD zx_showError:[error localizedDescription] toView:nil];
     }];
     
 }

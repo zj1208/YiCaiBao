@@ -23,19 +23,18 @@
 
     self.topContainerView.backgroundColor = UIColorFromRGB_HexValue(0xBF352D);
     
-//    [self.cardContainerView zx_setCornerRadius:12.f borderWidth:1 borderColor:nil];
     [self.cardContainerView zx_setShadowAndCornerRadius:6.f borderWidth:0 borderColor:nil shadowColor:[UIColor blackColor] shadowOpacity:0.2 shadowOffset:CGSizeMake(0, 0) shadowRadius:5.f];
     
     self.erWeiMaLab.font = [UIFont systemFontOfSize:LCDScale_5Equal6_To6plus(12.f)];
     self.isNewErWeiMaView.hidden = YES;
     [self.isNewErWeiMaView zx_setCornerRadius:self.isNewErWeiMaView.frame.size.height/2 borderWidth:0 borderColor:nil];
-    self.isNewErWeiMaView.image = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xE23728) andSize:self.isNewErWeiMaView.frame.size];
+    self.isNewErWeiMaView.image = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xE23728) andSize:self.isNewErWeiMaView.frame.size];
     
     
     
-    [self.headContainerView setCornerRadius:self.headContainerView.frame.size.height/2 borderWidth:1.f borderColor:nil];
+    [self.headContainerView zx_setCornerRadius:self.headContainerView.frame.size.height/2 borderWidth:1.f borderColor:nil];
     self.headContainerView.backgroundColor = [UIColor whiteColor];
-    [self.headImgView setCornerRadius:self.headImgView.frame.size.height/2 borderWidth:1.f borderColor:nil];
+    [self.headImgView zx_setCornerRadius:self.headImgView.frame.size.height/2 borderWidth:1.f borderColor:nil];
     
     self.companyNameLab.font = [UIFont systemFontOfSize:LCDScale_5Equal6_To6plus(16.f)];
 

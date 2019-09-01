@@ -27,7 +27,7 @@
     [self.editBtn setTitleColor:UIColorFromRGB_HexValue(0xFF5434) forState:UIControlStateSelected];
     [self.editBtn setBackgroundColor:[UIColor whiteColor]];
 
-    [self.picImageView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+    [self.picImageView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
         
     [self sendSubviewToBack:self.contentView];
 

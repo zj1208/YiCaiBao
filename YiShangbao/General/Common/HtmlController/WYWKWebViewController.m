@@ -200,7 +200,7 @@ static NSString* const SixSpaces = @"      ";
     [self setLoadTitle];
 
     //不要用animated，不然有bug
-    NSArray *items = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.negativeSpacerItem]];
+    NSArray *items = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.negativeSpacerItem]];
     self.navigationItem.leftBarButtonItems = items;
     
     NSRange rangeCFB = [self.URLString rangeOfString:@"pingan.com"];
@@ -1029,7 +1029,7 @@ static NSString* const SixSpaces = @"      ";
 {
     if ([self.webView canGoBack])
     {
-        NSArray *items = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.closeButtonItem,self.negativeSpacerItem]];
+        NSArray *items = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.closeButtonItem,self.negativeSpacerItem]];
         [self.navigationItem setLeftBarButtonItems:items animated:NO];
     }
     else
@@ -1037,7 +1037,7 @@ static NSString* const SixSpaces = @"      ";
         NSInteger numItems = Device_SYSTEMVERSION_Greater_THAN_OR_EQUAL_TO(11)?3:3;
         if (self.navigationItem.leftBarButtonItems.count==numItems)
         {
-            NSArray *items = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.negativeSpacerItem]];
+            NSArray *items = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.negativeSpacerItem]];
             [self.navigationItem setLeftBarButtonItems:items animated:NO];
         }
     }
@@ -1337,7 +1337,7 @@ static NSString* const SixSpaces = @"      ";
 // 9.h5需要的数据
 - (void)h5NeedData:(WVJBResponseCallback)responseCallback
 {
-    NSString *idfa = [[UIDevice currentDevice]getIDFAUUIDString];
+    NSString *idfa = [[UIDevice currentDevice]zx_getIDFAUUIDString];
     NSDictionary *dic = @{@"deviceId":idfa};
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];

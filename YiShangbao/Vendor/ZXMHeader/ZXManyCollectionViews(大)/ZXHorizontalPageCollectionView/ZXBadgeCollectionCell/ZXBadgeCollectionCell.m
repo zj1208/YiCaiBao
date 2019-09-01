@@ -63,7 +63,7 @@
         self.badgeNumLab.hidden = !self.badgeImageView.hidden;
         NSString *badge = [NSString stringWithFormat:@"  %@  ",model.sideMarkValue];
 //        NSString *badge = @"8";
-        [self.badgeNumLab zh_digitalIconWithBadgeValue:[badge integerValue] maginY:1.f badgeFont:[UIFont systemFontOfSize:LCDScale_iPhone6_Width(12)] titleColor:[UIColor whiteColor] backgroundColor:[UIColor redColor]];
+        [self.badgeNumLab zh_digitalIconWithBadgeValue:[badge integerValue] maginY:3.5f badgeFont:[UIFont systemFontOfSize:LCDScale_iPhone6_Width(12)] titleColor:[UIColor whiteColor] backgroundColor:[UIColor redColor]];
 
     }
     else if (model.sideMarkType ==SideMarkType_image)

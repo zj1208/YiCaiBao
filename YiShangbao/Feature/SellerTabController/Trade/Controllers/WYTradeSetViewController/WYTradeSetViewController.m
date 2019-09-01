@@ -353,9 +353,9 @@ static NSInteger const numWords = 200;
     UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.saveBtn];
     
     if (LCDW >375.f) {  //单独处理plus自动偏移间距（plus多5.f）
-        self.navigationItem.rightBarButtonItems = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-7.f withItems:@[rightBarButtonItem]];
+        self.navigationItem.rightBarButtonItems = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7.f withItems:@[rightBarButtonItem]];
     }else{
-        self.navigationItem.rightBarButtonItems = [self xm_navigationItem_leftOrRightItemReducedSpaceToMagin:-2.f withItems:@[rightBarButtonItem]];
+        self.navigationItem.rightBarButtonItems = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-2.f withItems:@[rightBarButtonItem]];
     }
 
 }

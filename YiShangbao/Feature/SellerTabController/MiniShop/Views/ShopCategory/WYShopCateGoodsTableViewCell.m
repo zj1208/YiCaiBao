@@ -34,7 +34,7 @@
     self.priceLab.backgroundColor = [UIColor clearColor];
     self.supplyOfGoodsLab.backgroundColor = [UIColor clearColor];
     
-    [self.picImageView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+    [self.picImageView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     
     
     self.titleLab.font =[UIFont systemFontOfSize:LCDScale_5Equal6_To6plus(15.f)];

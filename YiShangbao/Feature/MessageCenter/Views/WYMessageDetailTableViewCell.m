@@ -27,7 +27,7 @@
     self.contentImageView.clipsToBounds = YES;
     self.imageBgView.backgroundColor = WYUISTYLE.colorBWhite;
     
-    [self.topTimeLab setCornerRadius:4.f borderWidth:0.f borderColor:nil];
+    [self.topTimeLab zx_setCornerRadius:4.f borderWidth:0.f borderColor:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

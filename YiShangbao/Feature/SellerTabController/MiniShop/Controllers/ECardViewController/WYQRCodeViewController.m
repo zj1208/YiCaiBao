@@ -94,7 +94,7 @@
 - (IBAction)editCardButtonAction:(id)sender {
     [MobClick event:kUM_b_editcard];
     
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
 }
 
 - (IBAction)changeBackgroundAction:(id)sender {

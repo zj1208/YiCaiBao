@@ -314,7 +314,7 @@
     }];
 }
 - (IBAction)loginBtnClick:(UIButton *)sender {
-    [self xm_performIsLoginActionWithPopAlertView:NO];
+    [self zx_performIsLoginActionWithPopAlertView:NO];
     
 }
 -(void)dealloc

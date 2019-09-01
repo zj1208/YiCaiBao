@@ -208,7 +208,7 @@ static NSString *MyCustomerLookCell_reuse = @"MyCustomerLookCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if (indexPath.section == 1) {
-        MyCustomerAddEditController *vc = (MyCustomerAddEditController *)[self xm_getControllerWithStoryboardName:sb_ShopCustomer controllerWithIdentifier:@"MyCustomerAddEditControllerID"];
+        MyCustomerAddEditController *vc = (MyCustomerAddEditController *)[self zx_getControllerWithStoryboardName:sb_ShopCustomer controllerWithIdentifier:@"MyCustomerAddEditControllerID"];
         vc.buyerBizId = self.buyerBizId;
         vc.isEditCustomer = YES;
         vc.hidesBottomBarWhenPushed = YES;
@@ -218,7 +218,7 @@ static NSString *MyCustomerLookCell_reuse = @"MyCustomerLookCell";
     if (indexPath.section == 2) {
         [MobClick event: kUM_b_customerinfo_Purchasersinfo];
 
-        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":_buyerBizId, @"boolChat":@(YES),@"sourceType":@(AddOnlineCustomerSourceType_None)}];
+        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":_buyerBizId, @"boolChat":@(YES),@"sourceType":@(AddOnlineCustomerSourceType_None)}];
     }
    
 }

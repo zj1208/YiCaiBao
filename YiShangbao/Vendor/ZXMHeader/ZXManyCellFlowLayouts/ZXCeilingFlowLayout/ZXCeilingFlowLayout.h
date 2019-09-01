@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_END
     
     
     cell.backgroundColor = UIColorFromRGB([NSString zhGetRandomNumberWithFrom:0.f to:255.f], [NSString zhGetRandomNumberWithFrom:0.f to:255.f], 255);
-    [cell setCornerRadius:5.f borderWidth:1 borderColor:nil];
+    [cell zx_setCornerRadius:5.f borderWidth:1 borderColor:nil];
     return cell;
 }
 

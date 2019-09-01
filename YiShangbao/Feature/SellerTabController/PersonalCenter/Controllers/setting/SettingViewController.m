@@ -113,7 +113,7 @@
         if ([WYUserDefaultManager getUserTargetRoleType] == 2) {
             if (indexPath.row == 0) {
                 //账户及安全
-                if ([self xm_performIsLoginActionWithPopAlertView:NO])
+                if ([self zx_performIsLoginActionWithPopAlertView:NO])
                 {
                     AccountSafeViewController *vc = [[AccountSafeViewController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
@@ -125,14 +125,14 @@
         }else{
             if (indexPath.row == 0) {
                 //消息设置
-                if ([self xm_performIsLoginActionWithPopAlertView:NO])
+                if ([self zx_performIsLoginActionWithPopAlertView:NO])
                 {
                     MessageSoundSetViewController *vc = [[MessageSoundSetViewController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
             }else if(indexPath.row == 1){
                 //账户及安全
-                if ([self xm_performIsLoginActionWithPopAlertView:NO])
+                if ([self zx_performIsLoginActionWithPopAlertView:NO])
                 {
                     AccountSafeViewController *vc = [[AccountSafeViewController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
@@ -144,7 +144,7 @@
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
-            if ([self xm_performIsLoginActionWithPopAlertView:NO])
+            if ([self zx_performIsLoginActionWithPopAlertView:NO])
             {
                 if ([WYUserDefaultManager getUserTargetRoleType] == 2) {
                 //意见反馈
@@ -246,7 +246,7 @@
             1.00,0.55,0.19,1
             
         };
-        UIImage *backgroundImage = [UIImage zh_getGradientImageWithSize:self.exitBtn.frame.size locations:location components:components count:2];
+        UIImage *backgroundImage = [UIImage zx_getGradientImageWithSize:self.exitBtn.frame.size locations:location components:components count:2];
         [self.exitBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     }else{
         const CGFloat location[] ={0,1};
@@ -255,7 +255,7 @@
             1.00,0.32,0.28,1
             
         };
-        UIImage *backgroundImage = [UIImage zh_getGradientImageWithSize:self.exitBtn.frame.size locations:location components:components count:2];
+        UIImage *backgroundImage = [UIImage zx_getGradientImageWithSize:self.exitBtn.frame.size locations:location components:components count:2];
         [self.exitBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     }
     

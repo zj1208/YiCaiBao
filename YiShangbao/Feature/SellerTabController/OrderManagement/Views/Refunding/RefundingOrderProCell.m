@@ -20,8 +20,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.containerView setCornerRadius:2.f borderWidth:0.5f borderColor:nil];
-    [self.picImageView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+    [self.containerView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:nil];
+    [self.picImageView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     [self sendSubviewToBack:self.contentView];
 }
 

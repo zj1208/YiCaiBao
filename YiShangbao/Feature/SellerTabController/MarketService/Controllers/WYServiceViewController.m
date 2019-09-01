@@ -230,7 +230,7 @@
 //市场公告
 -(void)noticeTap{
     [MobClick event:kUM_b_ServiceNotice];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         MessageDetailListViewController *vc = [[MessageDetailListViewController alloc] init];
         vc.typeName = @"市场公告";
         vc.type = @(1);
@@ -463,7 +463,7 @@
     if (!detailmodel.login1st.integerValue){
         //不需要需要登录
         [self menuRounter:detailmodel];
-    }else if (![self xm_performIsLoginActionWithPopAlertView:NO]){
+    }else if (![self zx_performIsLoginActionWithPopAlertView:NO]){
         //判断是否登陆   未登录弹登陆界面
     }else if (detailmodel.forceShop2nd.integerValue && ![UserInfoUDManager getShopId]){
         //需要开店 && 没开店

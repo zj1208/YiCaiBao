@@ -82,36 +82,36 @@
 
 - (UIImage *)getCommonRedGradientImageWithSize:(CGSize)size
 {
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(255.f, 67.f, 82.f, 1.f) endColor:UIColorFromRGBA(243.f, 19.f,37.f, 1.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(255.f, 67.f, 82.f, 1.f) endColor:UIColorFromRGBA(243.f, 19.f,37.f, 1.f)];
     return backgroundImage;
 }
 
 - (UIImage *)getCommonVersion2RedGradientImageWithSize:(CGSize)size
 {
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(253.f, 121.f, 83.f, 1.f) endColor:UIColorFromRGBA(253.f, 82.f,71.f, 1.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(253.f, 121.f, 83.f, 1.f) endColor:UIColorFromRGBA(253.f, 82.f,71.f, 1.f)];
     return backgroundImage;
 }
 
 - (UIImage *)getCommonVersion2GreenGradientImageWithSize:(CGSize)size
 {
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(79.f, 221.f, 208.f, 1.f) endColor:UIColorFromRGBA(33.f, 185.f,201.f, 1.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(79.f, 221.f, 208.f, 1.f) endColor:UIColorFromRGBA(33.f, 185.f,201.f, 1.f)];
     return backgroundImage;
 }
 
 - (UIImage*)getCommonNavigationBarMarketServiceImageWithSize:(CGSize)size{
 
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(191.f, 53.f, 45.f, 1.f) endColor:UIColorFromRGBA(189.f, 43.f,35.f, 1.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(191.f, 53.f, 45.f, 1.f) endColor:UIColorFromRGBA(189.f, 43.f,35.f, 1.f)];
     return backgroundImage;
 }
 
 -(UIImage*)getCommonNavigationBarRedGradientImageWithSize:(CGSize)size
 {
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(255.f, 163.f, 66.f, 1.f) endColor:UIColorFromRGBA(255.f, 113.f,85.f, 1.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(255.f, 163.f, 66.f, 1.f) endColor:UIColorFromRGBA(255.f, 113.f,85.f, 1.f)];
     return backgroundImage;
 }
 -(UIImage *)getTitleViewRedGradientImageWithSize:(CGSize)size
 { 
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(253.f, 121.f, 83.f, 1.f) endColor:UIColorFromRGBA(254.f, 81.f,71.f, 1.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:UIColorFromRGBA(253.f, 121.f, 83.f, 1.f) endColor:UIColorFromRGBA(254.f, 81.f,71.f, 1.f)];
     return backgroundImage;
 }
 - (UIImage *)getPurBarImageWithSize:(CGSize)size
@@ -121,7 +121,7 @@
         1.0,0.73,0.29,1.0,
         1.0,0.55,0.19,1.0
     };
-    UIImage *backgroundImage = [UIImage zh_getGradientImageWithSize:size locations:location components:components2 count:2];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageWithSize:size locations:location components:components2 count:2];
     return backgroundImage;
 }
 //判断屏幕
@@ -544,7 +544,7 @@
     //1.接生意页
     else if ([url isEqualToString:@"microants://business"])
     {
-        WYMainViewController *vc = (WYMainViewController *)[navigationController xm_getControllerWithStoryboardName:storyboard_Main controllerWithIdentifier:SBID_WYMainViewController];
+        WYMainViewController *vc = (WYMainViewController *)[navigationController zx_getControllerWithStoryboardName:storyboard_Main controllerWithIdentifier:SBID_WYMainViewController];
         vc.hidesBottomBarWhenPushed = YES;
         [navigationController pushViewController:vc animated:NO];//NO
     }
@@ -617,7 +617,7 @@
     // 接生意-设置主营产品、主营类目、通知页面
     else if ([url isEqualToString:@"microants://businesssetting"])
     {
-        WYTradeSetViewController *vc = (WYTradeSetViewController *)[navigationController xm_getControllerWithStoryboardName:storyboard_Main controllerWithIdentifier:SBID_WYTradeSetViewController];
+        WYTradeSetViewController *vc = (WYTradeSetViewController *)[navigationController zx_getControllerWithStoryboardName:storyboard_Main controllerWithIdentifier:SBID_WYTradeSetViewController];
         vc.hidesBottomBarWhenPushed = YES;
         [navigationController pushViewController:vc animated:YES];
     }
@@ -628,7 +628,7 @@
         {
             return NO;
         }
-        MakeBillsTabController *vc = (MakeBillsTabController *)[navigationController xm_getControllerWithStoryboardName:@"MakeBills" controllerWithIdentifier:@"MakeBillsTabControllerID"];
+        MakeBillsTabController *vc = (MakeBillsTabController *)[navigationController zx_getControllerWithStoryboardName:@"MakeBills" controllerWithIdentifier:@"MakeBillsTabControllerID"];
         vc.hidesBottomBarWhenPushed = YES;
         [navigationController pushViewController:vc animated:YES];
     }
@@ -656,7 +656,7 @@
         }
         NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
         NSString *billId = [components zhObjectForKey:@"billId"];
-        WYMakeBillViewController *vc = (WYMakeBillViewController *)[navigationController xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
+        WYMakeBillViewController *vc = (WYMakeBillViewController *)[navigationController zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
         vc.billId = billId;
         vc.hidesBottomBarWhenPushed = YES;
         [navigationController pushViewController:vc animated:YES];
@@ -668,7 +668,7 @@
         {
             return NO;
         }
-        WYMakeBillPreviewSetController *vc = (WYMakeBillPreviewSetController *)[navigationController xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillPreviewSetController];
+        WYMakeBillPreviewSetController *vc = (WYMakeBillPreviewSetController *)[navigationController zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillPreviewSetController];
         vc.hidesBottomBarWhenPushed = YES;
         [navigationController pushViewController:vc animated:YES];
     }
@@ -679,7 +679,7 @@
         {
             return NO;
         }
-        [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_MyCustomerViewController withData:nil];
+        [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_MyCustomerViewController withData:nil];
     }
     //57.添加我的客户
     else if ([url rangeOfString:@"microants://addMyCustomer" options:NSAnchoredSearch].location!=NSNotFound)
@@ -692,7 +692,7 @@
         NSString *buyerBizId = [components zhObjectForKey:@"buyerBizId"];
         NSString *source = [components zhObjectForKey:@"source"];
         
-        MyCustomerAddEditController *VC = (MyCustomerAddEditController *)[navigationController xm_getControllerWithStoryboardName:sb_ShopCustomer controllerWithIdentifier:@"MyCustomerAddEditControllerID"];
+        MyCustomerAddEditController *VC = (MyCustomerAddEditController *)[navigationController zx_getControllerWithStoryboardName:sb_ShopCustomer controllerWithIdentifier:@"MyCustomerAddEditControllerID"];
         VC.buyerBizId = buyerBizId;
         VC.source = source.integerValue;
         VC.isEditCustomer = NO;
@@ -779,7 +779,7 @@
         }
         NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
         NSString *tradeId = [components zhObjectForKey:@"id"];
-        [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":tradeId}];
+        [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":tradeId}];
     }
     //3.访客列表
     else if ([url rangeOfString:@"microants://visitorList" options:NSAnchoredSearch].location!=NSNotFound) {
@@ -794,7 +794,7 @@
         }
         else
         {
-            [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_VisitorViewController withData:@{@"shopId":[UserInfoUDManager getShopId]}];
+            [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_VisitorViewController withData:@{@"shopId":[UserInfoUDManager getShopId]}];
         }
     }
     
@@ -811,7 +811,7 @@
         }
         else
         {
-            [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_FansViewController withData:@{@"shopId":[UserInfoUDManager getShopId]}];
+            [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_FansViewController withData:@{@"shopId":[UserInfoUDManager getShopId]}];
         }
     }
     //5.商铺二维码
@@ -823,7 +823,7 @@
         }
         if (![currentControllerName isEqualToString:@"WYQRCodeViewController"])
         {
-            WYQRCodeViewController *codeVC = (WYQRCodeViewController *)[navigationController.topViewController xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYQRCodeViewController];
+            WYQRCodeViewController *codeVC = (WYQRCodeViewController *)[navigationController.topViewController zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYQRCodeViewController];
             codeVC.hidesBottomBarWhenPushed = YES;
             [navigationController pushViewController:codeVC animated:YES];
         }
@@ -836,7 +836,7 @@
             return NO;
         }
         
-        [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ProductManageController withData:@{@"selectIndex":@(0)}];
+        [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ProductManageController withData:@{@"selectIndex":@(0)}];
     }
     //8.上传产品
     else if ([url rangeOfString:@"microants://productupload" options:NSAnchoredSearch].location!=NSNotFound) {
@@ -845,7 +845,7 @@
         {
             return NO;
         }
-        [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:nil];
+        [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:nil];
     }
     //9.产品编辑
     else if ([url rangeOfString:@"microants://modifyProduct" options:NSAnchoredSearch].location!=NSNotFound)
@@ -857,7 +857,7 @@
         NSURLComponents *components = [[NSURLComponents alloc] initWithString:url];
         NSString *productId = [components zhObjectForKey:@"id"];
         
-        [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
+        [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_AddProductController withData:@{@"productId":productId,@"controllerDoingType":@(ControllerDoingType_EditProduct)}];
     }
     
     //10.商铺公告
@@ -899,7 +899,7 @@
         //商铺设置
         if (![currentControllerName isEqualToString:@"ShopInfoViewController"])
         {
-            [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
+            [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
         }
     }
     //13.消息分类－im推送也是这里
@@ -950,7 +950,7 @@
         }
         else
         {
-            [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_MyTradesController withData:nil];
+            [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_MyTradesController withData:nil];
         }
     }
     //16.在线聊天
@@ -1010,7 +1010,7 @@
     //18.用户登陆
     else if ([url isEqualToString:@"microants://userLogin"])
     {
-        [navigationController xm_presentLoginController];
+        [navigationController zx_presentLoginController];
     }
     //19.经营信息
     else if ([url isEqualToString:@"microants://shopmessage"])
@@ -1019,7 +1019,7 @@
         {
             return NO;
         }
-        [navigationController.topViewController xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ManagementInfoController withData:nil];
+        [navigationController.topViewController zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ManagementInfoController withData:nil];
     }
     //变更手机号
     else if ([url isEqualToString:@"microants://changePhone"])

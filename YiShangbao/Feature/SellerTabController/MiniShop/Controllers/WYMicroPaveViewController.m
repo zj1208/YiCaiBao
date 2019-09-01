@@ -190,7 +190,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
     self.collectionView.backgroundColor = [UIColor clearColor];
     _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LCDW, LCDW*100.f/375.0)];
     _topImageView.backgroundColor = UIColorFromRGB_HexValue(0xBF352D);
-//    UIImage *image = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(LCDW, LCDW*100.f/375.0) startColor:UIColorFromRGB(255.f, 180.f, 94.f) endColor:UIColorFromRGB(243.f, 117.f, 80.f)];
+//    UIImage *image = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(LCDW, LCDW*100.f/375.0) startColor:UIColorFromRGB(255.f, 180.f, 94.f) endColor:UIColorFromRGB(243.f, 117.f, 80.f)];
 //    _topImageView.image =image;
     [self.view insertSubview:_topImageView belowSubview:self.collectionView];
     _topImageView.hidden = YES;
@@ -694,7 +694,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 }
 
 - (IBAction)addInfomationAction:(UIButton *)sender {
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
 }
 
 
@@ -918,7 +918,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 {
     if (indexPath.section ==1)
     {
-        if ([self xm_performIsLoginActionWithPopAlertView:NO])
+        if ([self zx_performIsLoginActionWithPopAlertView:NO])
         {
             AdvMustReadCell *advCell = (AdvMustReadCell *)[collectionView cellForItemAtIndexPath:indexPath];
             NSInteger index = [advCell.cycleTitleView curryPage];
@@ -1017,7 +1017,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
     {
         return;
     }
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ShopInfoViewController withData:nil];
 }
 
 #pragma mark - 分享
@@ -1061,7 +1061,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 //        [SELF dismissViewControllerAnimated:YES completion:nil];
 //    };
 //    [self presentViewController:alertView animated:YES completion:nil];
-//    [self xm_presentStoryboardViewControllerWithStoryboardName:@"Main" identifier:@"Test2ViewController" isNavigationController:YES withData:nil completion:nil];
+//    [self zx_presentStoryboardViewControllerWithStoryboardName:@"Main" identifier:@"Test2ViewController" isNavigationController:YES withData:nil completion:nil];
 //    return;
     [MobClick event:kUM_b_home_preview];
     if (![self isNeedLoginAndOpenShop] || !_shopHomeInfoModel)
@@ -1121,7 +1121,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 - (void)QRCodeBtnAction:(UIButton *)sender
 {
     [MobClick event:kUM_b_home_code];
-    if (![self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
+    if (![self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
     {
         return ;
     }
@@ -1132,7 +1132,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
             self.transitonModelDelegate = [[ZXAlphaTransitionDelegate alloc] init];
         }
         WS(weakSelf);
-        BRCodePresentController *vc = (BRCodePresentController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:@"BRCodePresentController"];
+        BRCodePresentController *vc = (BRCodePresentController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:@"BRCodePresentController"];
         vc.modalPresentationStyle = UIModalPresentationCustom;
         vc.transitioningDelegate = self.transitonModelDelegate;
         vc.doActionHandleBlock = ^{
@@ -1152,7 +1152,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 // 需要开店，需要登录
 - (BOOL)isNeedLoginAndOpenShop
 {
-    if (![self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
+    if (![self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
     {
         return NO;
     }
@@ -1272,7 +1272,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 {
     if (model.needLogin)
     {
-        if (![self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
+        if (![self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
         {
             return NO;
         }
@@ -1319,7 +1319,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 //    必看通知
     if (view.tag == 10002)
     {
-        if ([self xm_performIsLoginActionWithPopAlertView:NO])
+        if ([self zx_performIsLoginActionWithPopAlertView:NO])
         {
             [MobClick event:kUM_b_home_notice];
             ShopMustReadAdvModel* model =  sourceArray[index];

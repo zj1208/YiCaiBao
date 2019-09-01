@@ -19,7 +19,7 @@
     self.titleLab.font = [UIFont systemFontOfSize:LCDScale_iPhone6_Width(17)];
     self.descLab.font = [UIFont systemFontOfSize:LCDScale_iPhone6_Width(13)];
     self.topTimeLab.font = [UIFont systemFontOfSize:LCDScale_iPhone6_Width(11)];
-    [self.topTimeLab setCornerRadius:4.f borderWidth:0.f borderColor:nil];
+    [self.topTimeLab zx_setCornerRadius:4.f borderWidth:0.f borderColor:nil];
 }
 
 - (void)setData:(id)data

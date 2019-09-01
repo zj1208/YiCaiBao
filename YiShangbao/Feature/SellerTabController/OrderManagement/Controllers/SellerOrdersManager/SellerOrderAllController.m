@@ -342,7 +342,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     else if (buttonModel.code == ButtonCode_confirmOrder1)
 //    else if (buttonModel.code == ButtonCode_modifyPrice1)
     {
-        ModifyOrderPriceController *vc = (ModifyOrderPriceController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_ModifyOrderPriceController];
+        ModifyOrderPriceController *vc = (ModifyOrderPriceController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_ModifyOrderPriceController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = model.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];
@@ -350,7 +350,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     // 立即发货
     else if (buttonModel.code ==ButtonCode_delivery1)
     {
-        SendGoodsController *vc = (SendGoodsController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SendGoodsController];
+        SendGoodsController *vc = (SendGoodsController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SendGoodsController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = model.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];
@@ -364,7 +364,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     // 处理退款
     else if (buttonModel.code == ButtonCode_handleRefund1)
     {
-        RefundingDetailController *vc = (RefundingDetailController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
+        RefundingDetailController *vc = (RefundingDetailController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = model.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];
@@ -402,7 +402,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     NSLog(@"indexPath = %@",indexPath);
 
     GetOrderManagerModel *model = [self.dataMArray objectAtIndex:indexPath.section];
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":model.entityId, @"boolChat":@(YES),@"sourceType":@(AddOnlineCustomerSourceType_order)}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":model.entityId, @"boolChat":@(YES),@"sourceType":@(AddOnlineCustomerSourceType_order)}];
 }
 
 

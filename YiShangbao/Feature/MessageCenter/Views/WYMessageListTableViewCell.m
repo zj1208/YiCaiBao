@@ -28,7 +28,7 @@
     self.messageTime.font = [UIFont systemFontOfSize:12];
     self.messageTime.textColor = UIColorFromRGB_HexValue(0x999999);
     
-    [self.dotNumLab setCornerRadius:4.f borderWidth:0.f borderColor:nil];
+    [self.dotNumLab zx_setCornerRadius:4.f borderWidth:0.f borderColor:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

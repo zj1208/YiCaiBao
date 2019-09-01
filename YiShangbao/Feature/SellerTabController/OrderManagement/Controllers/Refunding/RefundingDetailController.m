@@ -396,7 +396,7 @@ static NSString * const reuse_CellNum2  = @"CellNum2";
         else
         {
             [MBProgressHUD zx_hideHUDForView:nil];
-            RefundingDetailController *vc = (RefundingDetailController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
+            RefundingDetailController *vc = (RefundingDetailController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
             vc.hidesBottomBarWhenPushed = YES;
             vc.bizOrderId = _orderModel.bizOrderId;
             [self.navigationController pushViewController:vc animated:YES];

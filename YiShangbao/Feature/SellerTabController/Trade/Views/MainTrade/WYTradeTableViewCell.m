@@ -50,7 +50,7 @@
     
     photoView.photoModelItemViewBlock = ^(UIView *itemView)
     {
-        [itemView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+        [itemView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     };
     [self.photoContainerView addSubview:self.photosView];
     [photoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,7 +61,7 @@
     
     [self.headBtn zh_setButtonImageViewScaleAspectFill];
 
-    [self.dotImageView zx_setRoundItem];
+    [self.dotImageView zx_setBorderWithRoundItem];
     //打印nib中约束的frame，永远是布局上已有的frame大小，所以在自动布局中，你不能用frame来给动态的值；
 //    NSLog(@"self.photoContainerView.frame=%@",NSStringFromCGRect(self.photoContainerView.frame));
     

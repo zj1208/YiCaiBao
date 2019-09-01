@@ -67,7 +67,7 @@
         vc.shopUrl = shopUrl;
         vc.hideUnreadCountView = YES;
         
-        UIViewController *curryVC = [UIViewController jl_viewControllerSupportView:self];
+        UIViewController *curryVC = [self zx_getResponderViewController];
         [curryVC.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSError *error) {

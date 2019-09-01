@@ -62,7 +62,7 @@
     
     self.title = @"主营类目";
     
-    [self xm_navigationItem_titleCenter];
+    [self zx_navigationItem_titleCenter];
     
     //title标题UI
     _view_title = [[WYTitleTagVIew alloc] init];

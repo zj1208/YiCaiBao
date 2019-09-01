@@ -22,11 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [UIViewController xm_navigationBar_UIBarButtonItem_appearance_systemBack_noTitle];
+    [UIViewController zx_navigationBar_UIBarButtonItem_appearance_systemBack_noTitle];
     
-    UIImage *tabImage = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xFAFAFA) andSize:self.tabBar.frame.size];
+    UIImage *tabImage = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xFAFAFA) andSize:self.tabBar.frame.size];
     self.tabBar.backgroundImage = tabImage;
-    UIImage *shadowImage = [UIImage zh_imageWithColor:UIColorFromRGB_HexValue(0xD8D8D8) andSize:CGSizeMake(self.tabBar.frame.size.width, 0.5)];
+    UIImage *shadowImage = [UIImage zx_imageWithColor:UIColorFromRGB_HexValue(0xD8D8D8) andSize:CGSizeMake(self.tabBar.frame.size.width, 0.5)];
     self.tabBar.shadowImage = shadowImage;
     
     self.delegate = self;
@@ -64,7 +64,7 @@
     
     UINavigationController* naVC = [[UINavigationController alloc] initWithRootViewController:viewC];
     
-    [naVC xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+    [naVC zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
 
     naVC.navigationBar.tintColor = WYUISTYLE.colorMTblack;
     naVC.tabBarItem.image = [[UIImage imageNamed:Norname] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] ;
@@ -83,7 +83,7 @@
     UIViewController *viewC=[sb instantiateViewControllerWithIdentifier:identifier];
     
     UINavigationController* naVC = [[UINavigationController alloc] initWithRootViewController:viewC];
-    [naVC xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+    [naVC zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
 
     naVC.navigationBar.tintColor = WYUISTYLE.colorMTblack;
     naVC.tabBarItem.image = [[UIImage imageNamed:Norname] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] ;
@@ -109,7 +109,7 @@
     }
     if (viewController == self.viewControllers[1]) {
         [MobClick event:kUM_c_toobar_follow];
-        if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+        if ([self zx_performIsLoginActionWithPopAlertView:NO]){
             return YES;
         }else{
             return NO;
@@ -128,7 +128,7 @@
     }
     if (viewController == self.viewControllers[3]) {
         [MobClick event:kUM_c_toolbar_shoppinglist];
-        if ([self xm_performIsLoginActionWithPopAlertView:NO])
+        if ([self zx_performIsLoginActionWithPopAlertView:NO])
         {
             return YES;
         }else{

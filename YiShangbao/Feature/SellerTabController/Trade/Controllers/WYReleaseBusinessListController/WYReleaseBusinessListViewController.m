@@ -118,7 +118,7 @@
     ReleaseBusniessModel *model = self.array[indexPath.section];
     
     if (model.valid) {
-        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.subjectId,@"nTitle":@"生意"}];
+        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.subjectId,@"nTitle":@"生意"}];
         [MobClick event:kUM_gotoBuild];
     }else{
         [UIAlertController zx_presentGeneralAlertInViewController:self withTitle:@"这个生意已经被人抢啦，下次来早点哦～" message:nil cancelButtonTitle:nil cancleHandler:nil doButtonTitle:@"知道了" doHandler:nil];

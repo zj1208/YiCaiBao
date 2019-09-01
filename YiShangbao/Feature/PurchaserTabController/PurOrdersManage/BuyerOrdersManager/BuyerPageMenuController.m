@@ -66,7 +66,7 @@
     
     for (int i = 0; i < self.segTitles.count; i++) {
         
-        BuyerOrderAllController *vc = (BuyerOrderAllController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_BuyerOrderAllController];
+        BuyerOrderAllController *vc = (BuyerOrderAllController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_BuyerOrderAllController];
         vc.nTitle = [NSString stringWithFormat:@"标题%d",i];
         vc.orderListStatus = [self convertIndexToStatus:i];
         [self.dataMArray addObject:vc];

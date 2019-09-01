@@ -173,7 +173,7 @@
 
 //分享给义采宝客户
 - (void)shareCustomers{
-    if (![self xm_performIsLoginActionWithPopAlertView:NO]){
+    if (![self zx_performIsLoginActionWithPopAlertView:NO]){
         return;
     }
     [MobClick event:kUM_b_component_linkman];

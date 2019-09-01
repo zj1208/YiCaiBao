@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_END
  #pragma mark - action
  -(void)messageBtnAction{
  
-    if ([self xm_performIsLoginActionWithPopAlertView:NO])
+    if ([self zx_performIsLoginActionWithPopAlertView:NO])
     {
         [MobClick event:kUM_message];
  

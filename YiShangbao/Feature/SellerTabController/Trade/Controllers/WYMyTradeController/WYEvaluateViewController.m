@@ -186,7 +186,7 @@
 
     
     UIButton * submitBtn =[UIButton new];
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(200, 36) startColor:UIColorFromRGB(255.f, 67.f, 82.f) endColor:UIColorFromRGB(243.f, 19.f, 37.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(200, 36) startColor:UIColorFromRGB(255.f, 67.f, 82.f) endColor:UIColorFromRGB(243.f, 19.f, 37.f)];
     [submitBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
 //    [submitBtn addTarget:self action:@selector(submitTip) forControlEvents:UIControlEventTouchUpInside];
 //    submitBtn.backgroundColor = WYUISTYLE.colorMred;

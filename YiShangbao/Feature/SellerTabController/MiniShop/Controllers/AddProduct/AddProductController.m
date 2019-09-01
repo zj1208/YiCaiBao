@@ -252,7 +252,7 @@ static NSString * const CellId_contentCell = @"contentCell";
 
     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(0, 0, LCDScale_iPhone6_Width(103), CGRectGetHeight(self.bottomContainerView.frame)-16);
-    [btn1 zx_setRoundItem];
+    [btn1 zx_setBorderWithRoundItem];
     [btn1 setImage:[UIImage imageNamed:@"ic_shanchu"] forState:UIControlStateNormal];
     [btn1 setTitle:NSLocalizedString(@"删除", nil) forState:UIControlStateNormal];
     [btn1 zh_centerHorizontalImageAndTitleWithTheirSpace:10.f];
@@ -263,7 +263,7 @@ static NSString * const CellId_contentCell = @"contentCell";
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn2.frame = CGRectMake(0, 0, LCDScale_iPhone6_Width(103), CGRectGetHeight(self.bottomContainerView.frame)-16);
-    [btn2 zx_setRoundItem];
+    [btn2 zx_setBorderWithRoundItem];
     [btn2 setImage:[UIImage imageNamed:@"ic_xiajia"] forState:UIControlStateNormal];
     [btn2 setTitle:NSLocalizedString(@"下架", nil) forState:UIControlStateNormal];
     [btn2 zh_centerHorizontalImageAndTitleWithTheirSpace:10.f];
@@ -273,7 +273,7 @@ static NSString * const CellId_contentCell = @"contentCell";
     
     UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn3.frame = CGRectMake(0, 0, LCDScale_iPhone6_Width(103), CGRectGetHeight(self.bottomContainerView.frame)-16);
-    [btn3 zx_setRoundItem];
+    [btn3 zx_setBorderWithRoundItem];
     UIImage *backgroundImage2 = [WYUTILITY getCommonVersion2RedGradientImageWithSize:btn3.frame.size];
     [btn3 setBackgroundImage:backgroundImage2 forState:UIControlStateNormal];
     
@@ -287,7 +287,7 @@ static NSString * const CellId_contentCell = @"contentCell";
     
     UIButton *btn4 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn4.frame = CGRectMake(0, 0, LCDScale_iPhone6_Width(158), CGRectGetHeight(self.bottomContainerView.frame)-16);
-    [btn4 zx_setRoundItem];
+    [btn4 zx_setBorderWithRoundItem];
     UIImage *backgroundImage = [WYUTILITY getCommonVersion2RedGradientImageWithSize:btn4.frame.size];
     [btn4 setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     [btn4 setTitle:NSLocalizedString(@"公开上架", nil) forState:UIControlStateNormal];
@@ -423,7 +423,7 @@ static NSString * const CellId_contentCell = @"contentCell";
          } failure:^(NSError *error) {
              
              [MBProgressHUD zx_showError:[error localizedDescription] toView:weakSelf.view];
-             [weakSelf performSelector:@selector(xm_goBackPreController) withObject:nil afterDelay:1.f];
+             [weakSelf performSelector:@selector(zx_goBackPreController) withObject:nil afterDelay:1.f];
          }];
     }
     else
@@ -1010,7 +1010,7 @@ static NSString * const CellId_contentCell = @"contentCell";
 - (void)chooseShopClassify
 {
     AddProductModel *model = (AddProductModel *)[self.diskManager getData];
-    WYChooseShopCateViewController *vc = (WYChooseShopCateViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYChooseShopCateViewController];
+    WYChooseShopCateViewController *vc = (WYChooseShopCateViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYChooseShopCateViewController];
     [vc selectedArray:model.shopCatgs return:^(NSArray *selectedArray) {
         
         [_diskManager setPropertyImplementationValue:selectedArray forKey:@"shopCatgs" postNotification:YES];
@@ -1641,7 +1641,7 @@ static NSString * const CellId_contentCell = @"contentCell";
     if (self.addProductPushType == AddProudctPushType_goToNewProductManager)
     {
         //push过去后，删除在导航控制器中子控制器的当前的控制器
-        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ProductManageController withData:@{@"selectIndex":type}];
+        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ProductManageController withData:@{@"selectIndex":type}];
         
         NSMutableArray *viewControllers =[self.navigationController.viewControllers mutableCopy];
         NSInteger index = [viewControllers indexOfObject:self];

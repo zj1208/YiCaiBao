@@ -18,8 +18,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self.view zx_setCornerRadius:<#(CGFloat)#> borderWidth:<#(CGFloat)#> borderColor:<#(nullable UIColor *)#>];
-
 }
 
 - (void)didReceiveMemoryWarning {

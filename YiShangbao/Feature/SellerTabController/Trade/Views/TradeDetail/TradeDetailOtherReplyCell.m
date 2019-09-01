@@ -25,7 +25,7 @@
     self.headBtn.contentHorizontalAlignment= UIControlContentHorizontalAlignmentFill;
     self.headBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
     
-    [self.headBtn zx_setRoundItem];
+    [self.headBtn zx_setBorderWithRoundItem];
     
     ZXImgIconsCollectionView *iconsView = [[ZXImgIconsCollectionView alloc] init];
     self.iconsView = iconsView;

@@ -67,7 +67,7 @@
 //我关注的供应商
 - (IBAction)collectionStoreButtonAction:(id)sender {
     [MobClick event:kUM_c_list_supplier];
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
 //        NSString *url = [NSString stringWithFormat:@"%@/ycbx/page/ycbPersonalConcernedShop.html",[WYUserDefaultManager getkAPP_H5URL]];
 //        [[WYUtility dataUtil] routerWithName:url withSoureController:self];
         LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];

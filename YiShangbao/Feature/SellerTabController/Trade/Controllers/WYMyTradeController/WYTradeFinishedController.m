@@ -200,7 +200,7 @@
 {
     MYTradeUnderwayModel *model = [self.dataMArray objectAtIndex:indexPath.section];
     
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.postId,@"nTitle":@"生意"}];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.postId,@"nTitle":@"生意"}];
 }
 
 
@@ -217,7 +217,7 @@
     NSIndexPath *indexPath = [sender zh_getIndexPathWithBtnInCellFromTableViewOrCollectionView:self.tableView];
     MYTradeUnderwayModel *model = [self.dataMArray objectAtIndex:indexPath.section];
     
-    WYTradeEvaluateViewController *vc = (WYTradeEvaluateViewController *)[self xm_getControllerWithStoryboardName:storyboard_Trade controllerWithIdentifier:SBID_WYTradeEvaluateViewController];
+    WYTradeEvaluateViewController *vc = (WYTradeEvaluateViewController *)[self zx_getControllerWithStoryboardName:storyboard_Trade controllerWithIdentifier:SBID_WYTradeEvaluateViewController];
     vc.postId = model.postId;
     [self.navigationController pushViewController:vc animated:YES];
     

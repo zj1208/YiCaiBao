@@ -1245,7 +1245,7 @@ static  NSString* const DefaultFooterResign = @"UICollectionSectionFooter";
 }
 #pragma mark 导航栏消息
 - (IBAction)messageControlClick:(ZXBadgeIconButton *)sender {
-    if ([self xm_performIsLoginActionWithPopAlertView:NO])
+    if ([self zx_performIsLoginActionWithPopAlertView:NO])
     {
         [MobClick event:kUM_message];
         

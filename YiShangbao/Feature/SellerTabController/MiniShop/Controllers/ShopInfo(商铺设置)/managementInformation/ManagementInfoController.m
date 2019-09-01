@@ -79,13 +79,13 @@
 
 - (void)creatUI
 {
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:self.saveBtn.frame.size startColor:UIColorFromRGB(255.f, 67.f, 82.f) endColor:UIColorFromRGB(243.f, 19.f, 37.f)];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:self.saveBtn.frame.size startColor:UIColorFromRGB(255.f, 67.f, 82.f) endColor:UIColorFromRGB(243.f, 19.f, 37.f)];
     [self.saveBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-    [self.saveBtn setCornerRadius:40.f/2 borderWidth:1 borderColor:nil];
+    [self.saveBtn zx_setCornerRadius:40.f/2 borderWidth:1 borderColor:nil];
     
     
     
-    [self.yearBtn setCornerRadius:5.f borderWidth:1.f borderColor:[UIColor lightGrayColor]];
+    [self.yearBtn zx_setCornerRadius:5.f borderWidth:1.f borderColor:[UIColor lightGrayColor]];
     
     UIImage *selectImage =[UIImage imageNamed:@"选中"];
     UIImage *noSelectImage = [UIImage imageNamed:@"未选"];

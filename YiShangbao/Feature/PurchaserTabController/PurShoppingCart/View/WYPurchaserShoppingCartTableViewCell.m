@@ -242,7 +242,7 @@ NSString * const WYPurchaserShoppingCartTableViewCellID = @"WYPurchaserShoppingC
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 //    
 //    NSInteger maxLength = 6;
-//    return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:maxLength remainTextNum:^(NSInteger remainLength) {
+//    return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:maxLength remainTextNum:^(NSInteger remainLength) {
 //        
 //    }];
 //}

@@ -21,7 +21,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.containerView setCornerRadius:2.f borderWidth:1.f borderColor:nil];
+    [self.containerView zx_setCornerRadius:2.f borderWidth:1.f borderColor:nil];
     if ([WYUserDefaultManager getUserTargetRoleType] ==WYTargetRoleType_buyer)
     {
         self.refundingLab.textColor =UIColorFromRGB(245.f, 143.f, 35.f);
@@ -31,7 +31,7 @@
         self.refundingLab.textColor = UIColorFromRGB(255.f, 84.f, 52.f);
     }
     
-    [self.picImageView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+    [self.picImageView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     
     [self sendSubviewToBack:self.contentView];
 

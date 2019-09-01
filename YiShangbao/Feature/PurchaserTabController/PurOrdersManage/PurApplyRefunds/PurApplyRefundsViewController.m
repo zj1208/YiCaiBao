@@ -259,7 +259,7 @@ static NSString* const ApplyRefundsOtherInfoTableViewCell_Resign = @"ApplyRefund
 #pragma mark - 退款原因50个字
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    return [UITextField xm_limitRemainText:_AppOtherInfocell.textfild shouldChangeCharactersInRange:range replacementString:string maxLength:50 remainTextNum:^(NSInteger remainLength) {
+    return [UITextField zx_limitRemainText:_AppOtherInfocell.textfild shouldChangeCharactersInRange:range replacementString:string maxLength:50 remainTextNum:^(NSInteger remainLength) {
         
     }];
 }

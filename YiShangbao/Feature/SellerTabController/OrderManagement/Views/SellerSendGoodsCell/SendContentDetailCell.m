@@ -25,8 +25,8 @@
   
     self.trackingNumberTextField.delegate = self;
     self.logisticsCompanyTextField.delegate = self;
-//    [self.logisticsCompanyTextField setCornerRadius:CGRectGetHeight(self.logisticsCompanyTextField.frame)/2 borderWidth:0.5 borderColor:UIColorFromRGB(225.f, 225.f, 225.f)];
-//    [self.trackingNumberTextField setCornerRadius:CGRectGetHeight(self.logisticsCompanyTextField.frame)/2 borderWidth:0.5 borderColor:UIColorFromRGB(225.f, 225.f, 225.f)];
+//    [self.logisticsCompanyTextField zx_setCornerRadius:CGRectGetHeight(self.logisticsCompanyTextField.frame)/2 borderWidth:0.5 borderColor:UIColorFromRGB(225.f, 225.f, 225.f)];
+//    [self.trackingNumberTextField zx_setCornerRadius:CGRectGetHeight(self.logisticsCompanyTextField.frame)/2 borderWidth:0.5 borderColor:UIColorFromRGB(225.f, 225.f, 225.f)];
 }
 
 - (void)setLogisticsCompanay:(NSString *)company trackingNumber:(NSString *)trackingNumber
@@ -39,14 +39,14 @@
 {
     if ([textField isEqual:self.logisticsCompanyTextField])
     {
-        return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:20 remainTextNum:^(NSInteger remainLength) {
+        return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:20 remainTextNum:^(NSInteger remainLength) {
             
         }];
 
     }
     if ([textField isEqual:self.trackingNumberTextField])
     {
-        return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:25 remainTextNum:^(NSInteger remainLength) {
+        return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:25 remainTextNum:^(NSInteger remainLength) {
             
         }];
     }

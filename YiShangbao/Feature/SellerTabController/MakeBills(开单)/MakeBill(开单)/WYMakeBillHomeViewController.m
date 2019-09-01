@@ -95,7 +95,7 @@
         } doButtonTitle:@"取消" doHandler:nil];
     }else if (type == MakeBillOperationTypeEdit){
         [MobClick event:kUM_kdb_openbill_list_editbutton];
-        WYMakeBillViewController *vc = (WYMakeBillViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
+        WYMakeBillViewController *vc = (WYMakeBillViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
         vc.billId = model.billId;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -301,7 +301,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [MobClick event:kUM_kdb_openbill_list_edit];
     MakeBillHomeInfoModel* model = self.array[indexPath.row];
-    WYMakeBillViewController *vc = (WYMakeBillViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
+    WYMakeBillViewController *vc = (WYMakeBillViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
     vc.billId = model.billId;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -408,7 +408,7 @@
 }
 
 - (void)goAddVC{
-    WYMakeBillViewController *vc = (WYMakeBillViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
+    WYMakeBillViewController *vc = (WYMakeBillViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillViewController];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

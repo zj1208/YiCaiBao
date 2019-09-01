@@ -58,7 +58,7 @@
 
 //经营信息
 - (void)businessInformationButtonAction{
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ManagementInfoController withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_ManagementInfoController withData:nil];
 }
 
 //商铺公告
@@ -97,7 +97,7 @@
 //交易设置
 - (void)tradeSettingAction {
     if (self.shopInfoModel.canTrade){
-        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_WYShopTradeSettingViewController withData:@{@"canTrade":self.shopInfoModel.canTrade}];
+        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_WYShopTradeSettingViewController withData:@{@"canTrade":self.shopInfoModel.canTrade}];
     }
 }
 

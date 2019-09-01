@@ -20,7 +20,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.transFeeTextField setCornerRadius:CGRectGetHeight(self.transFeeTextField.frame)/2 borderWidth:0.5 borderColor:UIColorFromRGB(225.f, 225.f, 225.f)];
+    [self.transFeeTextField zx_setCornerRadius:CGRectGetHeight(self.transFeeTextField.frame)/2 borderWidth:0.5 borderColor:UIColorFromRGB(225.f, 225.f, 225.f)];
 }
 
 

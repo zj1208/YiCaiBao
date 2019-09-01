@@ -99,7 +99,7 @@
                                   @"type":@"0",
 #if !TARGET_IPHONE_SIMULATOR //真机
 //                                  @"token":[[NSUserDefaults standardUserDefaults] objectForKey:ud_deviceToken],
-                                  @"did":[[UIDevice currentDevice]getIDFAUUIDString],
+                                  @"did":[[UIDevice currentDevice]zx_getIDFAUUIDString],
 #endif
                                   @"systemVersion": CurrentSystemVersion,
                                   @"clientId":[[NSUserDefaults standardUserDefaults] objectForKey:ud_GTClientId],
@@ -117,7 +117,7 @@
         }
         
     } failure:^(NSError *error) {
-        [self zhHUD_showErrorWithStatus:[error localizedDescription]];
+        [MBProgressHUD zx_showError:[error localizedDescription] toView:nil];
     }];
 }
 
@@ -129,15 +129,14 @@
     [[[AppAPIHelper shareInstance] getShopAPI] getMyShopIdsWithSuccess:^(id data) {
         if (![data isEqual:[NSNull null]]) {
             [UserInfoUDManager setShopId:data];
-            
-            [weakSelf zhHUD_showSuccessWithStatus:@"登录成功"];
+            [MBProgressHUD zx_showSuccess:@"登录成功" toView:nil];
             [weakSelf.navigationController dismissViewControllerAnimated:NO completion:^{
                 
                 [UserInfoUDManager loginIn];
             }];
         }
     } failure:^(NSError *error) {
-        [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
+        [MBProgressHUD zx_showError:[error localizedDescription] toView:nil];
     }];
 }
 

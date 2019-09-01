@@ -291,9 +291,9 @@ static NSString * const reuseAdvIdentifier = @"advCell";
     {
         if (model.orderingBtnModel.buttonType ==1)
         {
-            if ([self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
+            if ([self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
             {
-                [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.postId,@"nTitle":@"生意"}];
+                [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.postId,@"nTitle":@"生意"}];
 //                [MobClick event:kUM_gotoBuild];
 //                self.selectedIndexPath = indexPath;
             }

@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_END
     self.collectionView.backgroundColor = [UIColor clearColor];
     _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LCDW, LCDW*100.f/375.0)];
     _topImageView.backgroundColor = UIColorFromRGB_HexValue(0xBF352D);
-    //    UIImage *image = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(LCDW, LCDW*100.f/375.0) startColor:UIColorFromRGB(255.f, 180.f, 94.f) endColor:UIColorFromRGB(243.f, 117.f, 80.f)];
+    //    UIImage *image = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(LCDW, LCDW*100.f/375.0) startColor:UIColorFromRGB(255.f, 180.f, 94.f) endColor:UIColorFromRGB(243.f, 117.f, 80.f)];
     //    _topImageView.image =image;
     [self.view insertSubview:_topImageView belowSubview:self.collectionView];
     _topImageView.hidden = YES;

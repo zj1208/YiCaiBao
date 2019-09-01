@@ -21,12 +21,12 @@
     self.supplyOfGoodsLab.backgroundColor =[UIColor clearColor];
     
     
-    [self.previewBtn setCornerRadius:LCDScale_5Equal6_To6plus(25.f)/2 borderWidth:0.5 borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+    [self.previewBtn zx_setCornerRadius:LCDScale_5Equal6_To6plus(25.f)/2 borderWidth:0.5 borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     [self.previewBtn zh_centerHorizontalImageAndTitleWithTheirSpace:10.f];
-    [self.promotionBtn setCornerRadius:LCDScale_5Equal6_To6plus(25.f)/2 borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xFE744A)];
-    [self.editBtn setCornerRadius:LCDScale_5Equal6_To6plus(25.f)/2 borderWidth:0.5 borderColor:UIColorFromRGB_HexValue(0xFE744A)];
+    [self.promotionBtn zx_setCornerRadius:LCDScale_5Equal6_To6plus(25.f)/2 borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xFE744A)];
+    [self.editBtn zx_setCornerRadius:LCDScale_5Equal6_To6plus(25.f)/2 borderWidth:0.5 borderColor:UIColorFromRGB_HexValue(0xFE744A)];
 
-    [self.picImageView setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
+    [self.picImageView zx_setCornerRadius:2.f borderWidth:0.5f borderColor:UIColorFromRGB_HexValue(0xE8E8E8)];
     
     self.titleLab.font =[UIFont systemFontOfSize:LCDScale_5Equal6_To6plus(15.f)];
     self.supplyOfGoodsLab.font =[UIFont systemFontOfSize:LCDScale_5Equal6_To6plus(14.f)];

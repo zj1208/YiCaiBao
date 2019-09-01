@@ -362,7 +362,7 @@ UINavigationControllerDelegate,NIMSystemNotificationManagerDelegate,NIMKitTimerH
 - (void)onTapMediaItemMyShopProduct:(NIMMediaItem *)item
 {
     [MobClick event:kUM_b_chat_ourproduct];
-    SEProductSelectController *vc = (SEProductSelectController *)[self xm_getControllerWithStoryboardName:sb_Extend controllerWithIdentifier:SBID_SEProductSelectController];
+    SEProductSelectController *vc = (SEProductSelectController *)[self zx_getControllerWithStoryboardName:sb_Extend controllerWithIdentifier:SBID_SEProductSelectController];
     vc.maxProsucts = 9;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

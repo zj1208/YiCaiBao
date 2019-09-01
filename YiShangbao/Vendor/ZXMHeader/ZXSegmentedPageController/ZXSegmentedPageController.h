@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_END
     
     for (int i = 0; i < self.segTitles.count; i++) {
         
-        SellerOrderAllController *vc = (SellerOrderAllController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderAllController];
+        SellerOrderAllController *vc = (SellerOrderAllController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderAllController];
         vc.nTitle = [NSString stringWithFormat:@"标题%d",i];
         vc.orderListStatus = i;
         [self.dataMArray addObject:vc];

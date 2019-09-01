@@ -131,7 +131,7 @@ static NSString* const WYODInformationTableViewCell_Resign = @"WYODInformationTa
          
          [_wyverificationcodeViewController wy_remove];
 
-         PurOrederSuccessfulDealViewController *vc = (PurOrederSuccessfulDealViewController *)[self xm_getControllerWithStoryboardName:@"Purchaser" controllerWithIdentifier:SBID_PurOrederSuccessfulDealViewController];
+         PurOrederSuccessfulDealViewController *vc = (PurOrederSuccessfulDealViewController *)[self zx_getControllerWithStoryboardName:@"Purchaser" controllerWithIdentifier:SBID_PurOrederSuccessfulDealViewController];
          vc.bizOrderId = self.ordermanagementDetailModel.bizOrderId;
          vc.hidesBottomBarWhenPushed = YES;
          [self.navigationController pushViewController:vc animated:YES];
@@ -332,7 +332,7 @@ static NSString* const WYODInformationTableViewCell_Resign = @"WYODInformationTa
 -(void)clcikRefund:(UIButton*)sender
 {
     if ([WYUserDefaultManager getUserTargetRoleType] == WYTargetRoleType_seller) { //2买家 4卖家
-        RefundingDetailController *vc = (RefundingDetailController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
+        RefundingDetailController *vc = (RefundingDetailController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = _ordermanagementDetailModel.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];
@@ -363,7 +363,7 @@ static NSString* const WYODInformationTableViewCell_Resign = @"WYODInformationTa
 {
     if ([WYUserDefaultManager getUserTargetRoleType] == WYTargetRoleType_seller) { //2买家 4卖家
        
-        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":_ordermanagementDetailModel.entityId, @"boolChat":@(YES),@"sourceType":@(AddOnlineCustomerSourceType_order)}];
+        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:SBID_BuyerInfoController withData:@{@"bizId":_ordermanagementDetailModel.entityId, @"boolChat":@(YES),@"sourceType":@(AddOnlineCustomerSourceType_order)}];
 
     }else{
         NSMutableString* prodUrlM = [NSMutableString stringWithFormat:@"%@",_ordermanagementDetailModel.entityUrl];
@@ -452,7 +452,7 @@ static NSString* const WYODInformationTableViewCell_Resign = @"WYODInformationTa
     //确认订单
     else if (buttonModel.code == ButtonCode_confirmOrder1)
     {
-        ModifyOrderPriceController *vc = (ModifyOrderPriceController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_ModifyOrderPriceController];
+        ModifyOrderPriceController *vc = (ModifyOrderPriceController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_ModifyOrderPriceController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = _ordermanagementDetailModel.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];
@@ -460,7 +460,7 @@ static NSString* const WYODInformationTableViewCell_Resign = @"WYODInformationTa
     //立即发货
     else if (buttonModel.code ==ButtonCode_delivery1)
     {
-        SendGoodsController *vc = (SendGoodsController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SendGoodsController];
+        SendGoodsController *vc = (SendGoodsController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SendGoodsController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = _ordermanagementDetailModel.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];
@@ -474,7 +474,7 @@ static NSString* const WYODInformationTableViewCell_Resign = @"WYODInformationTa
     // 处理退款
     else if (buttonModel.code == ButtonCode_handleRefund1)
     {
-        RefundingDetailController *vc = (RefundingDetailController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
+        RefundingDetailController *vc = (RefundingDetailController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_RefundingDetailController];
         vc.hidesBottomBarWhenPushed = YES;
         vc.bizOrderId = _ordermanagementDetailModel.bizOrderId;
         [self.navigationController pushViewController:vc animated:YES];

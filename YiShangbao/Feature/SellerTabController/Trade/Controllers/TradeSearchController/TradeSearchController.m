@@ -285,7 +285,7 @@
 #pragma mark － string用户输入的单个字符，range 字符插入的位置
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-   BOOL bo = [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:20 remainTextNum:^(NSInteger remainLength) {
+   BOOL bo = [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:20 remainTextNum:^(NSInteger remainLength) {
         
     }];
     return bo;
@@ -299,7 +299,7 @@
     [self showDelegate:nil];
 }
 - (IBAction)loginBtnClick:(UIButton *)sender {
-    [self xm_performIsLoginActionWithPopAlertView:NO];
+    [self zx_performIsLoginActionWithPopAlertView:NO];
 }
 -(void)dealloc
 {

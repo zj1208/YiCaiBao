@@ -195,7 +195,7 @@
                                   @"type":@"0",
 #if !TARGET_IPHONE_SIMULATOR //真机
 //                                  @"token":[[NSUserDefaults standardUserDefaults] objectForKey:ud_deviceToken],
-                                  @"did":[[UIDevice currentDevice]getIDFAUUIDString],
+                                  @"did":[[UIDevice currentDevice]zx_getIDFAUUIDString],
 #endif
                                   @"systemVersion": CurrentSystemVersion,
                                   @"clientId":[[NSUserDefaults standardUserDefaults] objectForKey:ud_GTClientId],

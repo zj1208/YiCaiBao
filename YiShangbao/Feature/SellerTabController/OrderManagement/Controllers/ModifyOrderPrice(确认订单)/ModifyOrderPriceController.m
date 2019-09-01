@@ -309,11 +309,11 @@ static NSString *reuse_ModifyOrderProCell = @"Cell";
     NSIndexPath *indexPath = [self.tableView zh_getIndexPathFromTableViewOrCollectionViewWithConvertView:textField];
     if (indexPath.section ==0)
     {
-        return [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:10 dotAfterBits:2];
+        return [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:10 dotAfterBits:2];
     }
     if (indexPath.section ==1)
     {
-        return [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:8 dotAfterBits:8];
+        return [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:8 dotAfterBits:8];
     }
 
     return YES;

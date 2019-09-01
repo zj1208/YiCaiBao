@@ -24,7 +24,7 @@
 //绘制水平渐变图
 -(UIImage *)imageWithStartColorHexString:(NSString *)startHexString EndColorHexString:(NSString *)endHexString WithSize:(CGSize)size
 {
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:[UIColor colorWithHexString:startHexString] endColor:[UIColor colorWithHexString:endHexString]];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:[UIColor colorWithHexString:startHexString] endColor:[UIColor colorWithHexString:endHexString]];
     return backgroundImage;
 }
 //-(NSArray*)HexStringExchangeToRGB:(NSString*)HexString
@@ -235,7 +235,7 @@
         1.00,0.32,0.28,1
         
     };
-    UIImage *backgroundImage = [UIImage zh_getGradientImageWithSize:size locations:location components:components count:2];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageWithSize:size locations:location components:components count:2];
     return backgroundImage;
 }
 
@@ -257,21 +257,21 @@
 {
     UIColor *colorStart = [UIColor colorWithHexString:@"BF352D"];
     UIColor *colorEnd = [UIColor colorWithHexString:@"BD2B23"];
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
     return backgroundImage;
 }
 +(UIImage *)imageE23728_CF2218:(CGSize)size
 {
     UIColor *colorStart = [UIColor colorWithHexString:@"E23728"];
     UIColor *colorEnd = [UIColor colorWithHexString:@"CF2218"];
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
     return backgroundImage;
 }
 +(UIImage *)imageFDAB53_FD7953:(CGSize)size
 {
     UIColor *colorStart = [UIColor colorWithHexString:@"FDAB53"];
     UIColor *colorEnd = [UIColor colorWithHexString:@"FD7953"];
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
     return backgroundImage;
 }
 
@@ -279,14 +279,14 @@
 {
     UIColor *colorStart = [UIColor colorWithHexString:@"FD7953"];
     UIColor *colorEnd = [UIColor colorWithHexString:@"FE5147"];
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
     return backgroundImage;
 }
 +(UIImage *)imageFF8848_FF5535:(CGSize)size
 {
     UIColor *colorStart = [UIColor colorWithHexString:@"FF8848"];
     UIColor *colorEnd = [UIColor colorWithHexString:@"FF5535"];
-    UIImage *backgroundImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
+    UIImage *backgroundImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:size startColor:colorStart endColor:colorEnd];
     return backgroundImage;
 }
 

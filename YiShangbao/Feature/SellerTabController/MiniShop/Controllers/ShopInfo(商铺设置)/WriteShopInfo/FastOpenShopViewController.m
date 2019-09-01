@@ -60,7 +60,7 @@
 
 -(void) creatUI{
     self.title = NSLocalizedString(@"完善商铺资料", @"完善商铺资料");
-    [self xm_navigationItem_titleCenter];
+    [self zx_navigationItem_titleCenter];
 
     FastOpenShopView *view = [[FastOpenShopView alloc] init];
     view.frame = self.view.bounds;
@@ -222,7 +222,7 @@
 
 -(void)setShopIntroTip{
      [self.view endEditing:YES];
-    [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:@"ManageMainProController" withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_ShopStore identifier:@"ManageMainProController" withData:nil];
 }
 
 -(void)setChooseDistrictTip{

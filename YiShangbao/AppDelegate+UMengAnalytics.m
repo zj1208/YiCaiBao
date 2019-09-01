@@ -23,7 +23,7 @@
     [MobClick setAppVersion:APP_Version];
     [MobClick setLogEnabled:YES];
     
-    NSLog(@"%@",[[UIDevice currentDevice]getUMOpenUDIDString]);
+    NSLog(@"%@",[[UIDevice currentDevice]zx_getUMOpenUDIDString]);
 
 //        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:@{@"oid" : deviceID}
 //                                                           options:NSJSONWritingPrettyPrinted

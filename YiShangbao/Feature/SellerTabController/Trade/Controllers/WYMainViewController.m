@@ -548,9 +548,9 @@ static NSString * const reuseAdvIdentifier = @"advCell";
     {
         if (model.orderingBtnModel.buttonType ==1)
         {
-            if ([self xm_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
+            if ([self zx_performActionWithIsLogin:ISLOGIN withPopAlertView:NO])
             {
-                [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.postId,@"nTitle":@"生意"}];
+                [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.postId,@"nTitle":@"生意"}];
                 [MobClick event:kUM_gotoBuild];
             }
         }
@@ -755,7 +755,7 @@ static NSString * const reuseAdvIdentifier = @"advCell";
 {
     [MobClick event:kUM_b_closepurchase];
     
-    if (![self xm_performIsLoginActionWithPopAlertView:NO])
+    if (![self zx_performIsLoginActionWithPopAlertView:NO])
     {
         return;
     }
@@ -806,13 +806,13 @@ static NSString * const reuseAdvIdentifier = @"advCell";
 - (IBAction)clickLeftTradeBarbutton:(UIButton *)sender {        
     if ([self isLoginAndOpenShopWithPresentAlert:NO]) {
         [MobClick event:kUM_yijie];
-        [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_MyTradesController withData:nil];
+        [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_MyTradesController withData:nil];
     }
 }
 //不用了(18.8.24)
 #pragma mark 导航栏消息
 - (IBAction)clickMessageAction:(ZXBadgeIconButton *)sender {
-    if ([self xm_performIsLoginActionWithPopAlertView:NO])
+    if ([self zx_performIsLoginActionWithPopAlertView:NO])
     {
         [MobClick event:kUM_message];
         
@@ -989,7 +989,7 @@ static NSString * const reuseAdvIdentifier = @"advCell";
             }
         }
     }else{ //未登陆
-        [self xm_performIsLoginActionWithPopAlertView:NO];
+        [self zx_performIsLoginActionWithPopAlertView:NO];
     }
     return NO;
 }

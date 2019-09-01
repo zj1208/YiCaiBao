@@ -187,7 +187,7 @@ static NSInteger section_content = 4;
     ZXTowBtnBottomToolView * view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZXTowBtnBottomToolView class]) owner:self options:nil] firstObject];
     view.backgroundColor = [UIColor clearColor];
  
-    UIImage *backgroundImage1 = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:view.leftBtn.frame.size startColor:UIColorFromRGB(253.f, 171.f, 83.f) endColor:UIColorFromRGB(253.f, 121.f, 83.f)];
+    UIImage *backgroundImage1 = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:view.leftBtn.frame.size startColor:UIColorFromRGB(253.f, 171.f, 83.f) endColor:UIColorFromRGB(253.f, 121.f, 83.f)];
     [view.leftBtn setBackgroundImage:backgroundImage1 forState:UIControlStateNormal];
 
     [view.leftBtn setTitle:NSLocalizedString(@"添加到客户", nil) forState:UIControlStateNormal];
@@ -218,7 +218,7 @@ static NSInteger section_content = 4;
     
     if (self.purchaserModel.purchaserType ==WYPurchaserType_app)
     {
-        MyCustomerAddEditController *VC = (MyCustomerAddEditController *)[self xm_getControllerWithStoryboardName:sb_ShopCustomer controllerWithIdentifier:@"MyCustomerAddEditControllerID"];
+        MyCustomerAddEditController *VC = (MyCustomerAddEditController *)[self zx_getControllerWithStoryboardName:sb_ShopCustomer controllerWithIdentifier:@"MyCustomerAddEditControllerID"];
         VC.buyerBizId = _bizId;
         VC.source = _sourceType;
         VC.hidesBottomBarWhenPushed = YES;
@@ -547,7 +547,7 @@ static NSInteger section_content = 4;
         RecentlyBizsModel *model =  [self.purchaserModel.lastBizs objectAtIndex:indexPath.row];
         if (model.valid)
         {
-           [self xm_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.subjectId}];
+           [self zx_pushStoryboardViewControllerWithStoryboardName:storyboard_Trade identifier:SBID_TradeDetailController withData:@{@"postId":model.subjectId}];
         }
         else
         {

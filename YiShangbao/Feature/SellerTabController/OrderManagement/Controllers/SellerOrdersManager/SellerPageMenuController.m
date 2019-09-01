@@ -171,7 +171,7 @@
 
     for (int i = 0; i < self.segTitles.count; i++) {
         
-        SellerOrderAllController *vc = (SellerOrderAllController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderAllController];
+        SellerOrderAllController *vc = (SellerOrderAllController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderAllController];
         vc.nTitle = [NSString stringWithFormat:@"标题%d",i];
         if (i >0)
         {
@@ -273,7 +273,7 @@
 {
     [MobClick event:kUM_b_ordersearch];
 
-    SellerOrderSearchController *vc = (SellerOrderSearchController *)[self xm_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderSearchController];
+    SellerOrderSearchController *vc = (SellerOrderSearchController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderSearchController];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }

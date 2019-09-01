@@ -35,8 +35,8 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController xm_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
-    [self xm_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
+    [self.navigationController zx_navigationBar_Single_BackIndicatorImage:@"back_onlyImage" isOriginalImage:YES];
+    [self zx_navigationBar_barItemColor:UIColorFromRGB_HexValue(0x222222)];
 
     [self createUI];
 }
@@ -167,7 +167,7 @@
                               @"type":@"0",
 #if !TARGET_IPHONE_SIMULATOR //真机
 //                              @"token":[[NSUserDefaults standardUserDefaults] objectForKey:ud_deviceToken],
-                              @"did":[[UIDevice currentDevice]getIDFAUUIDString],
+                              @"did":[[UIDevice currentDevice]zx_getIDFAUUIDString],
 #endif
                               @"systemVersion": CurrentSystemVersion,
                               @"clientId":[[NSUserDefaults standardUserDefaults] objectForKey:ud_GTClientId],
@@ -291,7 +291,7 @@
 //切换环境
 -(void)changeEnvBtnAction{
     NSLog(@"切换环境入口");
-    [self xm_pushStoryboardViewControllerWithStoryboardName:@"Main" identifier:@"ChangeDomainID" withData:nil];
+    [self zx_pushStoryboardViewControllerWithStoryboardName:@"Main" identifier:@"ChangeDomainID" withData:nil];
 }
 
 

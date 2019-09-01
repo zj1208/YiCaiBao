@@ -308,7 +308,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.editView.hidden = YES;
     WYShopCategoryInfoModel *model = self.array[indexPath.section];
-    WYShopCateDetailViewController *vc = (WYShopCateDetailViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCateDetailViewController];
+    WYShopCateDetailViewController *vc = (WYShopCateDetailViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYShopCateDetailViewController];
     vc.shopCatgId = model.categoryId;
     vc.shopCatgName = model.name;
     vc.hidesBottomBarWhenPushed = YES;

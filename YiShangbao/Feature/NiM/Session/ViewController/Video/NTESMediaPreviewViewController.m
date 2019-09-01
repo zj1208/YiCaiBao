@@ -325,7 +325,7 @@ FOUNDATION_STATIC_INLINE NSUInteger NTESCacheCostForImage(UIImage *image) {
     dispatch_once(&onceToken, ^{
         previewImageCache = [[NSCache alloc] init];
         durationCache     = [[NSCache alloc] init];
-        placeHolderImage = [UIImage zh_imageWithColor:[UIColor grayColor] andSize:CGSizeMake(1, 1)];
+        placeHolderImage = [UIImage zx_imageWithColor:[UIColor grayColor] andSize:CGSizeMake(1, 1)];
 //        placeHolderImage  = [UIImage imageWithColor:[UIColor grayColor]];
     });
 

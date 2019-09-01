@@ -86,7 +86,7 @@ static NSInteger MAXLENGTH =60;
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 //{
 //    WS(weakSelf);
-//   return [UITextField xm_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:MAXLENGTH remainTextNum:^(NSInteger remainLength) {
+//   return [UITextField zx_limitRemainText:textField shouldChangeCharactersInRange:range replacementString:string maxLength:MAXLENGTH remainTextNum:^(NSInteger remainLength) {
 //         weakSelf.reminderLab.text = [NSString stringWithFormat:@"还可以输入:%lu字符",remainLength];
 //
 //      }];

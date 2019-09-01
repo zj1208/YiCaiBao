@@ -30,7 +30,7 @@
 - (void)setUI
 {
 //    [MBProgressHUD zx_showGifWithGifName:@"loading.gif" toView:nil];
-    [self xm_navigationItem_titleCenter];
+    [self zx_navigationItem_titleCenter];
 //    
 //    self.visibleCellNum = 5;
 //    
@@ -184,7 +184,7 @@
 
 - (IBAction)openShopBtnAction:(UIButton *)sender {
     
-    if ([self xm_performIsLoginActionWithPopAlertView:NO])
+    if ([self zx_performIsLoginActionWithPopAlertView:NO])
     {
         WYPerfectShopInfoViewController *vc = [[WYPerfectShopInfoViewController alloc]init];
         vc.soureControllerType = SourceControllerType_OpenShopGuide;

@@ -89,7 +89,7 @@
     }
     
     WS(weakSelf)
-    WYMakeBillGoodsViewController *vc = (WYMakeBillGoodsViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillGoodsViewController];
+    WYMakeBillGoodsViewController *vc = (WYMakeBillGoodsViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillGoodsViewController];
     vc.isEditBill = self.uploadModel.billSale.BillId;
     [vc updataGoodsModel:nil isAdd:YES index:0 block:^(MakeBillGoodsModel *goodsModel,NSInteger index) {
         [weakSelf.uploadModel.billGoods addObject:goodsModel];
@@ -163,7 +163,7 @@
         [MobClick event:kUM_kdb_openbill_new_product_edit];
     }
     WS(weakSelf)
-    WYMakeBillGoodsViewController *vc = (WYMakeBillGoodsViewController *)[self xm_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillGoodsViewController];
+    WYMakeBillGoodsViewController *vc = (WYMakeBillGoodsViewController *)[self zx_getControllerWithStoryboardName:sb_MakeBills controllerWithIdentifier:SBID_WYMakeBillGoodsViewController];
     vc.isEditBill = self.uploadModel.billSale.BillId;
     [vc updataGoodsModel:self.uploadModel.billGoods[index] isAdd:NO index:index block:^(MakeBillGoodsModel *goodsModel,NSInteger index) {
 //        for (int i = 0; i < weakSelf.uploadModel.billGoods.count; i++) {

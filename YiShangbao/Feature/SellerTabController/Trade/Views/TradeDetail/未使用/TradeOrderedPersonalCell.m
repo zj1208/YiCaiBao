@@ -26,7 +26,7 @@
     self.progressView.progressHeight = 6.f;
     self.progressView.cornerRaidius = YES;
    
-    UIImage *gradientImage = [UIImage zh_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(10, 6) startColor:UIColorFromRGB(250.f, 124.f, 47.f) endColor:UIColorFromRGB(241.f, 62.f, 62.f)];
+    UIImage *gradientImage = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(10, 6) startColor:UIColorFromRGB(250.f, 124.f, 47.f) endColor:UIColorFromRGB(241.f, 62.f, 62.f)];
     self.progressView.zxTrackImage = gradientImage;
     
     
@@ -128,7 +128,7 @@
         }
        
     }
-    [cell setCornerRadius:self.flowLayout.itemSize.height/2 borderWidth:1 borderColor:[UIColor whiteColor]];
+    [cell zx_setCornerRadius:self.flowLayout.itemSize.height/2 borderWidth:1 borderColor:[UIColor whiteColor]];
     return cell;
 }
 

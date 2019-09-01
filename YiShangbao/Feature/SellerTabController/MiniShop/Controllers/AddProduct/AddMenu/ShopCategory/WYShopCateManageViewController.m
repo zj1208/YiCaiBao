@@ -95,7 +95,7 @@
         return;
     }
     NSString *prodIds = [selectedArray componentsJoinedByString:@","];
-    WYChooseShopCateViewController *vc = (WYChooseShopCateViewController *)[self xm_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYChooseShopCateViewController];
+    WYChooseShopCateViewController *vc = (WYChooseShopCateViewController *)[self zx_getControllerWithStoryboardName:storyboard_ShopStore controllerWithIdentifier:SBID_WYChooseShopCateViewController];
     [vc moveFromCate:self.shopCatgId withProds:prodIds];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

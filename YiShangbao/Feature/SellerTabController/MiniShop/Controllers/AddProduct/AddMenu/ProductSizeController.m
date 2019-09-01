@@ -99,7 +99,7 @@
 {
     if (textField ==self.numberField)
     {
-        return [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:9 dotAfterBits:2];
+        return [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:9 dotAfterBits:2];
     }
 //    else if (textField ==self.unitInBoxField)
 //    {
@@ -111,7 +111,7 @@
 //    }
     else if (textField == self.volumnField ||textField ==self.weightField)
     {
-        return [UITextField xm_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:5 dotAfterBits:3];
+        return [UITextField zx_limitPayMoneyDot:textField shouldChangeCharactersInRange:range replacementString:string dotPreBits:5 dotAfterBits:3];
     }
     return YES;
 }

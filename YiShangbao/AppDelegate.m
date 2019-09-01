@@ -194,7 +194,7 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
     {
         return;
     }
-    [self.window.rootViewController xm_presentLoginController];
+    [self.window.rootViewController zx_presentLoginController];
 }
 
 - (void)changeDomain:(NSNotification *)notification
@@ -790,7 +790,7 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
                               @"clientId":clientId,
                               @"appSourceType":@"1",
                               @"appVersion":kAppVersion,
-                              @"did":[[UIDevice currentDevice]getIDFAUUIDString],
+                              @"did":[[UIDevice currentDevice]zx_getIDFAUUIDString],
                               @"mobileBrand":WYUTILITY.iphoneType,
                               @"mobileSetting":@(userNotificationOpenType)
                               };

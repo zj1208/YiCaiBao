@@ -207,7 +207,7 @@
 }
 //消息
 - (void)messageBadgeButtonAction:(UIButton *)sender{
-    if ([self xm_performIsLoginActionWithPopAlertView:NO]){
+    if ([self zx_performIsLoginActionWithPopAlertView:NO]){
         [MobClick event:kUM_message];
         
         WYMessageListViewController * messageList =[[WYMessageListViewController alloc]init];
