@@ -743,7 +743,6 @@
 		F446AB361FCC086700C82C90 /* ZXNoGapCellFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F446AA0B1FCC086700C82C90 /* ZXNoGapCellFlowLayout.m */; };
 		F446AB371FCC086700C82C90 /* EqualSpaceFlowLayoutEvolve.m in Sources */ = {isa = PBXBuildFile; fileRef = F446AA0D1FCC086700C82C90 /* EqualSpaceFlowLayoutEvolve.m */; };
 		F446AB531FCC086800C82C90 /* UIViewController+MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F446AA4D1FCC086700C82C90 /* UIViewController+MBProgressHUD.m */; };
-		F446AB561FCC086800C82C90 /* QYHelpFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = F446AA541FCC086700C82C90 /* QYHelpFunction.m */; };
 		F446AB571FCC086800C82C90 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F446AA571FCC086700C82C90 /* blueArrow@2x.png */; };
 		F446AB581FCC086800C82C90 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F446AA581FCC086700C82C90 /* whiteArrow@2x.png */; };
 		F446AB591FCC086800C82C90 /* blueArrowLoadMore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F446AA591FCC086700C82C90 /* blueArrowLoadMore@2x.png */; };
@@ -2500,7 +2499,6 @@
 		F446AA101FCC086700C82C90 /* ZXWaterfallFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWaterfallFlowLayout.h; sourceTree = "<group>"; };
 		F446AA4B1FCC086700C82C90 /* UIViewController+MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MBProgressHUD.h"; sourceTree = "<group>"; };
 		F446AA4D1FCC086700C82C90 /* UIViewController+MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MBProgressHUD.m"; sourceTree = "<group>"; };
-		F446AA541FCC086700C82C90 /* QYHelpFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYHelpFunction.m; sourceTree = "<group>"; };
 		F446AA571FCC086700C82C90 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
 		F446AA581FCC086700C82C90 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		F446AA591FCC086700C82C90 /* blueArrowLoadMore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrowLoadMore@2x.png"; sourceTree = "<group>"; };
@@ -2578,7 +2576,6 @@
 		F446AAC01FCC086700C82C90 /* NewFunctionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFunctionController.h; sourceTree = "<group>"; };
 		F446AAC21FCC086700C82C90 /* ZXImagePickerVCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickerVCManager.m; sourceTree = "<group>"; };
 		F446AAC31FCC086700C82C90 /* ZXImagePickerVCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickerVCManager.h; sourceTree = "<group>"; };
-		F446AAC41FCC086700C82C90 /* QYHelpFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYHelpFunction.h; sourceTree = "<group>"; };
 		F446AAC61FCC086700C82C90 /* ZXCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCustomNavigationBar.h; sourceTree = "<group>"; };
 		F446AAC71FCC086700C82C90 /* ZXCustomNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCustomNavigationBar.xib; sourceTree = "<group>"; };
 		F446AAC81FCC086700C82C90 /* ZXCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCustomNavigationBar.m; sourceTree = "<group>"; };
@@ -5910,11 +5907,11 @@
 				F42C8469231C1E1600CF2DAC /* UIFont */,
 				F42C846C231C1E1600CF2DAC /* UIViewControllerCaterory */,
 				F42C8476231C1E1600CF2DAC /* UIColor+ZXHex */,
-				F42C8479231C1E1600CF2DAC /* UINavigationBar+ShadeColor.h */,
 				F42C847A231C1E1600CF2DAC /* UIDevice */,
 				F42C847D231C1E1600CF2DAC /* UIImageCatetory */,
 				F42C8482231C1E1600CF2DAC /* UITextField+ZXHelper */,
 				F42C8485231C1E1600CF2DAC /* Lable_Button_Control */,
+				F42C8479231C1E1600CF2DAC /* UINavigationBar+ShadeColor.h */,
 				F42C848C231C1E1600CF2DAC /* UINavigationBar+ShadeColor.m */,
 			);
 			path = UI;
@@ -6249,15 +6246,13 @@
 				F4DB3B0720C6746900E304D6 /* ZXTextFields */,
 				F446AAD21FCC086700C82C90 /* ZXTableViewTitleViews */,
 				F4FC618C20B2665100C0B729 /* ZXTableViewUnfoldFooterView */,
-				F446AAB11FCC086700C82C90 /* ZXSimpleLyricView.m */,
 				F446A9EB1FCC086700C82C90 /* ZXSimpleLyricView.h */,
-				F446AAC41FCC086700C82C90 /* QYHelpFunction.h */,
+				F446AAB11FCC086700C82C90 /* ZXSimpleLyricView.m */,
 				F446AAB31FCC086700C82C90 /* ZXLocalNotification.h */,
 				F446A9EA1FCC086700C82C90 /* ZXLocalNotification.m */,
 				F446AAEB1FCC086700C82C90 /* ZXMHeader.h */,
 				F446A9E81FCC086700C82C90 /* APPCommonDef.h */,
 				F446AABA1FCC086700C82C90 /* ZXNewFunctionGuide */,
-				F446AA541FCC086700C82C90 /* QYHelpFunction.m */,
 				F446AA961FCC086700C82C90 /* KxMenu */,
 				F446AA9F1FCC086700C82C90 /* UncaughtException */,
 				F446AAB71FCC086700C82C90 /* ADCustomTableView */,
@@ -9837,7 +9832,6 @@
 				F45F60571F8F4A7100631522 /* RemindSpaceLayout.m in Sources */,
 				2BEA15791F56AB110085F550 /* ISRDataHelper.m in Sources */,
 				F4B4B8A91F14D5F10009D8DC /* ChangePasswordViewController.m in Sources */,
-				F446AB561FCC086800C82C90 /* QYHelpFunction.m in Sources */,
 				A0299CB91F976A740096DD2E /* YYTextWeakProxy.m in Sources */,
 				F4B4B92E1F14D6150009D8DC /* MessageDetailListViewController.m in Sources */,
 				A070F6351F904DF9006E7707 /* WYSellerMineStatusTableViewCell.m in Sources */,

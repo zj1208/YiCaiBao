@@ -501,15 +501,6 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
         };
         alertView.doActionHandleBlock = ^{
             
-            NSURL *openUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            if ([[UIApplication sharedApplication]respondsToSelector:@selector(openURL:options:completionHandler:)])
-            {
-                [[UIApplication sharedApplication] openURL:openUrl options:@{} completionHandler:nil];
-            }
-            else
-            {
-                [[UIApplication sharedApplication] openURL:openUrl];
-            }
         };
     }
 }
@@ -569,56 +560,46 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 //1-基础服务，2-增值服务，3-粉丝访客，
 - (void)requestUpdateInfoWithFactor:(NSNumber *)factorType
 {
-//    WS(weakSelf);
+    WS(weakSelf);
     [[[AppAPIHelper shareInstance]getShopAPI]getShopHomeInfoWithFactor:factorType Success:^(id data) {
         
-        [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-//        _shopHomeInfoModel = nil;
-//        _shopHomeInfoModel = [[ShopHomeInfoModel alloc] init];
-//        _shopHomeInfoModel = data;
-//        [_emptyViewController hideEmptyViewInController:weakSelf hasLocalData:_shopHomeInfoModel?YES:NO];
-//        if (_shopHomeInfoModel)
-//        {
-//            _stausBarStyle = UIStatusBarStyleLightContent;
-//            [self setNeedsStatusBarAppearanceUpdate];
-//        }
-//        [_collectionView reloadData];
-//        _topImageView.hidden = NO;
+        [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
         
     } failure:^(NSError *error) {
         
-//        [_emptyViewController addEmptyViewInController:weakSelf hasLocalData:_shopHomeInfoModel?YES:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
     }];
 }
 
 
 - (void)requestShopMustReadAdv
 {
+    WS(weakSelf);
     [[[AppAPIHelper shareInstance] getMessageAPI]getShopQuerySellerMustReadsWithListType:SellerMustReadsType_LastThree success:^(id data) {
         
-        if (!_mustReadNotiMArray)
+        if (!weakSelf.mustReadNotiMArray)
         {
-            _mustReadAdvFatherModel = [[ShopMustReadAdvFatherModel alloc] init];
+            weakSelf.mustReadAdvFatherModel = [[ShopMustReadAdvFatherModel alloc] init];
         }
-        _mustReadAdvFatherModel = data;
-        [_collectionView reloadData];
+        weakSelf.mustReadAdvFatherModel = data;
+        [weakSelf.collectionView reloadData];
         
     } failure:nil];
 }
 
 - (void)requestAdv
 {
+    WS(weakSelf);
     [[[AppAPIHelper shareInstance] getMessageAPI] GetAdvWithType:@10013 success:^(id data) {
         
         AdvModel *model = (AdvModel *)data;
-        [_infiniteDataMArray removeAllObjects];
+        [weakSelf.infiniteDataMArray removeAllObjects];
         [model.advArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             advArrModel *advItemModel = (advArrModel *)obj;
             NSURL *picUrl = [NSURL ossImageWithResizeType:OSSImageResizeType_w828_hX relativeToImgPath:advItemModel.pic];
             ZXADBannerModel *advModel = [[ZXADBannerModel alloc] initWithDesc:nil picString:picUrl.absoluteString url:advItemModel.url advId:advItemModel.iid];
-            [_infiniteDataMArray addObject:advModel];
-            [_collectionView reloadData];
+            [weakSelf.infiniteDataMArray addObject:advModel];
+            [weakSelf.collectionView reloadData];
         }];
         
     } failure:^(NSError *error) {
@@ -650,14 +631,14 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
         
         AdvModel *model = (AdvModel *)data;
         if (model.advArr.count>0){
-            _rightAdvModel = [model.advArr firstObject];
+            weakSelf.rightAdvModel = [model.advArr firstObject];
             
             //拖动按钮
             if (!weakSelf.tradeMoveView) {
                 weakSelf.tradeMoveView = [[JLDragImageView alloc] init];
                 weakSelf.tradeMoveView.delegate = self;
             }
-            [weakSelf.tradeMoveView sd_setImageWithURL:[NSURL ossImageWithResizeType:OSSImageResizeType_w200_hX relativeToImgPath:_rightAdvModel.pic] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [weakSelf.tradeMoveView sd_setImageWithURL:[NSURL ossImageWithResizeType:OSSImageResizeType_w200_hX relativeToImgPath:weakSelf.rightAdvModel.pic] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 [weakSelf.tradeMoveView showSuperview:weakSelf.view frameOffsetX:0 offsetY:50 Width:70 Height:70];
             }];
         }
@@ -674,6 +655,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
     {
         return;
     }
+    WS(weakSelf);
     [ProductMdoleAPI getCheckNewFansAndVisitorsWithSuccess:^(BOOL fansAdd, BOOL visitorsAdd, BOOL newOrderAdd, BOOL newBizAdd) {
     
         
@@ -685,7 +667,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
         {
             [[NSNotificationCenter defaultCenter]postNotificationName:Noti_TabBarItem_ShopIcon_None object:nil];
         }
-        [_collectionView reloadData];
+        [weakSelf.collectionView reloadData];
         
         
     } failure:^(NSError *error) {
@@ -1002,7 +984,6 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
     }
     if (_shopHomeInfoModel.exposeModel.exposeUrl)
     {
-//        [MobClick event:kUM_b_home_score];
         [[WYUtility dataUtil]routerWithName:_shopHomeInfoModel.exposeModel.exposeUrl withSoureController:self];
     }
 }
@@ -1052,17 +1033,6 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 // 预览
 - (void)previewBtnAction:(UIButton *)sender
 {
-//    ZXNotiAlertViewController *alertView = [[ZXNotiAlertViewController alloc] initWithNibName:@"ZXNotiAlertViewController" bundle:nil];
-//    alertView.modalPresentationStyle = UIModalPresentationCustom;
-//    alertView.transitioningDelegate = self;
-//    __block ZXNotiAlertViewController *SELF = alertView;
-//    alertView.cancleActionHandleBlock = ^{
-//
-//        [SELF dismissViewControllerAnimated:YES completion:nil];
-//    };
-//    [self presentViewController:alertView animated:YES completion:nil];
-//    [self zx_presentStoryboardViewControllerWithStoryboardName:@"Main" identifier:@"Test2ViewController" isNavigationController:YES withData:nil completion:nil];
-//    return;
     [MobClick event:kUM_b_home_preview];
     if (![self isNeedLoginAndOpenShop] || !_shopHomeInfoModel)
     {
@@ -1090,9 +1060,6 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 #pragma mark - 身份切换
 
 - (void)switchAction:(UIButton *)sender {
-    
-//    [self requestUpdateInfoWithFactor:@(3)];
-//    return;
     
     [MobClick event:kUM_b_home_switch];
     [self switchIdentityRequest];

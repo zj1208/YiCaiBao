@@ -66,6 +66,15 @@
 
 - (IBAction)doBtnAction:(UIButton *)sender {
     
+    NSURL *openUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication]respondsToSelector:@selector(openURL:options:completionHandler:)])
+    {
+        [[UIApplication sharedApplication] openURL:openUrl options:@{} completionHandler:nil];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] openURL:openUrl];
+    }
     if (self.doActionHandleBlock)
     {
         self.doActionHandleBlock();
