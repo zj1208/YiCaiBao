@@ -12,7 +12,6 @@
 #ifndef UI_APPCommonDef_h
 #define UI_APPCommonDef_h
 
-#import "QYHelpFunction.h"
 #import <objc/runtime.h>
 
 #pragma mark

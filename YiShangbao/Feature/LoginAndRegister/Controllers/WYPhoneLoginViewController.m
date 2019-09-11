@@ -13,9 +13,6 @@
 @interface WYPhoneLoginViewController ()<UITextFieldDelegate>
 
 
-//@property (nonatomic, copy, getter=theNewArrayI) NSArray *newArrayI;
-//
-//@property (nonatomic, copy) NSArray *aCopyArrayI;
 @end
 
 @implementation WYPhoneLoginViewController
@@ -50,25 +47,28 @@
     //    NSLog(@"p : %p, class: %@", data2, [data2 class]);
     //    NSLog(@"p : %p, class: %@", data3, [data3 class]);
     
-    
+    WS(weakSelf);
     __block NSInteger num = 0;
+    NSArray *arr_yiDon = @[@"134",@"135",@"136",@"137",@"138",@"139",@"147",@"150",@"151",@"152",@"157",@"158",@"159",@"172",@"178",@"182",@"183",@"184",@"187",@"188",@"198"];
+    NSArray *arr_lianTong = @[@"130",@"131",@"132",@"145",@"155",@"156",@"166",@"171",@"175",@"176",@"185",@"186",@"166"];
+    NSMutableArray *mArray = [arr_yiDon mutableCopy];
+    [mArray addObjectsFromArray:arr_lianTong];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSArray *arr_yiDon = @[@"134",@"135",@"136",@"137",@"138",@"139",@"147",@"150",@"151",@"152",@"157",@"158",@"159",@"172",@"178",@"182",@"183",@"184",@"187",@"188",@"198"];
-        NSArray *arr_lianTong = @[@"130",@"131",@"132",@"145",@"155",@"156",@"166",@"171",@"175",@"176",@"185",@"186",@"166"];
-        //        NSMutableArray *mArray = [NSMutableArray arrayWithArray:arr_yiDon];
-        NSMutableArray *mArray = [arr_yiDon mutableCopy];
-        [mArray addObjectsFromArray:arr_lianTong];
-        
+        if (num == 4) {
+            [timer setFireDate:[NSDate distantFuture]];
+
+        }
         NSString *begainNum = [mArray objectAtIndex:arc4random()%mArray.count];
         double afterNum = [self zhGetRandomNumberWithFrom:10000000 to:99999999];
         
         NSString *phone = [NSString stringWithFormat:@"%@%.f",begainNum,afterNum];
         [[[AppAPIHelper shareInstance] getUserModelAPI] getSendVerifyCodeMobile:phone countryCode:@"+86" type:@"3" success:^(id data) {
             num ++;
-            [self zhHUD_showSuccessWithStatus:[NSString stringWithFormat:@"发送验证码成功-%@",@(num)]];
+            [weakSelf zhHUD_showSuccessWithStatus:[NSString stringWithFormat:@"发送验证码成功-%@",@(num)]];
+
             
         } failure:^(NSError *error) {
-            [self zhHUD_showErrorWithStatus:[error localizedDescription]];
+            [weakSelf zhHUD_showErrorWithStatus:[error localizedDescription]];
         }];
     }];
     [timer fire];

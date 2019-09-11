@@ -26,7 +26,7 @@ static  NSString *const SBID_LoginNavController = @"LoginNavControllerID" ;
 
 static  NSString *const clas_LoginController = @"WYLoginViewController";
 
-static  BOOL sLoginControllerFromStroyboard = YES;
+static  BOOL sLoginControllerFromStroyboard = NO;
 
 
 @implementation UIViewController (ZXLoginAndAlert)

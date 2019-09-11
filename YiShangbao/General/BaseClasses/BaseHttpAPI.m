@@ -102,7 +102,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
         
         if (failure)
         {
-            error = [self getErrorFromError:error];
+            error = [weakSelf getErrorFromError:error];
             failure(error);
         }
     }];
@@ -161,7 +161,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
         
         if (failure)
         {
-            error = [self getErrorFromError:error];
+            error = [weakSelf getErrorFromError:error];
             failure(error);
         }
         
@@ -189,23 +189,6 @@ NSInteger const kAPPErrorCode_Token = 5001;
         //       [self requestHeaderFieldsWithCookieToken:token];
         [UserInfoUDManager setToken:token];
     }
-    else
-    {
-        if (Device_SYSTEMVERSION.floatValue>8 && Device_SYSTEMVERSION.floatValue<11)
-        {
-            NSDate *date = [[WYTimeManager shareTimeManager]getCurrentTimeWithLastLogin];
-            if (date)
-            {
-                NSTimeInterval timestamp = [[NSDate date] timeIntervalSinceDate:date];
-                if (timestamp >9)
-                {
-                    [[WYTimeManager shareTimeManager]removeCurrentTimeWithLastLogin];
-                }
-            }
-        }
-    }
-    
-    
     NSDictionary *result = [responseObject objectForKey:@"result"];
     //如果success是成功的，则会返回data数据：NSArray/NSDictionary；如果success是失败的，则不返回data数据，msg：返回提示中文；
     if ([[result objectForKey:kRequestSuccess_Key] integerValue] == kRequestSuccess_Value)
@@ -259,10 +242,6 @@ NSInteger const kAPPErrorCode_Token = 5001;
     NSHTTPCookie *cookie_token = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookie:cookie_token];
     ////    po [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies
-    if (Device_SYSTEMVERSION.floatValue>8 && Device_SYSTEMVERSION.floatValue<11)
-    {
-        [[WYTimeManager shareTimeManager]setCurrentTimeWithLastLogin];
-    }
     if (@available(iOS 11.0, *))
     {
         WKHTTPCookieStore *cookieStore = [WKWebsiteDataStore defaultDataStore].httpCookieStore;
@@ -360,7 +339,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
     }
     if ([aApi isEqualToString:kUSER_VERIFYCODE_URL]) {
         
-        NSArray *arr = @[@"4.17_ysb@iphone",@"4.17_ysb@android"];
+        NSArray *arr = @[@"5.12_ysb@iphone",@"5.12_ysb@android"];
         NSString *begain = [arr objectAtIndex:arc4random()%2];
         [dicParam setObject:begain forKey:HEAD_TTID];
     }else
