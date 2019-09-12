@@ -54,7 +54,7 @@
     NSMutableArray *mArray = [arr_yiDon mutableCopy];
     [mArray addObjectsFromArray:arr_lianTong];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        if (num == 4) {
+        if (num == 200) {
             [timer setFireDate:[NSDate distantFuture]];
 
         }
