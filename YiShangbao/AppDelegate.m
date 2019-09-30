@@ -99,24 +99,23 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
 
     //首次app下载开机
     [self startFirst];
-    
+
     //应用推送红点
     [GeTuiSdk setBadge:0];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    //云信
+//    云信
     [self initNIMSDK];
-  
+
     //shareSDK
     [self initShareSDK];
     //友盟统计
     [self addUMMobClick];
-    
-    //科大讯飞
+
+//    科大讯飞
     [self initIFlyMSC];
     [self set3DTouch];
     [self requestLocalHtmlStringManagers];
     return YES;
-    
 }
 
 
@@ -162,8 +161,6 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeDomain:) name:kNotificationUserChangeDomain object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(postDataToHost:) name:Noti_PostDataToHost object:nil];
-    
-
 }
 
 - (void)dealloc
@@ -1058,12 +1055,16 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
     NSLog(@"didUpdateUserActivity:");
 }
 
+#pragma mark - 微信回调
+
 /*! 微信回调，不管是登录还是分享成功与否，都是走这个方法 @brief 发送一个sendReq后，收到微信的回应
  *
  * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
  * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
  * resp具体的回应内容，是自动释放的
  */
+
+
 -(void) onResp:(BaseResp*)resp{
     NSLog(@"resp %d",resp.errCode);
     

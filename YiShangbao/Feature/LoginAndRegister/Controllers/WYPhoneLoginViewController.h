@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+//全局变量
+extern NSInteger CounterGlobal;
+static NSInteger CounterStatic = 0;
+
 @interface WYPhoneLoginViewController : UIViewController
 
 @end

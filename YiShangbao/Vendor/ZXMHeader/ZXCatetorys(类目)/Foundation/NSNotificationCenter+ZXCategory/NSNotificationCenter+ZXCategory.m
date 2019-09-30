@@ -10,17 +10,17 @@
 
 @implementation NSNotificationCenter (ZXCategory)
 
-+ (void)load
-{
-    Method originMethod = class_getInstanceMethod([self class], @selector(removeObserver:));
-    Method swizzledMethod = class_getInstanceMethod([self class], @selector(zx_removeObserver:));
-    method_exchangeImplementations(originMethod, swizzledMethod);
-}
-
-- (void)zx_removeObserver:(id)observer
-{
-    NSLog(@"移除通知 -> observer = %@", observer);
-    [self zx_removeObserver:observer];
-}
+//+ (void)load
+//{
+//    Method originMethod = class_getInstanceMethod([self class], @selector(removeObserver:));
+//    Method swizzledMethod = class_getInstanceMethod([self class], @selector(zx_removeObserver:));
+//    method_exchangeImplementations(originMethod, swizzledMethod);
+//}
+//
+//- (void)zx_removeObserver:(id)observer
+//{
+//    NSLog(@"移除通知 -> observer = %@", observer);
+//    [self zx_removeObserver:observer];
+//}
 
 @end

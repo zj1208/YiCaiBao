@@ -10,12 +10,17 @@
 #import "WYPhoneLoginVIew.h"
 #import "CountryCodeViewController.h"
 #import "PhoneSetPasswordViewController.h"
+
+
+NSInteger CounterGlobal = 1;
+
 @interface WYPhoneLoginViewController ()<UITextFieldDelegate>
 
 
 @end
 
 @implementation WYPhoneLoginViewController
+
 
 
 #pragma mark - life cycle
@@ -36,8 +41,8 @@
     //    NSLog(@"arr_p:%p,class:%@,count= %@",arrayM,[arrayM class],@(arrayM.count));
     //    NSLog(@"copyArr_p:%p,class:%@,count= %@",self.aCopyArrayI,[self.aCopyArrayI class],@(_aCopyArrayI.count));
     
-    
-    
+    [self blockTest];
+
     
     //    NSString *path =[[NSBundle mainBundle]pathForResource:@"11" ofType:@"jpg"];
     //    NSMutableData *data1 = [NSMutableData dataWithContentsOfFile:path];
@@ -46,7 +51,7 @@
     //    NSLog(@"p : %p, class: %@", data1, [data1 class]);
     //    NSLog(@"p : %p, class: %@", data2, [data2 class]);
     //    NSLog(@"p : %p, class: %@", data3, [data3 class]);
-    
+    /*
     WS(weakSelf);
     __block NSInteger num = 0;
     NSArray *arr_yiDon = @[@"134",@"135",@"136",@"137",@"138",@"139",@"147",@"150",@"151",@"152",@"157",@"158",@"159",@"172",@"178",@"182",@"183",@"184",@"187",@"188",@"198"];
@@ -72,8 +77,36 @@
         }];
     }];
     [timer fire];
-    
+    */
 }
+
+- (void)blockTest
+{
+    __block BOOL found = NO;
+    NSSet *aSet = [NSSet setWithObjects: @"Alpha", @"Beta", @"Gamma", @"X", nil];
+    NSString *string = @"gamma";
+     
+    [aSet enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        if ([obj localizedCaseInsensitiveCompare:string] == NSOrderedSame) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    // At this point, found == YES
+}
+/*
+ 0
+ 1
+ 2
+ 3
+ 4
+ 6
+ 7
+ 5
+ 9
+ 8
+  */
+
 - (int)zhGetRandomNumberWithFrom:(int)from to:(int)to
 {
     return (int)(from + (arc4random() % (to-from + 1)));
