@@ -2,7 +2,7 @@
 //  WYWKWebViewController.m
 //  YiShangbao
 //
-//  Created by 杨建亮 on 2017/10/20.
+//  Created by simon on 2017/10/20.
 //  Copyright © 2017年 com.Microants. All rights reserved.
 //
 
@@ -179,17 +179,12 @@ static NSString* const SixSpaces = @"      ";
     
     [self addEmptyView];
    
-    if (Device_SYSTEMVERSION.floatValue <9.f)
+    if ([[UIDevice currentDevice] systemVersion].floatValue <9.f)
     {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     else
     {
-//        if (@available(iOS 11.0, *)){
-//            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//        }else{
-//            self.automaticallyAdjustsScrollViewInsets = NO;
-//        }
         [self addConstraint:self.webView toSuperviewItem:self.view];
     }
 }

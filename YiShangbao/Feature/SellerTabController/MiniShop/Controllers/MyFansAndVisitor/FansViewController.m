@@ -25,12 +25,12 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
 
 @interface FansViewController ()<ZXEmptyViewControllerDelegate,JLCycleScrollerViewDatasource,JLCycleScrollerViewDelegate,ZXPhotoBrowserDataSource>
 
-@property (nonatomic,strong)NSMutableArray *dataMArray;
+@property (nonatomic, strong) NSMutableArray *dataMArray;
 @property (nonatomic) NSInteger pageNo;
 @property (nonatomic, assign) NSInteger totalPage;
 
-@property (nonatomic, strong)NSNumber *todayAddCount;
-@property (nonatomic, strong)NSNumber *totalCount;
+@property (nonatomic, strong) NSNumber *todayAddCount;
+@property (nonatomic, strong) NSNumber *totalCount;
 
 @property (nonatomic, strong) ZXEmptyViewController *emptyViewController;
 
@@ -61,20 +61,23 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
  
     [self.tableView registerNib:[UINib nibWithNibName:Xib_CommonTradePersonalCell bundle:nil] forCellReuseIdentifier:@"Cell"];
     
-    ZXEmptyViewController *emptyVC =[[ZXEmptyViewController alloc] init];
-    emptyVC.delegate = self;
-    self.emptyViewController = emptyVC;
-    
     UINib *nib =[UINib nibWithNibName:NSStringFromClass([InfiniteAdvTableCell class]) bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:reuse_infiniteScrollView];
 }
 
+- (ZXEmptyViewController *)emptyViewController
+{
+    if (!_emptyViewController) {
+        ZXEmptyViewController *emptyVC =[[ZXEmptyViewController alloc] init];
+         emptyVC.delegate = self;
+         _emptyViewController = emptyVC;
+    }
+    return _emptyViewController;
+}
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-//    NSLog(@"%f",self.topLayoutGuide.length);
-
 }
 - (void)updateData:(id)noti
 {
@@ -87,7 +90,6 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
 - (void)dealloc
 {
     NSLog(@"jl_dealloc success");
-
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
@@ -101,7 +103,6 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateData:) name:Noti_update_FansController object:nil];;
     
     self.infiniteDataMArray = [NSMutableArray array];
-
 }
 
 - (void)requestAdv
@@ -154,14 +155,14 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
         
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
-        [weakSelf footerWithRefreshing:[pageModel.totalPage integerValue]];
         
+        [weakSelf footerWithRefreshingMorePage:weakSelf.totalPage>weakSelf.pageNo?YES:NO];
         
     } failure:^(NSError *error) {
         
         [weakSelf.tableView.mj_header endRefreshing];
         
-        [weakSelf.emptyViewController addEmptyViewInController:weakSelf hasLocalData:weakSelf.dataMArray.count error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
+        [weakSelf.emptyViewController addEmptyViewInController:weakSelf hasLocalData:weakSelf.dataMArray.count>0?YES:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
         
     }];
 }
@@ -171,9 +172,9 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
     [self.tableView.mj_header beginRefreshing];
 }
 
-- (void)footerWithRefreshing:(NSInteger)totalPage
+- (void)footerWithRefreshingMorePage:(BOOL)flag
 {
-    if (_pageNo >=totalPage)
+    if (!flag)
     {
         if (self.tableView.mj_footer)
         {

@@ -15,7 +15,7 @@
 NSInteger CounterGlobal = 1;
 
 @interface WYPhoneLoginViewController ()<UITextFieldDelegate>
-
+@property (nonatomic, copy) NSString *resume;
 
 @end
 
@@ -82,6 +82,10 @@ NSInteger CounterGlobal = 1;
 
 - (void)blockTest
 {
+    id str = self.resume;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+    });
     __block BOOL found = NO;
     NSSet *aSet = [NSSet setWithObjects: @"Alpha", @"Beta", @"Gamma", @"X", nil];
     NSString *string = @"gamma";

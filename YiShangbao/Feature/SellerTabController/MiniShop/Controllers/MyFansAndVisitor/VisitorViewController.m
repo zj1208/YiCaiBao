@@ -153,7 +153,7 @@ static NSString *const reuse_infiniteScrollView = @"infiniteScrollView";
 - (void)footerWithRefreshing:(NSInteger)totalPage
 {
     
-    if (_pageNo >=totalPage)
+    if (self.pageNo >=totalPage)
     {
         if (self.tableView.mj_footer)
         {

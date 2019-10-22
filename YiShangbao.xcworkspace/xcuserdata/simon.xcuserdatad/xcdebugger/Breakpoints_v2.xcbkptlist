@@ -95,23 +95,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62D24B66-DABE-4DD1-A974-547C4DB0A625"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YiShangbao/Vendor/ZXMHeader/ZXEmptyViewController/ZXEmptyViewController.m"
-            timestampString = "589041354.109864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-dealloc"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A0E9258D-8F93-400F-91CB-4A70EC527105"
             shouldBeEnabled = "No"
             ignoreCount = "0"

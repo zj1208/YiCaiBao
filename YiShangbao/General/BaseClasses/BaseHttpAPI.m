@@ -346,7 +346,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
     {
         [dicParam setObject:[BaseHttpAPI getCurrentAppVersion] forKey:HEAD_TTID];
     }
-    
+    //data：业务参数
     if (!dicArgument)
     {
         [dicParam setObject:@"" forKey:@"data"];
@@ -358,16 +358,10 @@ NSInteger const kAPPErrorCode_Token = 5001;
         [dicParam setObject:dataString forKey:@"data"];
     }
     
-    NSString *authtoken = USER_TOKEN;
-    
-    if (authtoken) {
-        [dicParam setObject:authtoken forKey:HEAD_AUTHTOKEN];
-    }else{
-        [dicParam setObject:@"" forKey:HEAD_AUTHTOKEN];
-    }
+    [dicParam setObject:USER_TOKEN?USER_TOKEN:@"" forKey:HEAD_AUTHTOKEN];
     [dicParam setObject:[BaseHttpAPI getCurrentDatetime] forKey:HEAD_TS];
-    [dicParam setObject:[[UIDevice currentDevice]zx_getUUID] forKey:HEAD_DID];
-    //    [dicParam setObject:[[UIDevice currentDevice]zx_getIDFAUUIDString] forKey:HEAD_DID];
+//    [dicParam setObject:[[UIDevice currentDevice]zx_getUUID] forKey:HEAD_DID];
+    [dicParam setObject:[[UIDevice currentDevice]zx_getIDFAUUIDString] forKey:HEAD_DID];
     [dicParam setObject:@"" forKey:HEAD_LNG];
     [dicParam setObject:@"" forKey:HEAD_LAT];
     

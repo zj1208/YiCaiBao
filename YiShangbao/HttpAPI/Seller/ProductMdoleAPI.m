@@ -327,7 +327,7 @@
     NSDictionary * parameters = @{
                                   @"shopId":shopId,
                                   kHTTP_PAGENO_KEY2:@(pageNo),
-                                  kHTTP_PAGESIZE_KEY2:pageSize
+                                  kHTTP_PAGESIZE_KEY2:pageSize,
                                   };
     [[ProductMdoleAPI alloc] getRequest:kShop_getFansList parameters:parameters success:^(id data) {
         
