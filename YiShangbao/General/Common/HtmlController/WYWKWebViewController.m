@@ -79,8 +79,8 @@
 {
     [self setLoadTitle];
     
-    NSRange rangeCFB = [self.URLString rangeOfString:@"pingan.com"];
-    NSRange rangeDuiBa = [self.URLString rangeOfString:@"duiba.com.cn"];
+    NSRange rangeCFB = [self.webURLString rangeOfString:@"pingan.com"];
+    NSRange rangeDuiBa = [self.webURLString rangeOfString:@"duiba.com.cn"];
     // 屏蔽兑吧域名，兑吧界面不展示分享
     if(rangeDuiBa.location == NSNotFound && rangeCFB.location == NSNotFound)
     {
@@ -99,7 +99,7 @@
 
 - (void)setLoadTitle
 {
-    NSRange rangeCFB = [self.URLString rangeOfString:@"pingan.com"];
+    NSRange rangeCFB = [self.webURLString rangeOfString:@"pingan.com"];
     if (rangeCFB.location != NSNotFound)
     {
         self.barTitle = NSLocalizedString(@"平安财富宝理财专区", nil);
@@ -118,8 +118,8 @@
     // 默认图片地址
     NSString *picStr = @"http://public-read-bkt-oss.oss-cn-hangzhou.aliyuncs.com/app/icon/logo_zj.png";
     NSString *link =nil;
-    if (self.urlArrayM.count>0) {
-        NSURL* url = self.urlArrayM.firstObject;
+    if (self.navigationUrlsMArray.count>0) {
+        NSURL* url = self.navigationUrlsMArray.firstObject;
         link =url.absoluteString;
     }else{
         link = self.webView.URL.absoluteString;

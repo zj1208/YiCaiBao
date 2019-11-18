@@ -17,8 +17,6 @@ static NSString* const SixSpaces = @"      ";
 
 @property (nonatomic, strong) WKWebView  *webView;
 
-//1.网络地址
-@property (nonatomic, copy) NSString *webUrl;
 
 // 初始化;指定固定标题
 - (instancetype)initWithBarTitle:(nullable NSString *)aTitle;
@@ -27,7 +25,7 @@ static NSString* const SixSpaces = @"      ";
 
 
 //1.网络地址
-@property (nonatomic, copy) NSString *URLString;
+@property (nonatomic, copy) NSString *webURLString;
 
 
 // 右侧分享按钮
@@ -35,8 +33,8 @@ static NSString* const SixSpaces = @"      ";
 // 右侧更多按钮
 //@property (nonatomic, strong)UIBarButtonItem *moreButtonItem;
 
-// navigation的URL数组
-@property (nonatomic, strong) NSMutableArray *urlArrayM;
+// navigation的URL数组,一个页面出现多个请求的时候；
+@property (nonatomic, strong) NSMutableArray *navigationUrlsMArray;
 
 //进度条
 @property (nonatomic, strong) UIProgressView *progressView;

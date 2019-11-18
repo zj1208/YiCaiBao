@@ -333,23 +333,22 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (self.webView.URL) {
-                [self.urlArrayM addObject:self.webView.URL];
+                [self.navigationUrlsMArray addObject:self.webView.URL];
             }
         });
- 
-        NSLog(@">>%@",self.webView.URL);
-        NSLog(@"<<%@",self.urlArrayM);
+//        NSLog(@">>%@",self.webView.URL);
+//        NSLog(@"<<%@",self.navigationUrlsMArray);
     }
 }
 
 
-- (NSMutableArray *)urlArrayM
+- (NSMutableArray *)navigationUrlsMArray
 {
-    if (!_urlArrayM)
+    if (!_navigationUrlsMArray)
     {
-        _urlArrayM = [NSMutableArray array];
+        _navigationUrlsMArray = [NSMutableArray array];
     }
-    return _urlArrayM;
+    return _navigationUrlsMArray;
 }
 
 #pragma mark-通知selector
@@ -494,23 +493,23 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     NSURL *url = nil;
     
     // 如果是自己公司域名
-    if ([self.URLString hasPrefix:[WYUserDefaultManager getkAPP_H5URL]])
+    if ([self.webURLString hasPrefix:[WYUserDefaultManager getkAPP_H5URL]])
     {
-        if ([self.URLString rangeOfString:@"{token}"].location != NSNotFound)
+        if ([self.webURLString rangeOfString:@"{token}"].location != NSNotFound)
         {
             NSString *token = ISLOGIN?[UserInfoUDManager getToken]:@"";
-            self.URLString = [self.URLString stringByReplacingOccurrencesOfString:@"{token}" withString:token];
+            self.webURLString = [self.webURLString stringByReplacingOccurrencesOfString:@"{token}" withString:token];
         }
-        url = [NSURL zhURLWithString:self.URLString queryItemValue:[BaseHttpAPI getCurrentAppVersion] forKey:@"ttid"];
+        url = [NSURL zhURLWithString:self.webURLString queryItemValue:[BaseHttpAPI getCurrentAppVersion] forKey:@"ttid"];
     }
     // 如果是平安域名-
-    else if ([self.URLString hasPrefix:@"https://ncfb-stg3.pingan.com.cn"] ||[self.URLString hasPrefix:@"https://cfb.pingan.com"])
+    else if ([self.webURLString hasPrefix:@"https://ncfb-stg3.pingan.com.cn"] ||[self.webURLString hasPrefix:@"https://cfb.pingan.com"])
     {
-        url = [NSURL URLWithString:self.URLString];
+        url = [NSURL URLWithString:self.webURLString];
     }
     else
     {
-        NSString * string= [self.URLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString * string= [self.webURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         url = [NSURL URLWithString:string];
     }
     return url;
@@ -673,7 +672,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 //    NSLog(@"userScript =%@",webView.configuration.userContentController.userScripts);
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self updateNavigationItems];
-    [self.urlArrayM removeAllObjects];
+    [self.navigationUrlsMArray removeAllObjects];
     if ([self.shareButtonItem.title isEqualToString:SixSpaces]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.shareButtonItem.enabled = YES; //H5调用setRight方法，偶尔会在didFinishNavigation之后执行（桥异步原因）,导致分享刚出来，又被H5重置rightBarButtonItems;eg：我的收入页面,体验不太好，暂时性解决方案！
@@ -682,12 +681,12 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     }
     [self.emptyViewController hideEmptyViewInController:self hasLocalData:YES];
     
-    // 真机连数据线有； 不连数据线没有；该方法无法获取到 httponly 的cookie
-    [webView evaluateJavaScript:[NSString stringWithFormat:@"document.cookie"] completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-        if (response != 0) {
-            NSLog(@"\n\n\n\n\n\n document.cookie=%@,error=%@",response,error);
-        }
-    }];
+//    // 真机连数据线有； 不连数据线没有；该方法无法获取到 httponly 的cookie
+//    [webView evaluateJavaScript:[NSString stringWithFormat:@"document.cookie"] completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+//        if (response != 0) {
+//            NSLog(@"\n\n\n\n\n\n document.cookie=%@,error=%@",response,error);
+//        }
+//    }];
 }
 
 // 6 页面加载失败时调用
@@ -710,7 +709,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     NSURL *appUrl = [NSURL URLWithString:[WYUserDefaultManager getkAPP_H5URL]];
     if([url.host isEqualToString:appUrl.host] ||([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"]))
     {
-        [_emptyViewController addEmptyViewInController:self hasLocalData:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
+        [self.emptyViewController addEmptyViewInController:self hasLocalData:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
         return;
     }
 }
@@ -966,7 +965,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 
 - (void)zxEmptyViewUpdateAction
 {
-    NSURL* url = self.urlArrayM.firstObject;
+    NSURL* url = self.navigationUrlsMArray.firstObject;
     [self requestWithUrlStr:url.absoluteString];
 }
 
@@ -998,17 +997,18 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         return;
     }
     //音乐；
-//  self.URLString = @"http://183280454.scene.eqxiu.com/s/3a1oDSh8?eqrcode=1&from=groupmessage&isappinstalled=0";
-//    self.URLString = @"http://mp.weixin.qq.com/s/Q1pVsi3w9b98k8gm_WwbjQ";
-    self.URLString = urlString;
-//    self.URLString = @"http://taobao.com";
-//    self.URLString = @"https://faertu.m.tmall.com/shop/shop_auction_search.htm?spm=a222m.7628550.1998338745.1&sort=default";
+//  self.webURLString = @"http://183280454.scene.eqxiu.com/s/3a1oDSh8?eqrcode=1&from=groupmessage&isappinstalled=0";
+//    self.webURLString = @"http://mp.weixin.qq.com/s/Q1pVsi3w9b98k8gm_WwbjQ";
+    self.webURLString = urlString;
+//    self.webURLString = @"http://taobao.com";
+//    self.webURLString = @"https://faertu.m.tmall.com/shop/shop_auction_search.htm?spm=a222m.7628550.1998338745.1&sort=default";
 }
 
-- (void)setWebUrl:(NSString *)webUrl
+- (void)setWebURLString:(NSString *)webURLString
 {
-    self.URLString = webUrl;
+    _webURLString = webURLString;
 }
+
 #pragma mark - 加载本地网页
 
 - (void)loadWebHTMLSringWithResource:(NSString *)name
@@ -1047,7 +1047,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 {
     UIPreviewAction *itemShare = [UIPreviewAction actionWithTitle:NSLocalizedString(@"分享", nil) style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"previewActionShare" object:nil userInfo:@{@"title":self.navigationItem.title,@"url":self.URLString}];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"previewActionShare" object:nil userInfo:@{@"title":self.navigationItem.title,@"url":self.webURLString}];
     }];
     return @[itemShare];
 }

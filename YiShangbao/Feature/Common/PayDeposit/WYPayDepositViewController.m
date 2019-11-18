@@ -189,7 +189,7 @@
             [htmlVC.webView goBack];
             [self.navigationController popViewControllerAnimated:YES];
             WYWKWebViewController *webVC = [[WYWKWebViewController alloc] init];
-            webVC.webUrl = self.model.payJumpUrl;
+            webVC.webURLString = self.model.payJumpUrl;
             [self.navigationController pushViewController:webVC animated:YES];
             htmlVC = webVC;
             break;
