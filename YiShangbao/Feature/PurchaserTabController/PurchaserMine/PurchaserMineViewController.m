@@ -10,8 +10,6 @@
 //#import "PurMainTableViewCell.h"
 #import "WYTabBarViewController.h"
 
-#import "ZXWebViewController.h"
-
 #import "ZXBadgeIconButton.h"
 #import "WYIntegralButton.h"
 #import "JLDragImageView.h"

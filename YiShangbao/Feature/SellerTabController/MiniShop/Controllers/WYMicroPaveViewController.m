@@ -1042,12 +1042,12 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
     NSString *string2 = [string1 stringByReplacingOccurrencesOfString:@"{token}" withString:[UserInfoUDManager getToken]];
     NSString *string3 =[string2 stringByReplacingOccurrencesOfString:@"{ttid}" withString:[BaseHttpAPI getCurrentAppVersion]];
     
-    WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
-    [htmlVc loadWebPageWithURLString:string3];
-    htmlVc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController.view.layer zx_addCATansitionWithAnimationType:@"cube" directionOfTransitionSubtype:kCATransitionFromRight];
-    [self.navigationController pushViewController:htmlVc animated:NO];
-//    [[WYUtility dataUtil]routerWithName:string3 withSoureController:self];
+//    WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+//    [htmlVc loadWebPageWithURLString:string3];
+//    htmlVc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController.view.layer zx_addCATansitionWithAnimationType:@"cube" directionOfTransitionSubtype:kCATransitionFromRight];
+//    [self.navigationController pushViewController:htmlVc animated:NO];
+    [[WYUtility dataUtil]routerWithName:string3 withSoureController:self];
 }
 ////转场管理器
 //- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source

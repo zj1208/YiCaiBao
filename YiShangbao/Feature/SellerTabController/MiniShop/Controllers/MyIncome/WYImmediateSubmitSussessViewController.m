@@ -8,7 +8,6 @@
 
 #import "WYImmediateSubmitSussessViewController.h"
 #import "WYWKWebViewController.h"
-#import "ZXWebViewController.h"
 
 @interface WYImmediateSubmitSussessViewController ()
 
@@ -47,10 +46,6 @@
     for (int i = nums;i>=0; --i) {
         UIViewController* VC = self.navigationController.viewControllers[i];
         if ([VC isKindOfClass:[WYWKWebViewController class]]) {
-            popVC = VC;
-            break;
-        }
-        if ([VC isKindOfClass:[ZXWebViewController class]]) {
             popVC = VC;
             break;
         }

@@ -16,7 +16,6 @@
 #import "SettingViewController.h"
 #import "WYMessageListViewController.h"
 #import "ZXImgIconsCollectionView.h"
-#import "ZXWebViewController.h"
 
 @interface PurchaserMineTableViewController ()<UIWebViewDelegate>
 
