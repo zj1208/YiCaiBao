@@ -10,8 +10,9 @@
 
 #import "WKWebViewJavascriptBridge.h"
 #import "XLPhotoBrowser.h"
+#import "ZXHTTPCookieManager.h"
 
-@interface WYWKWebViewController ()<XLPhotoBrowserDatasource,XLPhotoBrowserDelegate>
+@interface WYWKWebViewController ()<XLPhotoBrowserDatasource,XLPhotoBrowserDelegate,WKScriptMessageHandler>
 
 @property WKWebViewJavascriptBridge *bridge;
 
@@ -43,6 +44,25 @@
     [self addWebViewJavascriptBridge];
 }
 
+////! 登录方法
+//- (void)login:(id)sender {
+//    
+//    [self.webView evaluateJavaScript:@"ocToJs('loginSucceed', 'oc_tokenString')" completionHandler:^(id response, NSError *error) {
+//        
+//    }];
+//}
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+    if ([message.name caseInsensitiveCompare:@"finish"] == NSOrderedSame)
+    {
+        [self finish];
+    }
+    if ([message.name caseInsensitiveCompare:@"setTitle"] == NSOrderedSame)
+    {
+        [self setTitle:message.body];
+    }
+}
 
 #pragma mark - 设置user-agent
 
@@ -133,6 +153,12 @@
     _rightBtnJsDic = [NSMutableDictionary new];
     _lRightBtnDic = [NSMutableDictionary new];
     _rRightBtnDic = [NSMutableDictionary new];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateInfo:) name:Noti_ProductManager_Edit_goBackUpdate object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginIn:) name:kNotificationUserLoginIn object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(managerCookiesChanged:) name:NSHTTPCookieManagerCookiesChangedNotification object:nil];
 }
 
 
@@ -153,6 +179,38 @@
     }
     return _imagesProcutsArray;
 }
+
+#pragma mark-通知selector
+
+- (void)managerCookiesChanged:(id)notification
+{
+    
+}
+- (void)updateInfo:(id)notification
+{
+    [self.webView reload];
+}
+- (void)loginIn:(id)notification
+{
+    if (Device_SYSTEMVERSION.floatValue<11)
+    {
+        // 为了解决登陆完，cookie还没有被写进浏览器；
+        [MBProgressHUD zx_showSuccess:@"登陆成功，正在刷新数据" toView:self.view hideAfterDelay:2.5f];
+        [self.webView performSelector:@selector(reload) withObject:nil afterDelay:2.5f];
+    }
+    else
+    {
+        if (@available(iOS 11.0, *))
+        {
+            WKHTTPCookieStore *cookieStore = [WKWebsiteDataStore defaultDataStore].httpCookieStore;
+            NSHTTPCookie *cookie = [[ZXHTTPCookieManager sharedInstance]getHTTPCookieFromNSHTTPCookieStorageWithCookieName:@"mat"];
+            [cookieStore setCookie:cookie completionHandler:^{
+            }];
+        }
+        [self.webView reload];
+    }
+}
+
 
 #pragma  mark - ---------webViewJavascriptBridge------
 -(void)addWebViewJavascriptBridge

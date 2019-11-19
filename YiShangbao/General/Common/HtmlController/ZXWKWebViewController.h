@@ -39,6 +39,8 @@ static NSString* const SixSpaces = @"      ";
 //进度条
 @property (nonatomic, strong) UIProgressView *progressView;
 
+@property (nonatomic, strong) WKUserContentController *userContentContorller;
+
 //h5跳原生后，从堆栈中移除
 @property (nonatomic, assign) BOOL needDellocH5;
 

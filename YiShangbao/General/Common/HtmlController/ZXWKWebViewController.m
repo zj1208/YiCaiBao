@@ -174,12 +174,10 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 {
     if (!_webView)
     {
-        WKUserContentController *contentContorller = [[WKUserContentController alloc] init];
-        
 //        // 注入一个cookie用户脚本；
-//        NSString *source = [NSString stringWithFormat:@"document.cookie = 'mat = %@'",[UserInfoUDManager getToken]];
-//        WKUserScript *cookieScript =  [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
-//        [contentContorller addUserScript:cookieScript];
+        NSString *source = [NSString stringWithFormat:@"document.cookie = 'mat = %@'",[UserInfoUDManager getToken]];
+        WKUserScript *cookieScript =  [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+        [self.userContentContorller addUserScript:cookieScript];
         
         //不能乱设置，不然布局会乱
         WKPreferences *preferences = [[WKPreferences alloc] init];
@@ -188,7 +186,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         preferences.javaScriptEnabled = YES;
         
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-        configuration.userContentController = contentContorller ;
+        configuration.userContentController = self.userContentContorller;
         configuration.preferences = preferences;
         configuration.allowsInlineMediaPlayback = YES;
         //ios9以上
@@ -237,6 +235,15 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     return _webView;
 }
 
+- (WKUserContentController *)userContentContorller
+{
+    if (!_userContentContorller) {
+        WKUserContentController *userCotent =  [[WKUserContentController alloc] init];
+        _userContentContorller = userCotent;
+    }
+    return _userContentContorller;
+}
+
 - (UIProgressView *)progressView
 {
     if (!_progressView) {
@@ -271,12 +278,6 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 - (void)zxSetData
 {
     [self addObserver];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateInfo:) name:Noti_ProductManager_Edit_goBackUpdate object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginIn:) name:kNotificationUserLoginIn object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(managerCookiesChanged:) name:NSHTTPCookieManagerCookiesChangedNotification object:nil];
 }
 
 #pragma mark 添加KVO观察者
@@ -349,37 +350,6 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         _navigationUrlsMArray = [NSMutableArray array];
     }
     return _navigationUrlsMArray;
-}
-
-#pragma mark-通知selector
-
-- (void)managerCookiesChanged:(id)notification
-{
-    
-}
-- (void)updateInfo:(id)notification
-{
-    [self.webView reload];
-}
-- (void)loginIn:(id)notification
-{
-    if (Device_SYSTEMVERSION.floatValue<11)
-    {
-        // 为了解决登陆完，cookie还没有被写进浏览器；
-        [MBProgressHUD zx_showSuccess:@"登陆成功，正在刷新数据" toView:self.view hideAfterDelay:2.5f];
-        [self.webView performSelector:@selector(reload) withObject:nil afterDelay:2.5f];
-    }
-    else
-    {
-        if (@available(iOS 11.0, *))
-        {
-            WKHTTPCookieStore *cookieStore = [WKWebsiteDataStore defaultDataStore].httpCookieStore;
-            NSHTTPCookie *cookie = [[ZXHTTPCookieManager sharedInstance]getHTTPCookieFromNSHTTPCookieStorageWithCookieName:@"mat"];
-            [cookieStore setCookie:cookie completionHandler:^{
-            }];
-        }
-        [self.webView reload];
-    }
 }
 
 #pragma mark - 加载各种不同数据;响应不同加载：真正请求数据
