@@ -713,6 +713,7 @@
 		F43027A51F021B09007C38F9 /* CheckVersionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = F43027A41F021B09007C38F9 /* CheckVersionAPI.m */; };
 		F4302B061F04AD5D007C38F9 /* UIViewController+isLoginAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F4302B051F04AD5D007C38F9 /* UIViewController+isLoginAction.m */; };
 		F430D28D1E96418D00E6000F /* ChangeDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = F430D28C1E96418D00E6000F /* ChangeDomainController.m */; };
+		F43C133423EAB4FD00BF961D /* LocalHtmlStringManagersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F43C133323EAB4FD00BF961D /* LocalHtmlStringManagersModel.m */; };
 		F43D8D701E24A2AC00003318 /* CommonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D8D6F1E24A2AC00003318 /* CommonModel.m */; };
 		F43DACAB1F9DD250000BA66E /* MessageStackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43DACA91F9DD250000BA66E /* MessageStackViewCell.m */; };
 		F43DACAC1F9DD250000BA66E /* MessageStackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F43DACAA1F9DD250000BA66E /* MessageStackViewCell.xib */; };
@@ -2446,6 +2447,8 @@
 		F4302B051F04AD5D007C38F9 /* UIViewController+isLoginAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+isLoginAction.m"; sourceTree = "<group>"; };
 		F430D28B1E96418D00E6000F /* ChangeDomainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeDomainController.h; sourceTree = "<group>"; };
 		F430D28C1E96418D00E6000F /* ChangeDomainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeDomainController.m; sourceTree = "<group>"; };
+		F43C133223EAB4FD00BF961D /* LocalHtmlStringManagersModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalHtmlStringManagersModel.h; sourceTree = "<group>"; };
+		F43C133323EAB4FD00BF961D /* LocalHtmlStringManagersModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalHtmlStringManagersModel.m; sourceTree = "<group>"; };
 		F43D8D6E1E24A2AC00003318 /* CommonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonModel.h; sourceTree = "<group>"; };
 		F43D8D6F1E24A2AC00003318 /* CommonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonModel.m; sourceTree = "<group>"; };
 		F43DACA81F9DD250000BA66E /* MessageStackViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStackViewCell.h; sourceTree = "<group>"; };
@@ -8361,6 +8364,8 @@
 				F40FB46E2137D5EF0026AE7F /* LocalHtmlStringManager.h */,
 				F40FB46F2137D5EF0026AE7F /* LocalHtmlStringManager.m */,
 				F40FB4712137FEA20026AE7F /* URLKeyMarco.h */,
+				F43C133223EAB4FD00BF961D /* LocalHtmlStringManagersModel.h */,
+				F43C133323EAB4FD00BF961D /* LocalHtmlStringManagersModel.m */,
 			);
 			path = LocalHtmlStringManager;
 			sourceTree = "<group>";
@@ -9533,6 +9538,7 @@
 				A05C17AE1F70BF2D00C86F21 /* ShopIntroViewController.m in Sources */,
 				ADCE86211E5FDD04003AEA01 /* MyRadioButton.m in Sources */,
 				AD2FC1CB1E9CA627005B044E /* FSActionSheetConfig.m in Sources */,
+				F43C133423EAB4FD00BF961D /* LocalHtmlStringManagersModel.m in Sources */,
 				A0F4FCA220C4D31C00661F5C /* PurAEmptyTableViewCell.m in Sources */,
 				A020829B1F8F56AE004287D8 /* WYSellerMineHeadTableViewCell.m in Sources */,
 				F4FA4A2F1E1E6E5900D42622 /* WYTradeModel.m in Sources */,

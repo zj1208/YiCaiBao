@@ -202,9 +202,6 @@ NSInteger const kAPPErrorCode_Token = 5001;
         //如果code标志是token错误，则特殊处理
         if ([code isEqualToString:kToken_Code_Value_Invalid] ||[code isEqualToString:kToken_Code_Value_Disabled])
         {
-            //            NSString *message =[NSString stringWithFormat:@"您的登录已失效，请重新登录！\n 老token：%@",[UserInfoUDManager getToken]];
-            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token坏了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            //            [alert show];
             NSError * error = [self customErrorWithObject:@"您的登录已失效，请重新登录！" errorCode:kAPPErrorCode_Token userInfoErrorCode:nil];
             //可以区分不同api，处理不同业务
             [UserInfoUDManager reLoginingWithTokenErrorAPI:[meta objectForKey:@"api"]];

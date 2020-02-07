@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "URLKeyMarco.h"
+#import "LocalHtmlStringManagersModel.h"
 
 @interface LocalHtmlStringManager : NSObject
 
