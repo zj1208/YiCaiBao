@@ -603,9 +603,10 @@
 		F4178D471FCFB685007EEAF6 /* AliOSSUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F4178D431FCFB684007EEAF6 /* AliOSSUploadManager.m */; };
 		F4178D481FCFB685007EEAF6 /* AliOSSPicInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F4178D461FCFB684007EEAF6 /* AliOSSPicInfoRequest.m */; };
 		F41A19CE2046887100B1945C /* ZXPrintPageRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = F41A19CD2046887100B1945C /* ZXPrintPageRenderer.m */; };
+		F41C20BB2382424600F895CF /* ZXWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F41C20BA2382424600F895CF /* ZXWKWebViewController.m */; };
+		F41C20BE2382432600F895CF /* WYWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F41C20BD2382432600F895CF /* WYWKWebViewController.m */; };
 		F41CEDF81FB0369300913B91 /* AppDelegate+UMengAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F41CEDF71FB0369300913B91 /* AppDelegate+UMengAnalytics.m */; };
 		F41CEDFE1FB0379700913B91 /* AppDelegate+ShareSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = F41CEDFC1FB0379700913B91 /* AppDelegate+ShareSDK.m */; };
-		F41CEE011FB06DD000913B91 /* WYWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F41CEDFF1FB06DCF00913B91 /* WYWKWebViewController.m */; };
 		F41E777B1E4C5F82006E7BEC /* StoryboardHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F41E777A1E4C5F82006E7BEC /* StoryboardHeader.m */; };
 		F427115420F2F882002DE7CA /* Pod第三方本地修改记录.txt in Resources */ = {isa = PBXBuildFile; fileRef = F427115320F2F882002DE7CA /* Pod第三方本地修改记录.txt */; };
 		F42C6588215B70CF001A672B /* ZXModalPresentaionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C6587215B70CF001A672B /* ZXModalPresentaionController.m */; };
@@ -2240,13 +2241,15 @@
 		F4178D461FCFB684007EEAF6 /* AliOSSPicInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliOSSPicInfoRequest.m; sourceTree = "<group>"; };
 		F41A19CC2046887100B1945C /* ZXPrintPageRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXPrintPageRenderer.h; sourceTree = "<group>"; };
 		F41A19CD2046887100B1945C /* ZXPrintPageRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXPrintPageRenderer.m; sourceTree = "<group>"; };
+		F41C20B92382424600F895CF /* ZXWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXWKWebViewController.h; sourceTree = "<group>"; };
+		F41C20BA2382424600F895CF /* ZXWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXWKWebViewController.m; sourceTree = "<group>"; };
+		F41C20BC2382432600F895CF /* WYWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYWKWebViewController.h; sourceTree = "<group>"; };
+		F41C20BD2382432600F895CF /* WYWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYWKWebViewController.m; sourceTree = "<group>"; };
 		F41CEDEE1FAC515300913B91 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F41CEDF61FB0369300913B91 /* AppDelegate+UMengAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UMengAnalytics.h"; sourceTree = "<group>"; };
 		F41CEDF71FB0369300913B91 /* AppDelegate+UMengAnalytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UMengAnalytics.m"; sourceTree = "<group>"; };
 		F41CEDFC1FB0379700913B91 /* AppDelegate+ShareSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ShareSDK.m"; sourceTree = "<group>"; };
 		F41CEDFD1FB0379700913B91 /* AppDelegate+ShareSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ShareSDK.h"; sourceTree = "<group>"; };
-		F41CEDFF1FB06DCF00913B91 /* WYWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYWKWebViewController.m; sourceTree = "<group>"; };
-		F41CEE001FB06DCF00913B91 /* WYWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYWKWebViewController.h; sourceTree = "<group>"; };
 		F41E77791E4C5F82006E7BEC /* StoryboardHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardHeader.h; sourceTree = "<group>"; };
 		F41E777A1E4C5F82006E7BEC /* StoryboardHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardHeader.m; sourceTree = "<group>"; };
 		F427115320F2F882002DE7CA /* Pod第三方本地修改记录.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Pod第三方本地修改记录.txt"; path = "Resourses/Pod第三方本地修改记录.txt"; sourceTree = "<group>"; };
@@ -3653,8 +3656,10 @@
 			children = (
 				F42E80411E2394E8008C5995 /* ZXWebViewController.h */,
 				F42E80421E2394E8008C5995 /* ZXWebViewController.m */,
-				F41CEE001FB06DCF00913B91 /* WYWKWebViewController.h */,
-				F41CEDFF1FB06DCF00913B91 /* WYWKWebViewController.m */,
+				F41C20B92382424600F895CF /* ZXWKWebViewController.h */,
+				F41C20BA2382424600F895CF /* ZXWKWebViewController.m */,
+				F41C20BC2382432600F895CF /* WYWKWebViewController.h */,
+				F41C20BD2382432600F895CF /* WYWKWebViewController.m */,
 			);
 			path = HtmlController;
 			sourceTree = "<group>";
@@ -9393,6 +9398,7 @@
 				2BDA4284207B38740055B061 /* ProductClassViewController.m in Sources */,
 				F4C918AF20070E6B00D3E158 /* SaleClientgraphMainCell.m in Sources */,
 				AD4F7E0A1E49D0AF002A913B /* UIImage+FileName.m in Sources */,
+				F41C20BE2382432600F895CF /* WYWKWebViewController.m in Sources */,
 				A0299CB31F976A740096DD2E /* NSParagraphStyle+YYText.m in Sources */,
 				F49172D01F3484620035FC49 /* AddProNameController.m in Sources */,
 				F446AB621FCC086800C82C90 /* UIScrollView+AssistiveTouch.m in Sources */,
@@ -9496,6 +9502,7 @@
 				F49611C81F62E0860092D18D /* OrderCellFooterView.m in Sources */,
 				2BF536CD1F6771EC00DDAC46 /* SODProductsCollectionViewCell.m in Sources */,
 				7E1C93051DF82B5700BA8AAA /* IMJIETagView.m in Sources */,
+				F41C20BB2382424600F895CF /* ZXWKWebViewController.m in Sources */,
 				F4EF35011FF5D3C600CCD088 /* ZXHTTPCookieManager.m in Sources */,
 				2BDA4286207B38740055B061 /* SMSelectProductCell.m in Sources */,
 				F4B4B91C1F14D5F80009D8DC /* WYFormInfoTableViewCell.m in Sources */,
@@ -9693,7 +9700,6 @@
 				F48EDD491EC5D83A00BA9016 /* NSData+NTES.m in Sources */,
 				A0A9BB211FCCFBA3002B8A61 /* CCChooseVideoViewController.m in Sources */,
 				A0A47E2720C8DD42009DFCDC /* WYAttentionModel.m in Sources */,
-				F41CEE011FB06DD000913B91 /* WYWKWebViewController.m in Sources */,
 				7E2586971E018F0800BB0CC2 /* WYStarWithScoreView.m in Sources */,
 				F42C660F215BCA4D001A672B /* ZXLabelsTagsView.m in Sources */,
 				F4DF110B212E54F90072650A /* UINavigationController+ZXKuGouInteractivePopGestureRecognizer.m in Sources */,

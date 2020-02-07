@@ -172,32 +172,37 @@
         {
             url =[url stringByReplacingOccurrencesOfString:@"{ttid}" withString:version];
         }
-        if (Device_SYSTEMVERSION_Greater_THAN_OR_EQUAL_TO(11))
-        {
-            if ([url rangeOfString:@"duiba.com.cn"].location != NSNotFound || [url isEqualToString:@"https://wykj.microants.cn/ycbx/page/middlewarePage.html"])
-            {
-                ZXWebViewController *htmlVc = [[ZXWebViewController alloc] init];
-                [htmlVc loadWebPageWithURLString:url];
-                htmlVc.hidesBottomBarWhenPushed = YES;
-                return htmlVc;
-            }
-            else
-            {
-                //H5跳转
-                WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
-                [htmlVc loadWebPageWithURLString:url];
-                htmlVc.hidesBottomBarWhenPushed = YES;
-                return htmlVc;
-            }
-            
-        }
-        else
-        {
-            ZXWebViewController *htmlVc = [[ZXWebViewController alloc] init];
-            [htmlVc loadWebPageWithURLString:url];
-            htmlVc.hidesBottomBarWhenPushed = YES;
-            return htmlVc;
-        }
+        //H5跳转
+        WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+        [htmlVc loadWebPageWithURLString:url];
+        htmlVc.hidesBottomBarWhenPushed = YES;
+        return htmlVc;
+//        if (Device_SYSTEMVERSION_Greater_THAN_OR_EQUAL_TO(11))
+//        {
+//            if ([url rangeOfString:@"duiba.com.cn"].location != NSNotFound || [url isEqualToString:@"https://wykj.microants.cn/ycbx/page/middlewarePage.html"])
+//            {
+//                ZXWebViewController *htmlVc = [[ZXWebViewController alloc] init];
+//                [htmlVc loadWebPageWithURLString:url];
+//                htmlVc.hidesBottomBarWhenPushed = YES;
+//                return htmlVc;
+//            }
+//            else
+//            {
+//                //H5跳转
+//                WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+//                [htmlVc loadWebPageWithURLString:url];
+//                htmlVc.hidesBottomBarWhenPushed = YES;
+//                return htmlVc;
+//            }
+//
+//        }
+//        else
+//        {
+//            ZXWebViewController *htmlVc = [[ZXWebViewController alloc] init];
+//            [htmlVc loadWebPageWithURLString:url];
+//            htmlVc.hidesBottomBarWhenPushed = YES;
+//            return htmlVc;
+//        }
     }
     else if ([url rangeOfString:@"microants://businessDetail" options:NSAnchoredSearch].location!=NSNotFound)
     {
@@ -741,33 +746,38 @@
         {
             url =[url stringByReplacingOccurrencesOfString:@"{ttid}" withString:version];
         }
-        if (Device_SYSTEMVERSION_Greater_THAN_OR_EQUAL_TO(11))
-        {
-            if ([url rangeOfString:@"duiba.com.cn"].location != NSNotFound || [url isEqualToString:@"https://wykj.microants.cn/ycbx/page/middlewarePage.html"])
-            {
-                ZXWebViewController *web = [[ZXWebViewController alloc] init];
-                [web loadWebPageWithURLString:url];
-                web.hidesBottomBarWhenPushed = YES;
-                [navigationController pushViewController:web animated:YES];
-            }
-            else
-            {
-                //H5跳转
-                WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
-                htmlVc.hidesBottomBarWhenPushed = YES;
-                [htmlVc loadWebPageWithURLString:url];
-                [navigationController pushViewController:htmlVc animated:YES];
-             }
-   
-        }
-        else
-        {
-            ZXWebViewController *htmlVc = [[ZXWebViewController alloc] init];
-            htmlVc.hidesBottomBarWhenPushed = YES;
-            [htmlVc loadWebPageWithURLString:url];
-            [navigationController pushViewController:htmlVc animated:YES];
-        }
-  
+        //H5跳转
+        WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+        htmlVc.hidesBottomBarWhenPushed = YES;
+        [htmlVc loadWebPageWithURLString:url];
+        [navigationController pushViewController:htmlVc animated:YES];
+//        if (Device_SYSTEMVERSION_Greater_THAN_OR_EQUAL_TO(11))
+//        {
+//            if ([url rangeOfString:@"duiba.com.cn"].location != NSNotFound || [url isEqualToString:@"https://wykj.microants.cn/ycbx/page/middlewarePage.html"])
+//            {
+//                ZXWebViewController *web = [[ZXWebViewController alloc] init];
+//                [web loadWebPageWithURLString:url];
+//                web.hidesBottomBarWhenPushed = YES;
+//                [navigationController pushViewController:web animated:YES];
+//            }
+//            else
+//            {
+//                //H5跳转
+//                WYWKWebViewController *htmlVc = [[WYWKWebViewController alloc] init];
+//                htmlVc.hidesBottomBarWhenPushed = YES;
+//                [htmlVc loadWebPageWithURLString:url];
+//                [navigationController pushViewController:htmlVc animated:YES];
+//             }
+//
+//        }
+//        else
+//        {
+//            ZXWebViewController *htmlVc = [[ZXWebViewController alloc] init];
+//            htmlVc.hidesBottomBarWhenPushed = YES;
+//            [htmlVc loadWebPageWithURLString:url];
+//            [navigationController pushViewController:htmlVc animated:YES];
+//        }
+//
     }
 
     //1.2.当匹配的生意推送过来／采购商查看了接单回复 microants://businessDetail?id=xxx

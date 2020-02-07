@@ -16,22 +16,21 @@
 #import "ZXHTTPCookieManager.h"
 /*
  {
- "meta" : {
- "api" : "mtop.cc.getAdv",
- "v" : "1.0",
- "lang" : "",
- "mat" : "",
- "teminal" : "iphone",
- "ttid" : "3.7.7.3_ysb@iphone"
- },
- "result" : {
- "code" : "",
- "data" : {
- 
- },
- "success" : true,
- "msg" : ""
- }
+    "meta" : {
+    "api" : "mtop.cc.getAdv",
+    "v" : "1.0",
+    "lang" : "",
+    "mat" : "",
+    "teminal" : "iphone",
+    "ttid" : "3.7.7.3_ysb@iphone"
+    },
+    "result" : {
+        "code" : "",
+        "data" : {
+        },
+    "success" : true,
+    "msg" : ""
+    }
  }
  */
 /*
@@ -96,10 +95,6 @@ NSInteger const kAPPErrorCode_Token = 5001;
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@,%@",error,@(error.code));
-        
-        //        ZX_NSLog_ModelAllValue(error);
-        //        NSLog(@"\n error.domain=%@ \n error.code=%ld \n error.userInfo=%@,\n error.localizedDescription=%@",error.domain,error.code,error.userInfo,error.localizedDescription);
-        
         if (failure)
         {
             error = [weakSelf getErrorFromError:error];
@@ -157,8 +152,6 @@ NSInteger const kAPPErrorCode_Token = 5001;
         //        NSLog(@"%@",task.response.URL);
         NSLog(@"%@,%@",error,@(error.code));
         
-        //        NSLog(@"\n error.domain=%@ \n error.code=%ld \n error.userInfo=%@,\n error.localizedDescription=%@",error.domain,error.code,error.userInfo,error.localizedDescription);
-        
         if (failure)
         {
             error = [weakSelf getErrorFromError:error];
@@ -175,18 +168,12 @@ NSInteger const kAPPErrorCode_Token = 5001;
 - (void)requestSuccessDealWithResponseObeject:(id)responseObject success:(CompleteBlock)success failure:(ErrorBlock)failure
 {
     NSString *str = [NSString zhGetJSONSerializationStringFromObject:responseObject];
-    
     NSLog(@"%@",str);
     
-    //    NSLog(@"\n+++++++%@",responseObject);
     NSDictionary *meta = [responseObject objectForKey:@"meta"];
     NSString *token = [meta objectForKey:@"mat"];
     if (token.length>0)
     {
-        //       NSString *message =[NSString stringWithFormat:@"新token:%@,\n 老token：%@",token,[UserInfoUDManager getToken]];
-        //       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token变了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        //       [alert show];
-        //       [self requestHeaderFieldsWithCookieToken:token];
         [UserInfoUDManager setToken:token];
     }
     NSDictionary *result = [responseObject objectForKey:@"result"];

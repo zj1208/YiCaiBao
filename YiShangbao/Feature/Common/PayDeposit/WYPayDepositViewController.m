@@ -10,7 +10,6 @@
 #import "WYPayDepositTableViewCell.h"
 #import "WYChoosePayWayTableViewCell.h"
 #import "WYWKWebViewController.h"
-#import "ZXWebViewController.h"
 
 #import "WYPublicModel.h"
 #import <AlipaySDK/AlipaySDK.h>
@@ -181,7 +180,6 @@
     }
     
     WYWKWebViewController *htmlVC;
-    ZXWebViewController *oldHtmlVC;
     NSArray *array = self.navigationController.viewControllers;
     NSArray* reversedArray = [[array reverseObjectEnumerator] allObjects];
     for (UIViewController *vc in reversedArray) {
@@ -191,27 +189,14 @@
             [htmlVC.webView goBack];
             [self.navigationController popViewControllerAnimated:YES];
             WYWKWebViewController *webVC = [[WYWKWebViewController alloc] init];
-            webVC.webUrl = self.model.payJumpUrl;
+            webVC.webURLString = self.model.payJumpUrl;
             [self.navigationController pushViewController:webVC animated:YES];
             htmlVC = webVC;
-            break;
-        }
-        if ([vc isKindOfClass:[ZXWebViewController class]]) {
-            oldHtmlVC = (ZXWebViewController *)vc;
-            [oldHtmlVC.webView goBack];
-            [oldHtmlVC.webView goBack];
-            [self.navigationController popViewControllerAnimated:YES];
-            ZXWebViewController *webVC = [[ZXWebViewController alloc] init];
-            webVC.webUrl = self.model.payJumpUrl;
-            [self.navigationController pushViewController:webVC animated:YES];
-            oldHtmlVC = webVC;
             break;
         }
     }
     if (htmlVC){
         [self.navigationController popToViewController:htmlVC animated:YES];
-    }else if (oldHtmlVC){
-        [self.navigationController popToViewController:oldHtmlVC animated:YES];
     }else{//逻辑与开单服务支付弹窗 viewWillAppear调两次
         [self.navigationController popViewControllerAnimated:YES];
         [[WYUtility dataUtil]routerWithName:self.model.payJumpUrl withSoureController:self];
