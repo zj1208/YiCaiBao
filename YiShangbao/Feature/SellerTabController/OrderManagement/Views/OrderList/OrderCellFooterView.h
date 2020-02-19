@@ -4,7 +4,8 @@
 //
 //  Created by simon on 2017/9/8.
 //  Copyright © 2017年 com.Microants. All rights reserved.
-//  订单管理列表组尾= 1.更多按钮展示容器+2.价格展示容器+3.动态个数操作按钮容器
+//  订单管理列表组尾= 1.更多按钮展示容器+2.价格展示容器+3.动态个数操作按钮容器 + 4.底下留下10个间距空间；
+
 //  动态展示高度，根据字段是否展示更多按钮容器view；
 
 #import <UIKit/UIKit.h>
