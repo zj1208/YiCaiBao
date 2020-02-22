@@ -33,12 +33,32 @@
     }
  }
  */
+///错误回调
 /*
  "result" : {
  "code" : "password_error",
  "data" : null,
  "success" : false,
  "msg" : "密码错误"
+ }
+ */
+///成功回调
+/*
+ {
+   "meta" : {
+   "api" : "mtop.app.updateSoundSetting",
+   "v" : "1.0",
+   "lang" : "zh_CN",
+   "mat" : "",
+   "teminal" : "iphone",
+   "ttid" : "5.2.1_ysb@iphone"
+   },
+"result" : {
+   "code" : "",
+   "data" : null,
+   "success" : true,
+   "msg" : ""
+   }
  }
  */
 @implementation BaseHttpAPI
