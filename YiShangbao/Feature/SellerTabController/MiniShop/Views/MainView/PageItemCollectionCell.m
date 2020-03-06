@@ -16,26 +16,38 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        [self setUI];
+
+    }
+    return self;
+}
+
+- (ZXHorizontalPageCollectionView *)itemPageView
+{
+    if (!_itemPageView)
+    {
         ZXHorizontalPageCollectionView *page = [[ZXHorizontalPageCollectionView alloc] init];
         page.maxRowCount = 2;
         page.columnsCount = 4;
         page.sectionInset = UIEdgeInsetsMake(0, 2, 12, 2);
         page.lineSpacing = 1.f;
         page.interitemSpacing = 4.f;
-        
         CGFloat width = [page getItemAverageWidthInTotalWidth:LCDW columnsCount:page.columnsCount sectionInset:page.sectionInset minimumInteritemSpacing:page.interitemSpacing];
         page.itemSize = CGSizeMake(width, width-LCDScale_iPhone6_Width(12));
-        [self.contentView addSubview:page];
-        
-        [page mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.edges.mas_equalTo(self.contentView);
-        }];
-        self.itemPageView = page;
+        _itemPageView = page;
     }
-    return self;
+    return _itemPageView;
 }
 
+- (void)setUI
+{
+    [self.contentView addSubview:self.itemPageView];
+     
+     [self.itemPageView mas_makeConstraints:^(MASConstraintMaker *make) {
+         
+         make.edges.mas_equalTo(self.contentView);
+     }];
+}
 
 - (void)setData:(id)data
 {

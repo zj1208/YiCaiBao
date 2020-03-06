@@ -717,7 +717,6 @@
 		F43C133423EAB4FD00BF961D /* LocalHtmlStringManagersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F43C133323EAB4FD00BF961D /* LocalHtmlStringManagersModel.m */; };
 		F43D8D701E24A2AC00003318 /* CommonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D8D6F1E24A2AC00003318 /* CommonModel.m */; };
 		F43DACAB1F9DD250000BA66E /* MessageStackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F43DACA91F9DD250000BA66E /* MessageStackViewCell.m */; };
-		F43DACAC1F9DD250000BA66E /* MessageStackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F43DACAA1F9DD250000BA66E /* MessageStackViewCell.xib */; };
 		F440B98520AAE305005F2984 /* zxPhoto_addAsset@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F440B98120AAE303005F2984 /* zxPhoto_addAsset@3x.png */; };
 		F440B98620AAE305005F2984 /* zxPhoto_addAsset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F440B98220AAE304005F2984 /* zxPhoto_addAsset@2x.png */; };
 		F440B98720AAE305005F2984 /* zxPhoto_addImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F440B98320AAE304005F2984 /* zxPhoto_addImage@2x.png */; };
@@ -2456,7 +2455,6 @@
 		F43D8D6F1E24A2AC00003318 /* CommonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonModel.m; sourceTree = "<group>"; };
 		F43DACA81F9DD250000BA66E /* MessageStackViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStackViewCell.h; sourceTree = "<group>"; };
 		F43DACA91F9DD250000BA66E /* MessageStackViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageStackViewCell.m; sourceTree = "<group>"; };
-		F43DACAA1F9DD250000BA66E /* MessageStackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageStackViewCell.xib; sourceTree = "<group>"; };
 		F440B98120AAE303005F2984 /* zxPhoto_addAsset@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zxPhoto_addAsset@3x.png"; sourceTree = "<group>"; };
 		F440B98220AAE304005F2984 /* zxPhoto_addAsset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zxPhoto_addAsset@2x.png"; sourceTree = "<group>"; };
 		F440B98320AAE304005F2984 /* zxPhoto_addImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zxPhoto_addImage@2x.png"; sourceTree = "<group>"; };
@@ -8346,7 +8344,6 @@
 				2B1F699A1F177A98000CFE8D /* WYMessageDetailTableViewCell.xib */,
 				F43DACA81F9DD250000BA66E /* MessageStackViewCell.h */,
 				F43DACA91F9DD250000BA66E /* MessageStackViewCell.m */,
-				F43DACAA1F9DD250000BA66E /* MessageStackViewCell.xib */,
 				F4B0DD1C1FF0E97D00E1D028 /* MessageSystemCell.h */,
 				F4B0DD1D1FF0E97D00E1D028 /* MessageSystemCell.m */,
 				F4B0DD1E1FF0E97D00E1D028 /* MessageSystemCell.xib */,
@@ -8962,7 +8959,6 @@
 				2BF538BD1F70B1C900DDAC46 /* RefundReasonTableViewCell.xib in Resources */,
 				2B461CCC20A063A300638189 /* ShopCustomer.storyboard in Resources */,
 				F49611DB1F640C530092D18D /* ModifyPriceProCell.xib in Resources */,
-				F43DACAC1F9DD250000BA66E /* MessageStackViewCell.xib in Resources */,
 				F42C65FF215BCA4D001A672B /* icon_vip_fill@3x.png in Resources */,
 				A0F4B7FE211AC8B0007F5265 /* InfosServiceTableViewCell.xib in Resources */,
 				F44E17751FD68CEC00383A92 /* photo_shexiang@2x.png in Resources */,
