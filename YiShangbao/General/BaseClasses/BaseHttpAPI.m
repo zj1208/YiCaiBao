@@ -14,25 +14,85 @@
 #import <WebKit/WebKit.h>
 #import "WYTimeManager.h"
 #import "ZXHTTPCookieManager.h"
+
+
+// 统一返回data节点的字典到上层；
+//success是success成功的;不定义"code","code"="";返回data数据;不用"msg","msg"=""；
+//success是false的;定义"code"="AAA"，返回"data"=null，使用"msg"="AAA"；
+//列表
 /*
  {
-    "meta" : {
-    "api" : "mtop.cc.getAdv",
-    "v" : "1.0",
-    "lang" : "",
-    "mat" : "",
-    "teminal" : "iphone",
-    "ttid" : "3.7.7.3_ysb@iphone"
-    },
-    "result" : {
-        "code" : "",
-        "data" : {
-        },
-    "success" : true,
-    "msg" : ""
-    }
+   "meta" : {
+     "api" : "mtop.cc.getAdv",
+     "v" : "1.0",
+     "lang" : "",
+     "mat" : "",
+     "teminal" : "iphone",
+     "ttid" : "5.2.1_ysb@iphone"
+   },
+   "result" : {
+     "code" : "",
+     "data" : {
+       "items" : [
+         {
+           "id" : 1976,
+           "title" : "双旦商户活动",
+           "areaId" : 10013,
+           "pic" : "http://macdn.microants.cn/4/es/iPHTyW5Mdjm8BC8yHG4hTP4tJsM8hpsb.png",
+           "desc" : "双旦商户活动",
+           "url" : "https://m.iyicaibao.com/operation/page/activity.html?id=177"
+         },
+         {
+           "id" : 1970,
+           "title" : "工厂直供第二期",
+           "areaId" : 10013,
+           "pic" : "http://macdn.microants.cn/4/es/yTNNTdnHWfd7Ft3JAZ3NxsB4PtyCDKN3.png",
+           "desc" : "工厂直供第二期",
+           "url" : "https://m.iyicaibao.com/operation/page/activity.html?id=175"
+         },
+         {
+           "id" : 1712,
+           "title" : "超级网商",
+           "areaId" : 10013,
+           "pic" : "http://macdn.microants.cn/4/es/DrtTtsmJSmxacDyYtbJxwp6fxCidjtdi.gif",
+           "desc" : "超级网商",
+           "url" : "https://m.iyicaibao.com/operation/page/rank.html?ttid={ttid}"
+         }
+       ],
+       "num" : 999,
+       "type" : 1
+     },
+     "success" : true,
+     "msg" : ""
+   }
  }
  */
+//字典
+/*
+ {
+   "meta" : {
+     "api" : "mtop.app.getLastVersion",
+     "v" : "1.0",
+     "lang" : "",
+     "mat" : "",
+     "teminal" : "iphone",
+     "ttid" : "5.2.1_ysb@iphone"
+   },
+   "result" : {
+     "code" : "",
+     "data" : {
+       "versionCode" : 50203,
+       "isForce" : true,
+       "url" : "https://itunes.apple.com/cn/app/id1180821282",
+       "desc" : "修复了一些bug，体验更顺畅～",
+       "version" : "5.2.3"
+     },
+     "success" : true,
+     "msg" : ""
+   }
+ }
+ */
+// 只返回data节点的数据到上层，"success" : false,单纯提示的;
 /*
  "result" : {
  "code" : "password_error",
@@ -177,7 +237,7 @@ NSInteger const kAPPErrorCode_Token = 5001;
         [UserInfoUDManager setToken:token];
     }
     NSDictionary *result = [responseObject objectForKey:@"result"];
-    //如果success是成功的，则会返回data数据：NSArray/NSDictionary；如果success是失败的，则不返回data数据，msg：返回提示中文；
+    //如果result中的success是成功的，则会返回data数据：NSArray/NSDictionary；如果success是失败的，则不返回data数据，msg：返回提示中文；
     if ([[result objectForKey:kRequestSuccess_Key] integerValue] == kRequestSuccess_Value)
     {
         //        如果没有这个data参数，则返回id对象；

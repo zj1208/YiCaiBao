@@ -24,7 +24,7 @@
 
 @property (nonatomic, strong)TradeOrderContentCell *contentCell;
 
-@property (nonatomic, strong)NSMutableArray *mImages;
+@property (nonatomic, strong) NSMutableArray *mImages;
 @property(nonatomic,assign)BOOL isChangeImages ;//判断图片上传成功后，发送失败，图片无变动将不再重复上传
 
 @property (nonatomic, strong)NSMutableArray *photosMArray;
@@ -291,7 +291,6 @@ static NSString *const reuse_photoCell = @"photoCell";
 
 - (void)zx_addPicCollectionView:(ZXAddPicCollectionView *)tagsView didSelectPicItemAtIndex:(NSInteger)index didAddPics:(NSMutableArray *)picsArray
 {
-    
     //大图浏览
     XLPhotoBrowser *browser = [XLPhotoBrowser showPhotoBrowserWithCurrentImageIndex:index imageCount:picsArray.count datasource:self];
     browser.browserStyle = XLPhotoBrowserStyleCustom;
@@ -301,7 +300,6 @@ static NSString *const reuse_photoCell = @"photoCell";
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
   
-//    self.isChangeImages = YES;
     [self.mImages addObjectsFromArray:photos];
 //    [self.tableView beginUpdates];
 //    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
@@ -377,9 +375,9 @@ static NSString *const reuse_photoCell = @"photoCell";
     // Pass the selected object to the new view controller.
 }
 */
-
-- (void)postDataAction:(UIButton *)sender {
-    
+//本地上传数据+图片
+- (void)postDataAction:(UIButton *)sender
+{
     if (self.contentCell.textView.text.length<5)
     {
         [UIAlertController zx_presentGeneralAlertInViewController:self withTitle:NSLocalizedString(@"老板，生意回复不能少于5个字哦～", nil) message:nil cancelButtonTitle:nil cancleHandler:nil doButtonTitle:NSLocalizedString(@"知道了", nil) doHandler:nil];
@@ -392,20 +390,13 @@ static NSString *const reuse_photoCell = @"photoCell";
         [MBProgressHUD zx_showError:NSLocalizedString(@"请选择是否现货", nil) toView:self.view];
         return;
     }
-    
-//    NSString * price = [self.contentCell getSelectedTradePrice];
-//    if ([NSString zhIsBlankString:price])
-//    {
-//        [MBProgressHUD zx_showError:NSLocalizedString(@"请输入产品单价", nil) toView:self.view];
-//        return;
-//    }
     [MBProgressHUD zx_showLoadingWithStatus:NSLocalizedString(@"正在提交", nil) toView:self.view];
+    //如果有图片则先上传图片；
     if (self.mImages.count>0)
     {
-        __block NSInteger currentIndex = 0;
         //清空数据
-        [_photosMArray removeAllObjects];
-
+        [self.photosMArray removeAllObjects];
+        __block NSInteger currentIndex = 0;
         WS(weakSelf);
         [self.mImages enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
@@ -429,18 +420,17 @@ static NSString *const reuse_photoCell = @"photoCell";
                     [weakSelf performSelector:@selector(uploadData)];
                 }
                 
-                
             } failure:^(NSError *error) {
 
                 [MBProgressHUD zx_showError:[error localizedDescription] toView:weakSelf.view];
             }];
         }];
     }
+    //如果没有图片则直接上传其它数据；
     else
     {
          [self performSelector:@selector(uploadData)];
     }
-    
 }
 
 - (void)uploadData2

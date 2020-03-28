@@ -159,7 +159,6 @@
 
         self.customerInfoModel = (CustomerInfoModel *)data;
         self.compareModel = [(CustomerInfoModel *)data copy];
-        
         [self.emptyViewController hideEmptyViewInController:self hasLocalData:self.customerInfoModel?YES:NO];
         
         if (!self.isEditCustomer) {

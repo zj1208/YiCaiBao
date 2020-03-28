@@ -505,11 +505,11 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
 {
     if (![WYUserDefaultManager getOpenChangeDomain])
     {
-//        [AvoidCrash becomeEffective];
+        [AvoidCrash becomeEffective];
         //监听通知:AvoidCrashNotification, 获取AvoidCrash捕获的崩溃日志的详细信息
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealwithCrashMessage:) name:AvoidCrashNotification object:nil];
-        [NSArray avoidCrashExchangeMethod];
-        [NSMutableArray avoidCrashExchangeMethod];
+//        [NSArray avoidCrashExchangeMethod];
+//        [NSMutableArray avoidCrashExchangeMethod];
     }
 }
 
@@ -924,18 +924,6 @@ typedef NS_ENUM(NSInteger, AppActiveFromType)
 
 
 #pragma mark - openURL:
-
-
-
--(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    
-    return [self customAppByCallbackHandleOpenURL:url];;
-}
-
--(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [self customAppByCallbackHandleOpenURL:url];
-}
 
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options NS_AVAILABLE_IOS(9_0)

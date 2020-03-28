@@ -7,12 +7,39 @@
 //
 
 #import "ZXWKWebViewController.h"
-
 #import "ZXEmptyViewController.h"
-
-#import "WKWebViewJavascriptBridge.h"
-#import <AlipaySDK/AlipaySDK.h>
 #import "ZXHTTPCookieManager.h"
+
+#ifndef LCDW
+#define LCDW ([[UIScreen mainScreen] bounds].size.width)
+#define LCDH ([[UIScreen mainScreen] bounds].size.height)
+//设置iphone6尺寸比例/竖屏,UI所有设备等比例缩放
+#define LCDScale_iPhone6(X)    ((X)*LCDW/375)
+#endif
+
+#ifndef SCREEN_WIDTH
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#endif
+
+#ifndef SCREEN_MAX_LENGTH
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+#endif
+
+#ifndef  HEIGHT_NAVBAR
+#define  HEIGHT_NAVBAR      (IS_IPHONE_XX ? (44.f+44.f) : (44.f+20.f))
+#define  HEIGHT_STATEBAR    (IS_IPHONE_XX ? (44.f) : (20.f))
+#define  HEIGHT_TABBAR      (IS_IPHONE_XX ? (34.f+49.f) : 0)
+#endif
+
+#ifndef  HEIGHT_TABBAR_SAFE
+#define  HEIGHT_TABBAR_SAFE  (IS_IPHONE_XX ? (34.f) : 0)
+#endif
+
+#ifndef  APP_Version
+#define APP_Version          [[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+#endif
 
 typedef NS_ENUM(NSInteger, WebLoadType) {
     
@@ -26,23 +53,14 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 @interface ZXWKWebViewController ()<WKNavigationDelegate,WKUIDelegate,
  ZXEmptyViewControllerDelegate,UIGestureRecognizerDelegate>
 
-// 导航条按钮;
-// 返回按钮
-@property (nonatomic, strong) UIBarButtonItem *backButtonItem;
-// 关闭按钮
-@property (nonatomic, strong) UIBarButtonItem *closeButtonItem;
-// 填充间距按钮
-@property (nonatomic, strong) UIBarButtonItem *negativeSpacerItem;
 
 
-// 空视图；
-@property (nonatomic, strong) ZXEmptyViewController *emptyViewController;
-
-@property WKWebViewJavascriptBridge *bridge;
 
 //加载类型
 @property (nonatomic) WebLoadType webLoadType;
 
+//1.网络地址
+@property (nonatomic, copy) NSString *URLString;
 //2.本地文件资源
 //文件名/或本地html名
 @property (nonatomic, copy) NSString *localFileName;
@@ -51,10 +69,43 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 @property (nonatomic, copy) NSString *localFileMimeType;
 //3.本地文件txt数据
 @property (nonatomic, copy) NSString *localTxtFileContent;
+//URL数组
+@property(nonatomic, strong) NSMutableArray *urlArrayM;
 
+// 导航条按钮;
+// 返回按钮
+@property (nonatomic, strong) UIBarButtonItem *backButtonItem;
+// 关闭按钮
+@property (nonatomic, strong) UIBarButtonItem *closeButtonItem;
+// 填充间距按钮
+@property (nonatomic, strong) UIBarButtonItem *negativeSpacerItem;
+// 右侧分享按钮
+@property (nonatomic, strong) UIBarButtonItem *shareButtonItem;
+
+// 空视图；
+@property (nonatomic, strong) ZXEmptyViewController *emptyViewController;
+
+///设置标题颜色
+@property (nonatomic, strong) UIColor *titleColor;
+///默认标题颜色
+@property (nonatomic, strong) UIColor *defaultTitleColor;
+
+///导航条按钮item的颜色
+@property (nonatomic, strong) UIColor *tintColor;
+///默认导航条按钮item的颜色
+@property (nonatomic, strong) UIColor *defaultTintColor;
+
+///默认是否隐藏
+@property (nonatomic, assign) BOOL defaultWebNavigationBarHide;
+
+///设置状态条类型
+@property(readwrite, nonatomic) UIStatusBarStyle defaultStatusBarStyle;
 @end
 
+static NSString* const SixSpaces = @"      ";
 @implementation ZXWKWebViewController
+
+@synthesize statusBarStyle = _statusBarStyle;
 
 #pragma mark - life cycle
 
@@ -69,39 +120,49 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
-    [self zxSetUI];
     
-    //初始化数据
-    [self zxSetData];
+    //设置userAgent-必须第一
     
+    //搭建UI
+    //    self.view.backgroundColor = UIColorFromRGB_HexValue(0xF3F3F3);
+    self.view.backgroundColor = [UIColor whiteColor];
+    //设置导航条
+    [self zxwkSetupNav];
+
+    //添加WKWebView；
+    [self.view addSubview:self.webView];
+    
+    //添加进度条
+    [self.view addSubview:self.progressView];
+     
+    [self addConstraint:self.webView toSuperviewItem:self.view];
+    
+    //添加监听
+    [self zxWkAddObserver];
+ 
     //根据不同业务加载数据
     [self webViewRequestLoadType];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.presentedViewController && ([self.presentedViewController isKindOfClass:[UIImagePickerController class]] || [self.presentedViewController isKindOfClass:[UIDocumentPickerViewController class]]))
-    {//h5调用系统相册、相机、文件系统后不resume
-    }else{
-        [self resume];//h5内路由跳转原生后，返回回来的时候，通知H5刷新页面
-    }
-
+    
     if (self.navigationController.viewControllers.count>1)
     {
        self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-}
-
-//resume事件-重新展示h5的controller页面的时候，调用js方法通知h5是否执行刷新数据页面
--(void)resume
-{
-    NSString *str = [NSString stringWithFormat:@"(function () {var event = new Event('resume');document.dispatchEvent(event);})()"];
-    [self.webView evaluateJavaScript:str completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-        NSLog(@"obj = %@,error =%@",obj,error);
-    }];
+    self.navigationController.navigationBar.shadowImage =[UIImage new];
+    
+    [self.navigationController setNavigationBarHidden:self.webNavigationBarHide animated:animated];
+    //不能用self.navigationBarIsHidden来获取，还没赋值结果；默认就是NO，不隐藏；
+    if (self.webNavigationBarHide)
+    {
+        return;
+    }
+    [self setNavigationBarTitleColor];
+    [self setNavigationBarTintColor];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -114,70 +175,114 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [self.navigationController.navigationBar setShadowImage:nil];
+    [self.navigationController setNavigationBarHidden:self.defaultWebNavigationBarHide animated:animated];
+    //可以选择不恢复成上一页的效果；下一页或许就和上一页不同呢；
+    if (self.defaultTitleColor && !self.webNavigationBarHide) {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:self.defaultTitleColor}];
+    }
+    if (self.defaultTintColor && !self.webNavigationBarHide) {
+        self.navigationController.navigationBar.tintColor = self.defaultTintColor;
+    }
 }
+
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if (self.needDellocH5)
-    {
-        NSMutableArray *arrayM = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
-        [arrayM removeObject:self];
-        [self.navigationController setViewControllers:arrayM animated:NO];
-    }
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)dealloc
 {
-    NSLog(@"dealloc");
     self.webView.navigationDelegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
-    [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(title))];
-    [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(URL))];
+    [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(title)) ];
+    [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(URL)) ];
 }
 
-#pragma mark - UI加载
--(void)zxSetUI
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
-    self.view.backgroundColor = [UIColor colorWithHexString:@"F3F3F3"];
-    //设置导航条
-    [self setupNav];
-    //添加WKWebView；
-    [self.view addSubview:self.webView];
-    //添加进度条
-    [self.view addSubview:self.progressView];
-    
-    self.emptyViewController.view.frame = self.view.frame;
+    return self.statusBarStyle;
+}
 
-    if ([[UIDevice currentDevice] systemVersion].floatValue <9.f){
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }else{
-        [self addConstraint:self.webView toSuperviewItem:self.view];
+//2020.3.10 修改；如果导航条隐藏则置顶显示，如果有导航条则导航条下显示；
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (self.webNavigationBarHide) {
+        self.progressView.frame = CGRectMake(0,0, self.view.bounds.size.width, 2);
+    }else
+    {
+        self.progressView.frame = CGRectMake(0,[self safeAreaLayoutGuideY], self.view.bounds.size.width, 2);
     }
 }
 
-#pragma mark -初始化导航条
-- (void)setupNav
+- (CGFloat)safeAreaLayoutGuideY
 {
+    CGFloat originY = 0;
+    if (@available(iOS 11.0, *)) {
+        UILayoutGuide *layout = self.view.safeAreaLayoutGuide;
+        originY = layout.layoutFrame.origin.y;
+    }else
+    {
+        UILayoutGuide *layout = self.view.layoutMarginsGuide;
+        originY = layout.layoutFrame.origin.y;
+    }
+    return originY;
+}
+#pragma mark - UI加载
+
+#pragma mark -初始化导航条
+- (void)zxwkSetupNav
+{
+    self.defaultWebNavigationBarHide = self.navigationController.navigationBar.isHidden;
+    if (self.webNavigationBarHide)
+    {
+        return;
+    }
     self.navigationItem.title = self.barTitle;
-    //不要用animated，不然有bug
     self.navigationItem.leftBarButtonItems = @[self.backButtonItem,self.negativeSpacerItem];
 }
 
-#pragma mark -初始化WebView,progressView,EmptyVC
+- (void)setNavigationBarTitleColor
+{
+    if (self.webNavigationBarHide)
+    {
+        return;
+    }
+    self.defaultTitleColor = [self.navigationController.navigationBar.titleTextAttributes objectForKey:NSForegroundColorAttributeName];
+    UIColor *tempTitleColor = self.defaultTitleColor;
+    if (!self.defaultTitleColor) {
+        tempTitleColor = [UIColor blackColor];
+    }
+    UIColor *navTitleColor = self.titleColor?self.titleColor:tempTitleColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:navTitleColor}];
+}
+
+- (void)setNavigationBarTintColor
+{
+    if (self.webNavigationBarHide)
+    {
+        return;
+    }
+    //默认色 蓝色；否则看外部是否有设置；
+    self.defaultTintColor = self.navigationController.navigationBar.tintColor;
+    if (self.tintColor && ![self.tintColor isEqual:self.defaultTintColor])
+    {
+        self.navigationController.navigationBar.tintColor = self.tintColor;
+    }
+}
+
+#pragma mark -初始化WebView
 
 - (WKWebView *)webView
 {
     if (!_webView)
     {
-//        // 注入一个cookie用户脚本；
-        NSString *source = [NSString stringWithFormat:@"document.cookie = 'mat = %@'",[UserInfoUDManager getToken]];
-        WKUserScript *cookieScript =  [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
-        [self.userContentContorller addUserScript:cookieScript];
+        WKUserContentController *contentController = [[WKUserContentController alloc] init];
         
         //不能乱设置，不然布局会乱
         WKPreferences *preferences = [[WKPreferences alloc] init];
@@ -186,77 +291,48 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         preferences.javaScriptEnabled = YES;
         
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-        configuration.userContentController = self.userContentContorller;
+        configuration.userContentController = contentController ;
         configuration.preferences = preferences;
         configuration.allowsInlineMediaPlayback = YES;
-        //ios9以上
-        if ([configuration respondsToSelector:@selector(allowsPictureInPictureMediaPlayback)])
+        if (@available(iOS 9.0, *))
         {
             configuration.allowsPictureInPictureMediaPlayback = YES;
-        }
-        if ([configuration respondsToSelector:@selector(allowsAirPlayForMediaPlayback)])
-        {
             configuration.allowsAirPlayForMediaPlayback  = YES;
         }
-        // 音乐自动播放；iOS10
-        if (@available(iOS 10.0,*))
-        {
-            if ([configuration respondsToSelector:@selector(mediaTypesRequiringUserActionForPlayback)])
-            {
-                configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
-            }
-            if ([configuration respondsToSelector:@selector(dataDetectorTypes)])
-            {
-                configuration.dataDetectorTypes = !WKDataDetectorTypeAddress;
-            }
-        }
-        else
-        {
+        if (@available(iOS 10.0, *)) {
+            // 音乐自动播放；iOS10
+            configuration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+            //数据链接
+            configuration.dataDetectorTypes = !WKDataDetectorTypeAddress;
+        } else {
             // ios9
             if ([configuration respondsToSelector:@selector(requiresUserActionForMediaPlayback)])
             {
                 configuration.requiresUserActionForMediaPlayback = NO;
-            }
-            // ios8
-            if ([configuration respondsToSelector:@selector(mediaPlaybackRequiresUserAction)])
-            {
-                configuration.mediaPlaybackRequiresUserAction = NO;
             }
         }
         
         WKWebView *wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, HEIGHT_NAVBAR, LCDW, LCDH-HEIGHT_NAVBAR-HEIGHT_TABBAR_SAFE) configuration:configuration]; //设置frame来调整，用wkWebView.scrollView.contentInset会引起H5底部参考点出错
         wkWebView.backgroundColor = self.view.backgroundColor;
         wkWebView.allowsBackForwardNavigationGestures = YES;
-        wkWebView.allowsLinkPreview = YES;
+        if (@available(iOS 9.0, *))
+        {
+            wkWebView.allowsLinkPreview = YES;
+        }
         wkWebView.navigationDelegate = self;
-        wkWebView.scrollView.backgroundColor = [UIColor whiteColor];
+        wkWebView.UIDelegate = self;
         _webView = wkWebView;
     }
     return _webView;
 }
 
-- (WKUserContentController *)userContentContorller
-{
-    if (!_userContentContorller) {
-        WKUserContentController *userCotent =  [[WKUserContentController alloc] init];
-        _userContentContorller = userCotent;
-    }
-    return _userContentContorller;
-}
-
 - (UIProgressView *)progressView
 {
     if (!_progressView) {
-        _progressView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
-        _progressView.frame = CGRectMake(0,HEIGHT_NAVBAR, self.view.bounds.size.width, 2);
-        _progressView.trackTintColor = [UIColor clearColor];
-        _progressView.progressTintColor = [UIColor colorWithHexString:@"FF5434"];
-
-//        if ([WYUserDefaultManager getUserTargetRoleType] == WYTargetRoleType_seller) {
-//            _progressView.progressTintColor = [UIColor colorWithHexString:@"FF5434"];
-//        }else{
-//            _progressView.progressTintColor = [UIColor colorWithHexString:@"F58F23"];
-//        }
+        UIProgressView *view = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
+        view.trackTintColor = [UIColor clearColor];
+        view.progressTintColor = UIColorFromRGB_HexValue(0xFF5434);
+        _progressView = view;
     }
     return _progressView;
 }
@@ -265,24 +341,20 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 - (ZXEmptyViewController *)emptyViewController
 {
     if (!_emptyViewController) {
-        ZXEmptyViewController *emptyVC =[[ZXEmptyViewController alloc] init];
+        
+        ZXEmptyViewController *emptyVC = [[ZXEmptyViewController alloc] init];
         emptyVC.delegate = self;
+        emptyVC.view.frame = self.view.frame;
         _emptyViewController = emptyVC;
     }
     return _emptyViewController;
 }
 
-#pragma mark - initData初始化数据
 
-//初始化数据
-- (void)zxSetData
-{
-    [self addObserver];
-}
+#pragma mark - 添加KVO观察者
 
-#pragma mark 添加KVO观察者
-
-- (void)addObserver
+// kvo监听，获得页面title和加载进度值;
+- (void)zxWkAddObserver
 {
     [self.webView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:NSKeyValueObservingOptionNew context:NULL];
     [self.webView addObserver:self forKeyPath:NSStringFromSelector(@selector(title)) options:NSKeyValueObservingOptionNew context:NULL];
@@ -293,6 +365,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
+    
     //加载进度值
     if ([keyPath isEqualToString:NSStringFromSelector(@selector(estimatedProgress))] && object == self.webView)
     {
@@ -310,11 +383,9 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
                                      [self.progressView setAlpha:0.0f];
                                  }completion:^(BOOL finished) {
                                      [self.progressView setProgress:0.0f animated:NO];
-                                     [self.navigationController.navigationBar setShadowImage:nil];
                                  }];
             }
         });
-    
     }
     //网页title
     else if ([keyPath isEqualToString:NSStringFromSelector(@selector(title))] && object ==self.webView)
@@ -326,7 +397,6 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
                 self.navigationItem.title = self.webView.title;
             }
         });
-   
     }
     //网页url
     else if ([keyPath isEqualToString:NSStringFromSelector(@selector(URL))] && object ==self.webView)
@@ -334,23 +404,27 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (self.webView.URL) {
-                [self.navigationUrlsMArray addObject:self.webView.URL];
+                [self.urlArrayM addObject:self.webView.URL];
             }
         });
-//        NSLog(@">>%@",self.webView.URL);
-//        NSLog(@"<<%@",self.navigationUrlsMArray);
+ 
+        NSLog(@">>%@",self.webView.URL);
+        NSLog(@"<<%@",self.urlArrayM);
     }
 }
 
 
-- (NSMutableArray *)navigationUrlsMArray
+#pragma mark - initData初始化数据
+
+- (NSMutableArray *)urlArrayM
 {
-    if (!_navigationUrlsMArray)
+    if (!_urlArrayM)
     {
-        _navigationUrlsMArray = [NSMutableArray array];
+        _urlArrayM = [NSMutableArray array];
     }
-    return _navigationUrlsMArray;
+    return _urlArrayM;
 }
+
 
 #pragma mark - 加载各种不同数据;响应不同加载：真正请求数据
 
@@ -380,30 +454,29 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 
 - (void)loadRequestWebPageWithURLString
 {
-    NSURL *url = [self getCurrentWebPageNewURL];
+    NSString *urlString = self.URLString;
+    NSURL *url = nil;
+    url = [NSURL URLWithString:urlString];
+    if (!url) {
+        urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+        url = [NSURL URLWithString:urlString];
+    }
     NSLog(@"url = %@",[url absoluteString]);
-
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    
-    // 即使请求头有cookie-mat，请求response服务器反应也没有cookie-mat？
-//    NSString *cookie = [[ZXHTTPCookieManager sharedInstance]getCurrentRequestCookieHeaderForURL:url];
-//    [request setValue:cookie forHTTPHeaderField:@"Cookie"];
-//    [self.webView loadRequest:request];
-    
+    [self.webView loadRequest:request];
+
+    /*
     if (@available(iOS 11.0, *))
     {
         WKWebsiteDataStore *websiteDataStore = self.webView.configuration.websiteDataStore;
         WKHTTPCookieStore *cookieStore  = websiteDataStore.httpCookieStore;
         //这个cookie一直是最新的
         NSHTTPCookie *cookie = [[ZXHTTPCookieManager sharedInstance]getHTTPCookieFromNSHTTPCookieStorageWithCookieName:@"mat"];
-//         NSLog(@"%@",cookie);
         if (!cookie)
         {
             [self.webView loadRequest:request];
             return;
         }
-//        [MBProgressHUD zx_showSuccess:[NSString stringWithFormat:@"%@",@(self.navigationController.viewControllers.count)] toView:nil];
-
  
 //      3.29 修改第二个wkWebView无法加载请求的bug；
 //        当已经加载过WKWebViewController，也存在容器中；再添加第二个WKWebViewController到容器中，会导致WKHTTPCookieStore的方法失效，且所有block都无法返回；第二个无法加载请求的bug；
@@ -422,7 +495,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [_webView loadRequest:request];
+                    [self.webView loadRequest:request];
 
                 });
             }
@@ -441,11 +514,8 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         else
         {
             [cookieStore setCookie:cookie completionHandler:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-
-                    [self.webView loadRequest:request];
-                });
-
+                
+                [self.webView loadRequest:request];
             }];
         }
     }
@@ -456,35 +526,8 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         [request setValue:cookie forHTTPHeaderField:@"Cookie"];
         [self.webView loadRequest:request];
     }
+    */
 }
-
-- (NSURL *)getCurrentWebPageNewURL
-{
-    NSURL *url = nil;
-    
-    // 如果是自己公司域名
-    if ([self.webURLString hasPrefix:[WYUserDefaultManager getkAPP_H5URL]])
-    {
-        if ([self.webURLString rangeOfString:@"{token}"].location != NSNotFound)
-        {
-            NSString *token = ISLOGIN?[UserInfoUDManager getToken]:@"";
-            self.webURLString = [self.webURLString stringByReplacingOccurrencesOfString:@"{token}" withString:token];
-        }
-        url = [NSURL zhURLWithString:self.webURLString queryItemValue:[BaseHttpAPI getCurrentAppVersion] forKey:@"ttid"];
-    }
-    // 如果是平安域名-
-    else if ([self.webURLString hasPrefix:@"https://ncfb-stg3.pingan.com.cn"] ||[self.webURLString hasPrefix:@"https://cfb.pingan.com"])
-    {
-        url = [NSURL URLWithString:self.webURLString];
-    }
-    else
-    {
-        NSString * string= [self.webURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        url = [NSURL URLWithString:string];
-    }
-    return url;
-}
-
 
 
 //加载本地文件资源：- (void)loadData:(NSData *)data MIMEType:(NSString *)MIMEType textEncodingName:(NSString *)textEncodingName baseURL:(NSURL *)baseURL;
@@ -493,10 +536,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:ext];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSData *data = [NSData dataWithContentsOfFile:path];
-    if (Device_SYSTEMVERSION_IOS9_OR_LATER)
-    {
-        [self.webView loadData:data MIMEType:mimeType characterEncodingName:@"UTF-8" baseURL:url];
-    }
+    [self.webView loadData:data MIMEType:mimeType characterEncodingName:@"UTF-8" baseURL:url];
 }
 
 
@@ -509,10 +549,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
         NSURL *url = [NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]];
         
-        if (Device_SYSTEMVERSION_IOS9_OR_LATER)
-        {
-            [self.webView loadData:data MIMEType:@"text/plain" characterEncodingName:@"UTF-8" baseURL:url];
-        }
+        [self.webView loadData:data MIMEType:@"text/plain" characterEncodingName:@"UTF-8" baseURL:url];
     }
 }
 
@@ -524,7 +561,8 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     //获得html内容
     NSString *html = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     //加载js
-   return  [self.webView loadHTMLString:html baseURL:[[NSBundle mainBundle] bundleURL]];
+     [self.webView loadHTMLString:html baseURL:[[NSBundle mainBundle] bundleURL]];
+    return nil;
 }
 
 //没有验证过；
@@ -538,75 +576,32 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 #pragma mark WKNavigationDelegate
 
 
-// 1 在发送请求之前，决定是否请求
+// 1 在发送请求之前，决定是否请求; （0）用户触发点击了一个链接；超链接;跳转其它app的schem。（1）用户提交了一个表单；（2）用户触击“back-forward”列表的item前进或back；（3）用户触击重新加载； （4）用户重复提交表单；（-1）默认加载页面，包括空白页；执行一个新的url地址的时候. 注意：当前webView必须在当前栈区顶部展示的才能渲染回调；即所有action只有在viewWillAppear的时候执行才有效；
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    NSLog(@"1.在发送请求之前，决定是否请求跳转:%@",navigationAction.request);
-    NSURLRequest *request = navigationAction.request;
-//    NSLog(@"wkWebViewAllHTTPHeaderFieldes = %@",request.allHTTPHeaderFields);
-    // 阿里支付加载
-    if ([self payWithAliPayWithRequest:request])
-    {
-        decisionHandler(WKNavigationActionPolicyCancel);
-        return;
-    }
-    // 超链接
-    else if ([self decidePolicyForNavigationActionWithNotHttpRequest:request])
-    {
+    NSLog(@"1.在发送请求之前，决定是否请求跳转:%@",navigationAction);
+//    #ifdef DEBUG
+//    [MBProgressHUD zx_showError:[NSString stringWithFormat:@"1.在发送请求之前，决定是否请求跳转,navigationType=%@",@(navigationAction.navigationType)] toView:self.view];
+//     #else
+//     #endif
+    // 对于跨域，跳转别的应用如苹果系统浏览器safiar，需要手动跳转，
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+        }
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
     // itunes跳转
-    else if ([self decidePolicyForNavigationActionWithGoItunesRequest:request])
+    else if ([self decidePolicyForNavigationActionWithGoItunesRequest:navigationAction.request.URL])
     {
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
-    
     decisionHandler(WKNavigationActionPolicyAllow);
-}
-
-// 处理超链接
-- (BOOL)decidePolicyForNavigationActionWithNotHttpRequest:(NSURLRequest *)request
-{
-    if ([[UIApplication sharedApplication] canOpenURL:request.URL] && ![request.URL.scheme isEqualToString:@"http"]&& ![request.URL.scheme isEqualToString:@"https"])
-    {
-        if ([[UIApplication sharedApplication]respondsToSelector:@selector(openURL:options:completionHandler:)])
-        {
-            [[UIApplication sharedApplication] openURL:request.URL options:@{} completionHandler:nil];
-        }
-        else
-        {
-            [[UIApplication sharedApplication] openURL:request.URL];
-        }
-        return YES;
-    }
-    return NO;
-}
-//  itunes跳转
-- (BOOL)decidePolicyForNavigationActionWithGoItunesRequest:(NSURLRequest *)request
-{
-    NSString *urlString = [[request URL] absoluteString];
-    urlString = [urlString stringByRemovingPercentEncoding];//解析url
-    
-    if ([urlString hasPrefix:@"https://itunes.apple.com"])
-    {
-        if ([[UIApplication sharedApplication]respondsToSelector:@selector(openURL:options:completionHandler:)])
-        {
-            [[UIApplication sharedApplication] openURL:request.URL options:@{} completionHandler:^(BOOL success) {
-            }];
-        }
-        else
-        {
-            [[UIApplication sharedApplication] openURL:request.URL];
-        }
-        if ([self.webView canGoBack])
-        {   // 返回时空白页问题
-            [self.webView goBack];
-        }
-        return YES;
-    }
-    return NO;
 }
 
 // 2 页面开始加载时调用
@@ -617,16 +612,25 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 }
 
 // 3 在收到服务器响应后，决定导航响应策略是否加载； 即使请求头有cookie，响应为何无cookie?
+/// 2020.3.19 如果请求返回的是403、404时，webView不认为这是请求失败，不会调用失败的代理方法。进而显示会出问题，必须在此拦截处理掉；
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
 {
     [self updateNavigationItems];
     NSLog(@"3.在收到响应后，决定是否加载");
     //能读取到，但是没有存入NSHTTPCookieStorage
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)navigationResponse.response;
-//    NSString *cookieString =  [[ZXHTTPCookieManager sharedInstance]cookieStringWithResponse:response];
     [[ZXHTTPCookieManager sharedInstance]handleResponseHeaderFields:response.allHeaderFields forURL:response.URL];
 
-    decisionHandler(WKNavigationResponsePolicyAllow);
+//    #ifdef DEBUG
+//    [MBProgressHUD zx_showError:[NSString stringWithFormat:@"3.在收到服务器响应后statusCode =%@",@(response.statusCode)] toView:nil];
+//     #else
+//     #endif
+   //处理WKWebView返回403、404 ； 如果404返回，继续会空白页；
+    if (response.statusCode == 200) {
+        decisionHandler (WKNavigationResponsePolicyAllow);
+    }else {
+        decisionHandler(WKNavigationResponsePolicyCancel);
+    }
 }
 
 // 4 当内容开始返回时调用
@@ -639,31 +643,27 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     NSLog(@"5.页面加载完成之后调用");
-//    NSLog(@"userScript =%@",webView.configuration.userContentController.userScripts);
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self updateNavigationItems];
-    [self.navigationUrlsMArray removeAllObjects];
+    [self.urlArrayM removeAllObjects];
     if ([self.shareButtonItem.title isEqualToString:SixSpaces]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.shareButtonItem.enabled = YES; //H5调用setRight方法，偶尔会在didFinishNavigation之后执行（桥异步原因）,导致分享刚出来，又被H5重置rightBarButtonItems;eg：我的收入页面,体验不太好，暂时性解决方案！
             self.shareButtonItem.title = NSLocalizedString(@"分享", nil);
         });
     }
-    [self.emptyViewController hideEmptyViewInController:self hasLocalData:YES];
-    
-//    // 真机连数据线有； 不连数据线没有；该方法无法获取到 httponly 的cookie
-//    [webView evaluateJavaScript:[NSString stringWithFormat:@"document.cookie"] completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-//        if (response != 0) {
-//            NSLog(@"\n\n\n\n\n\n document.cookie=%@,error=%@",response,error);
-//        }
-//    }];
+    [self.emptyViewController hideEmptyViewInController:self];
+
 }
 
-// 6 页面加载失败时调用
+// 6 页面加载失败时调用;/2020.3.19 如果请求返回的是403、404时，webView不认为这是请求失败，不会调用此代理方法。进而显示出问题；
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     NSLog(@"6.页面加载失败时调用：%@",error);
-  
+//    #ifdef DEBUG
+//    [MBProgressHUD zx_showError:[NSString stringWithFormat:@"页面加载失败时调用：%@",error] toView:nil];
+//    #else
+//    #endif
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if ([error code] == NSURLErrorCancelled)
     {
@@ -676,8 +676,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         return;
     }
     NSURL *url = [NSURL URLWithString:[error.userInfo objectForKey:NSURLErrorFailingURLStringErrorKey]];
-    NSURL *appUrl = [NSURL URLWithString:[WYUserDefaultManager getkAPP_H5URL]];
-    if([url.host isEqualToString:appUrl.host] ||([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"]))
+    if([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"])
     {
         [self.emptyViewController addEmptyViewInController:self hasLocalData:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
         return;
@@ -702,11 +701,6 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler
 {
     NSLog(@"需要证书认证");
-//    if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
-//    {
-//        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-//        completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
-//    }
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
     {
         if ([challenge previousFailureCount] == 0)
@@ -732,7 +726,7 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     NSLog(@"web内容处理中断时会触发");
 }
 
-//#pragma mark - -----------UIDelegate----------
+#pragma mark - -----------UIDelegate----------
 //// 可以指定配置对象、导航动作对象、window特性。如果没有实现这个方法，不会加载链接，如果返回的是原webview会崩溃。
 //-(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
 //{
@@ -743,121 +737,127 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 //    return nil;
 //}
 //// webview关闭时回调
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
 //- (void)webViewDidClose:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0);
 //{
 //}
-//#endif
 
-
-#pragma mark - alipay支付
-
-- (BOOL)payWithAliPayWithRequest:(NSURLRequest *)request
+///显示一个按钮。点击后调用completionHandler回调.
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
-    NSString *appScheme = @"yicaibao";
-    WS(weakSelf);
-    BOOL isIntercepted = [[AlipaySDK defaultService] payInterceptorWithUrl:[request.URL absoluteString] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-        NSLog(@"result = %@",resultDic);
-        NSString *resultCode = [resultDic objectForKey:@"resultCode"];
-        [self paymentAlipayResult:resultCode];
-        if ([resultCode isEqualToString:@"9000"])
-        {
-            // returnUrl 代表 第三方App需要跳转的成功页URL
-            NSString* urlStr = resultDic[@"returnUrl"];
-            if (urlStr.length ==0)
-            {
-                [self.webView goBack];
-            }
-            else
-            {
-                [weakSelf requestWithUrlStr:urlStr];
-            }
-        }
-    }];
-  
-    return isIntercepted;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+/// 显示两个按钮，通过completionHandler回调判断用户点击的是确定还是取消按钮
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler
+{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          completionHandler(YES);
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+          completionHandler(NO);
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+/// 显示一个带有输入框和一个确定按钮的，通过completionHandler回调用户输入的内容
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {}];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         completionHandler(alertController.textFields.lastObject.text);
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
-//支付宝支付结果反馈,可以不展示;失败时不做任何处理
-- (void) paymentAlipayResult:(NSString *)code{
-    switch (code.integerValue) {
-        case 9000:
-        {
-            [MBProgressHUD zx_showError:@"恭喜您支付成功" toView:self.view];
-        }
-            break;
-        case 8000:
-            [MBProgressHUD zx_showError:@"正在处理支付结果，稍后注意查看结果" toView:self.view];
-            break;
-        case 4000:
-            [MBProgressHUD zx_showError:@"支付失败，请重新支付" toView:self.view];
-            break;
-        case 5000:
-            [MBProgressHUD zx_showError:@"您已请求支付，无需重复操作" toView:self.view];
-            break;
-        case 6001:
-            [MBProgressHUD zx_showError:@"您已取消支付" toView:self.view];
-            break;
-        case 6002:
-            [MBProgressHUD zx_showError:@"网络好像有点问题噢，请检查您的网络设置" toView:self.view];
-            break;
-            // 这个比较模糊，不处理
-        case 6004:
-            //  [MBProgressHUD zx_showError:@"正在处理支付结果，稍后注意查看结果" toView:self.view];
-            break;
-        default:
-            [MBProgressHUD zx_showError:@"支付失败" toView:self.view];
-            break;
-    }
-}
-
-#pragma mark - 重新加载某个地址
-- (void)requestWithUrlStr:(NSString*)urlStr
+#pragma mark - 实例方法
+// 处理超链接；本地h5文件加载会出问题
+- (BOOL)decidePolicyForNavigationActionWithNotHttpRequest:(NSURLRequest *)request
 {
-    if (urlStr.length > 0)
+    if ([[UIApplication sharedApplication] canOpenURL:request.URL] && ![request.URL.scheme isEqualToString:@"http"]&& ![request.URL.scheme isEqualToString:@"https"])
     {
-        NSURLRequest *webRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
-        [self.webView loadRequest:webRequest];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:request.URL options:@{} completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:request.URL];
+        }
+        return YES;
     }
+    return NO;
+}
+//  itunes跳转
+- (BOOL)decidePolicyForNavigationActionWithGoItunesRequest:(NSURL *)requestURL
+{
+    NSString *urlString = requestURL.absoluteString;
+    urlString = [urlString stringByRemovingPercentEncoding];//解析url
+    
+    if ([urlString hasPrefix:@"https://itunes.apple.com"])
+    {
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:requestURL options:@{} completionHandler:^(BOOL success) {
+            }];
+        } else {
+            [[UIApplication sharedApplication] openURL:requestURL];
+        }
+        if ([self.webView canGoBack])
+        {   // 返回时空白页问题
+            [self.webView goBack];
+        }
+        return YES;
+    }
+    return NO;
 }
 
-
+//不要用animated，不然有bug；
+- (void)updateNavigationItems
+{
+    if ([self.webView canGoBack])
+    {
+        NSArray *items = @[self.backButtonItem,self.closeButtonItem,self.negativeSpacerItem];
+        [self.navigationItem setLeftBarButtonItems:items animated:NO];
+    }
+    else
+    {
+        if (self.navigationItem.leftBarButtonItems.count==3)
+        {
+            NSArray *items = @[self.backButtonItem,self.negativeSpacerItem];
+            [self.navigationItem setLeftBarButtonItems:items animated:NO];
+        }
+    }
+}
 
 #pragma mark - 导航按钮
 
 - (UIBarButtonItem*)backButtonItem{
     if (!_backButtonItem) {
         UIImage* backItemImage = [[UIImage imageNamed:@"back_imageTitle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        //        UIImage* backItemHlImage = [[UIImage imageNamed:@"back_imageTitle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        
         UIButton* backButton = [[UIButton alloc] init];
         [backButton setTitle:NSLocalizedString(@"返回", nil)  forState:UIControlStateNormal];
         [backButton setTitleColor:self.navigationController.navigationBar.tintColor forState:UIControlStateNormal];
-        [backButton setTitleColor:[self.navigationController.navigationBar.tintColor colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
+        [backButton setTitleColor:[self.navigationController.navigationBar.tintColor colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
         [backButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [backButton setImage:backItemImage forState:UIControlStateNormal];
-        //        [backButton setImage:backItemHlImage forState:UIControlStateHighlighted];
-        //        [backButton sizeToFit];
+        [backButton setImage:backItemImage forState:UIControlStateHighlighted];
         backButton.frame = CGRectMake(0, 0, 50, 44);
-//        [backButton zh_centerHorizontalImageAndTitleWithTheirSpace:10.f];
-        //              [backButton setBackgroundColor:[UIColor redColor]];
-        [backButton addTarget:self action:@selector(customBackItemAction:) forControlEvents:UIControlEventTouchUpInside];
         backButton.imageEdgeInsets= UIEdgeInsetsMake(0, 0, 0,floorf(10/2));
         backButton.titleEdgeInsets= UIEdgeInsetsMake(0, floorf(10/2), 0, 0);
-//        调整image图标-为了和系统返回统一
-//        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        //              [backButton setBackgroundColor:[UIColor redColor]];
+        [backButton addTarget:self action:@selector(customBackItemAction:) forControlEvents:UIControlEventTouchUpInside];
         _backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     }
     return _backButtonItem;
 }
 
 
-
-
 - (UIBarButtonItem*)closeButtonItem{
     if (!_closeButtonItem) {
-        
         UIButton* backButton = [[UIButton alloc] init];
         [backButton setTitle:NSLocalizedString(@"关闭", nil) forState:UIControlStateNormal];
         [backButton setTitleColor:self.navigationController.navigationBar.tintColor forState:UIControlStateNormal];
@@ -871,27 +871,6 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     return _closeButtonItem;
 }
 
-
-
-//不要用animated，不然有bug；
-- (void)updateNavigationItems
-{
-    if ([self.webView canGoBack])
-    {
-        NSArray *items = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.closeButtonItem,self.negativeSpacerItem]];
-        [self.navigationItem setLeftBarButtonItems:items animated:NO];
-    }
-    else
-    {
-        NSInteger numItems = Device_SYSTEMVERSION_Greater_THAN_OR_EQUAL_TO(11)?3:3;
-        if (self.navigationItem.leftBarButtonItems.count==numItems)
-        {
-            NSArray *items = [self zx_navigationItem_leftOrRightItemReducedSpaceToMagin:-7 withItems:@[self.backButtonItem,self.negativeSpacerItem]];
-            [self.navigationItem setLeftBarButtonItems:items animated:NO];
-        }
-    }
-    
-}
 //在iOS11，多增加一个 view
 - (UIBarButtonItem *)negativeSpacerItem
 {
@@ -917,43 +896,31 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     }
     else
     {
-        [self closeButtonItemAction:nil];
+        [self popWindow];
     }
 }
+
 
 - (void)closeButtonItemAction:(id)sender
 {
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-    if ([self.webView isLoading])
-    {
-        [self.webView stopLoading];
+    [self popWindow];
+}
+
+//分享
+-(void)shareAction:(id)sender
+{
+    /*
+    // 默认图片地址
+    NSString *picStr = @"http://public-read-bkt-oss.oss-cn-hangzhou.aliyuncs.com/app/icon/logo_zj.png";
+    NSString *link =nil;
+    if (self.urlArrayM.count>0) {
+        NSURL* url = self.urlArrayM.firstObject;
+        link =url.absoluteString;
+    }else{
+        link = self.webView.URL.absoluteString;
     }
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - 请求失败／列表为空时候的代理请求
-
-- (void)zxEmptyViewUpdateAction
-{
-    NSURL* url = self.navigationUrlsMArray.firstObject;
-    [self requestWithUrlStr:url.absoluteString];
-}
-
-
-#pragma mark -  获取自定义当前版本（后台约定）
-- (NSString *)getCurrentAppVersion
-{
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    NSString *ttid = [NSString stringWithFormat:@"%@_ysb@iphone",app_Version];
-    return ttid;
-}
-
-
-# pragma mark - 刷新当前页面数据
-- (void)reloadData
-{
-    [self.webView reload];
+    [WYShareManager shareInVC:self withImage:picStr withTitle:self.navigationItem.title withContent:@"用了义采宝，生意就是好!" withUrl:link];
+     */
 }
 
 
@@ -967,21 +934,20 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         return;
     }
     //音乐；
-//  self.webURLString = @"http://183280454.scene.eqxiu.com/s/3a1oDSh8?eqrcode=1&from=groupmessage&isappinstalled=0";
-//    self.webURLString = @"http://mp.weixin.qq.com/s/Q1pVsi3w9b98k8gm_WwbjQ";
-    self.webURLString = urlString;
-//    self.webURLString = @"http://taobao.com";
-//    self.webURLString = @"https://faertu.m.tmall.com/shop/shop_auction_search.htm?spm=a222m.7628550.1998338745.1&sort=default";
+//  self.URLString = @"http://183280454.scene.eqxiu.com/s/3a1oDSh8?eqrcode=1&from=groupmessage&isappinstalled=0";
+//    self.URLString = @"http://mp.weixin.qq.com/s/Q1pVsi3w9b98k8gm_WwbjQ";
+    self.URLString = urlString;
+//    self.URLString = @"http://taobao.com";
+//    self.URLString = @"https://faertu.m.tmall.com/shop/shop_auction_search.htm?spm=a222m.7628550.1998338745.1&sort=default";
 }
 
-- (void)setWebURLString:(NSString *)webURLString
+- (void)setWebUrl:(NSString *)webUrl
 {
-    _webURLString = webURLString;
+    self.URLString = webUrl;
 }
-
 #pragma mark - 加载本地网页
 
-- (void)loadWebHTMLSringWithResource:(NSString *)name
+- (void)loadWebHTMLSringWithFileResource:(NSString *)name
 {
     self.localFileName = name;
     self.webLoadType = WebLoadType_LocalHTMLFile;
@@ -1017,12 +983,12 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 {
     UIPreviewAction *itemShare = [UIPreviewAction actionWithTitle:NSLocalizedString(@"分享", nil) style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"previewActionShare" object:nil userInfo:@{@"title":self.navigationItem.title,@"url":self.webURLString}];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"previewActionShare" object:nil userInfo:@{@"title":self.navigationItem.title,@"url":self.URLString}];
     }];
     return @[itemShare];
 }
 
-#pragma constraint
+#pragma mark - constraint
 
 - (void)addConstraint:(UIView *)item toSuperviewItem:(UIView *)superView
 {
@@ -1048,6 +1014,88 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         [NSLayoutConstraint activateConstraints:@[constraint_top,constraint_bottom,constraint_leading,constraint_centerX]];
     }
 }
+
+#pragma mark - 请求失败／列表为空时候的代理请求
+
+- (void)zxEmptyViewUpdateAction
+{
+    NSURL* url = self.urlArrayM.firstObject;
+    [self reloadRequestWithUrlStr:url.absoluteString];
+}
+
+#pragma mark -重新加载某个地址
+
+- (void)reloadRequestWithUrlStr:(NSString*)urlStr
+{
+    if (urlStr.length > 0)
+    {
+        NSURLRequest *webRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
+        [self.webView loadRequest:webRequest];
+    }
+}
+
+# pragma mark - 关闭当前页面
+- (void)popWindow
+{
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    if ([self.webView isLoading])
+    {
+        [self.webView stopLoading];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+# pragma mark - 刷新当前页面数据
+- (nullable WKNavigation *)reloadData
+{
+   return [self.webView reload];
+}
+
+- (nullable WKNavigation *)reloadFromOrigin
+{
+    return [self.webView reloadFromOrigin];
+}
+
+- (void)exitWebViewApp
+{
+    [self popWindow];
+}
+
+- (void)setTitleColor:(UIColor *)color
+{
+    _titleColor = color;
+}
+- (void)setTitleColor:(UIColor *)color reset:(BOOL)reset
+{
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:color}];
+}
+
+- (void)setTintColor:(UIColor *)color
+{
+    _tintColor = color;
+}
+
+
+/// 根据用户界面风格自动选择浅色或深色的内容，只有在iOS13且有系统导航条的时候有效；
+- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle
+{
+//    self.defaultStatusBarStyle = [self preferredStatusBarStyle];
+
+    statusBarStyle = statusBarStyle;
+}
+
+- (UIStatusBarStyle)statusBarStyle
+{
+    if (@available(iOS 13.0, *)) {
+        if (_statusBarStyle == UIStatusBarStyleDefault && self.webNavigationBarHide) {
+            _statusBarStyle = UIStatusBarStyleDarkContent;
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+    return _statusBarStyle;
+}
+
 /*
  #pragma mark - Navigation
  

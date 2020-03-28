@@ -522,14 +522,14 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
         if ([resultDic[@"isProcessUrlPay"] boolValue])
         {
             NSString *resultCode = [resultDic objectForKey:@"resultCode"];
-            [self paymentAlipayResult:resultCode];
             if ([resultCode isEqualToString:@"9000"])
             {
+                [MBProgressHUD zx_showSuccess:@"恭喜您支付成功" toView:self.view];
                 // returnUrl 代表 第三方App需要跳转的成功页URL
                 NSString* urlStr = resultDic[@"returnUrl"];
                 if (urlStr.length ==0)
                 {
-                    [self.webView goBack];
+                    [weakSelf.webView goBack];
                 }
                 else
                 {
@@ -542,12 +542,12 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 }
 
 
-//支付宝支付结果反馈,可以不展示，失败时不做任何处理
+//支付宝支付结果反馈,可以不展示，失败时不做任何处理--不需要了，2019.12.09弃用
 - (void) paymentAlipayResult:(NSString *)code{
     switch (code.integerValue) {
         case 9000:
         {
-            [MBProgressHUD zx_showError:@"恭喜您支付成功" toView:self.view];
+            [MBProgressHUD zx_showSuccess:@"恭喜您支付成功" toView:self.view];
         }
             break;
         case 8000:
@@ -931,19 +931,13 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
 {
     [[WYUtility dataUtil]routerWithName:[dic objectForKey:@"url"] withSoureController:self];
 }
-//从堆栈中移除并销毁当前H5页面
+//7.从堆栈中移除并销毁当前H5页面
 -(void)dellocH5
 {
     self.needDellocH5 = YES;
-//    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
-//    [arrayM removeObject:self];
-//    [self.navigationController setViewControllers:arrayM animated:NO];
-}
-//7.resume事件
--(void)resume
-{
-    NSString *str = [NSString stringWithFormat:@"(function () {var event = new Event('resume');document.dispatchEvent(event);})()"];
-    [self.webView stringByEvaluatingJavaScriptFromString:str];
+    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
+    [arrayM removeObject:self];
+    [self.navigationController setViewControllers:arrayM animated:NO];
 }
 
 // 8.更新产品列表
@@ -964,7 +958,12 @@ typedef NS_ENUM(NSInteger, WebLoadType) {
     responseCallback(jsonString);
 }
 
-
+///.resume事件
+-(void)resume
+{
+    NSString *str = [NSString stringWithFormat:@"(function () {var event = new Event('resume');document.dispatchEvent(event);})()"];
+    [self.webView stringByEvaluatingJavaScriptFromString:str];
+}
 
 #pragma mark - 请求失败／列表为空时候的代理请求
 

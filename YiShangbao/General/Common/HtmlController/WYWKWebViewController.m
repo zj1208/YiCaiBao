@@ -24,13 +24,13 @@
 @property(nonatomic, copy) NSArray *picArray; //大图预览数组
 @property(nonatomic, copy) NSArray *imagesProcutsArray; //大图+产品预览数组
 
+@property (nonatomic, assign) BOOL needDellocH5; //h5跳原生后，从堆栈中移除
+
 @end
 
 @implementation WYWKWebViewController
 
 - (void)viewDidLoad {
-    //设置userAgent-必须第一
-    [self userAgent];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -44,13 +44,42 @@
     [self addWebViewJavascriptBridge];
 }
 
-////! 登录方法
-//- (void)login:(id)sender {
-//    
-//    [self.webView evaluateJavaScript:@"ocToJs('loginSucceed', 'oc_tokenString')" completionHandler:^(id response, NSError *error) {
-//        
-//    }];
-//}
+- (void)setData
+{
+    _rightBtnJsDic = [NSMutableDictionary new];
+    _lRightBtnDic = [NSMutableDictionary new];
+    _rRightBtnDic = [NSMutableDictionary new];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateInfo:) name:Noti_ProductManager_Edit_goBackUpdate object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginIn:) name:kNotificationUserLoginIn object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(managerCookiesChanged:) name:NSHTTPCookieManagerCookiesChangedNotification object:nil];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.presentedViewController && ([self.presentedViewController isKindOfClass:[UIImagePickerController class]] || [self.presentedViewController isKindOfClass:[UIDocumentPickerViewController class]]))
+    {//h5调用系统相册、相机、文件系统后不resume
+
+    }else{
+        [self resume];//h5内路由跳转原生后，返回回来的时候，通知H5刷新页面
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (self.needDellocH5)
+    {
+        NSMutableArray *arrayM = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
+        [arrayM removeObject:self];
+        [self.navigationController setViewControllers:arrayM animated:NO];
+    }
+}
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
@@ -68,30 +97,30 @@
 
 -(void)userAgent
 {
-    UIWebView *web = [[UIWebView alloc] initWithFrame:CGRectZero];
-    NSString *oldAgent = [web stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    NSString *newAgent = nil;
-    // microants-xx-版本号
-    NSString *customString = [NSString stringWithFormat:@"microants-%ld-%@",(long)[WYUserDefaultManager getUserTargetRoleType],APP_Version];
-    NSRange range = [oldAgent rangeOfString:@"microants"];
-    if (range.location != NSNotFound)
-    {
-        NSArray *array = [oldAgent componentsSeparatedByString:@"microants"];
-        newAgent = [NSString stringWithFormat:@"%@%@",array[0],customString];
-    }
-    else
-    {
-        newAgent = [oldAgent stringByAppendingString:customString];
-    }
-    if (@available(iOS 9.0,*))
-    {
-        self.webView.customUserAgent = newAgent;
-    }
-    else
-    {
-        NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
-        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
-    }
+//    UIWebView *web = [[UIWebView alloc] initWithFrame:CGRectZero];
+//    NSString *oldAgent = [web stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+//    NSString *newAgent = nil;
+//    // microants-xx-版本号
+//    NSString *customString = [NSString stringWithFormat:@"microants-%ld-%@",(long)[WYUserDefaultManager getUserTargetRoleType],APP_Version];
+//    NSRange range = [oldAgent rangeOfString:@"microants"];
+//    if (range.location != NSNotFound)
+//    {
+//        NSArray *array = [oldAgent componentsSeparatedByString:@"microants"];
+//        newAgent = [NSString stringWithFormat:@"%@%@",array[0],customString];
+//    }
+//    else
+//    {
+//        newAgent = [oldAgent stringByAppendingString:customString];
+//    }
+//    if (@available(iOS 9.0,*))
+//    {
+//        self.webView.customUserAgent = newAgent;
+//    }
+//    else
+//    {
+//        NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
+//        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+//    }
 }
 
 #pragma mark - UI加载
@@ -101,14 +130,14 @@
     
     NSRange rangeCFB = [self.webURLString rangeOfString:@"pingan.com"];
     NSRange rangeDuiBa = [self.webURLString rangeOfString:@"duiba.com.cn"];
-    // 屏蔽兑吧域名，兑吧界面不展示分享
-    if(rangeDuiBa.location == NSNotFound && rangeCFB.location == NSNotFound)
-    {
-        UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:SixSpaces style:UIBarButtonItemStylePlain target:self action:@selector(shareAction:)];//默认6个空格占位，空格太少按钮宽度过小，title切换至“分享”过渡效果不太好
-        self.shareButtonItem = rightBarButtonItem;
-        self.shareButtonItem.enabled = NO;
-        [self.navigationItem setRightBarButtonItems:@[self.shareButtonItem] animated:NO];
-    }
+//    // 屏蔽兑吧域名，兑吧界面不展示分享
+//    if(rangeDuiBa.location == NSNotFound && rangeCFB.location == NSNotFound)
+//    {
+//        UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:SixSpaces style:UIBarButtonItemStylePlain target:self action:@selector(shareAction:)];//默认6个空格占位，空格太少按钮宽度过小，title切换至“分享”过渡效果不太好
+//        self.shareButtonItem = rightBarButtonItem;
+//        self.shareButtonItem.enabled = NO;
+//        [self.navigationItem setRightBarButtonItems:@[self.shareButtonItem] animated:NO];
+//    }
     
     if ([WYUserDefaultManager getUserTargetRoleType] == WYTargetRoleType_seller) {
         self.progressView.progressTintColor = [UIColor colorWithHexString:@"FF5434"];
@@ -135,31 +164,19 @@
 //分享
 -(void)shareAction:(id)sender
 {
-    // 默认图片地址
-    NSString *picStr = @"http://public-read-bkt-oss.oss-cn-hangzhou.aliyuncs.com/app/icon/logo_zj.png";
-    NSString *link =nil;
-    if (self.navigationUrlsMArray.count>0) {
-        NSURL* url = self.navigationUrlsMArray.firstObject;
-        link =url.absoluteString;
-    }else{
-        link = self.webView.URL.absoluteString;
-    }
-    [WYShareManager shareInVC:self withImage:picStr withTitle:self.navigationItem.title withContent:@"用了义采宝，生意就是好!" withUrl:link];
+//    // 默认图片地址
+//    NSString *picStr = @"http://public-read-bkt-oss.oss-cn-hangzhou.aliyuncs.com/app/icon/logo_zj.png";
+//    NSString *link =nil;
+//    if (self.urlArrayM.count>0) {
+//        NSURL* url = self.urlArrayM.firstObject;
+//        link =url.absoluteString;
+//    }else{
+//        link = self.webView.URL.absoluteString;
+//    }
+//    [WYShareManager shareInVC:self withImage:picStr withTitle:self.navigationItem.title withContent:@"用了义采宝，生意就是好!" withUrl:link];
 }
 
 
-- (void)setData
-{
-    _rightBtnJsDic = [NSMutableDictionary new];
-    _lRightBtnDic = [NSMutableDictionary new];
-    _rRightBtnDic = [NSMutableDictionary new];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateInfo:) name:Noti_ProductManager_Edit_goBackUpdate object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginIn:) name:kNotificationUserLoginIn object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(managerCookiesChanged:) name:NSHTTPCookieManagerCookiesChangedNotification object:nil];
-}
 
 
 - (NSArray *)picArray
@@ -430,9 +447,9 @@
 -(void)jsDellocH5
 {
     self.needDellocH5 = YES; //3.1.0版本后开始使用该方法标记再移除,之前版本使用下方法，但下方法不能H5加载过程中进行跳转销毁
-//    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
-//    [arrayM removeObject:self];
-//    [self.navigationController setViewControllers:arrayM animated:NO];
+    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
+    [arrayM removeObject:self];
+    [self.navigationController setViewControllers:arrayM animated:NO];
 }
 
 // 8.更新产品列表
@@ -453,4 +470,13 @@
     responseCallback(jsonString);
 }
 
+
+///resume事件-重新展示h5的controller页面的时候，调用js方法通知h5是否执行刷新数据页面
+-(void)resume
+{
+    NSString *str = [NSString stringWithFormat:@"(function () {var event = new Event('resume');document.dispatchEvent(event);})()"];
+    [self.webView evaluateJavaScript:str completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+        NSLog(@"obj = %@,error =%@",obj,error);
+    }];
+}
 @end
