@@ -12,6 +12,7 @@
 
 @interface MessageStackViewCell : BaseTableViewCell
 
-@property (weak, nonatomic) IBOutlet ZXMenuIconCollectionView *menuIconCollectionView;
+
+@property (nonatomic, strong) ZXMenuIconCollectionView *menuIconCollectionView;
 
 @end

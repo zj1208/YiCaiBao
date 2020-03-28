@@ -24,49 +24,25 @@
 @interface SellerOrderAllController ()<UITableViewDelegate,UITableViewDataSource,ZXEmptyViewControllerDelegate,ZXLabelsTagsViewDelegate,ZXAlertChoseControllerDelegate>
 
 
-@property (nonatomic,strong) NSMutableArray *dataMArray;
+@property (nonatomic, strong) NSMutableArray *dataMArray;
 
 @property (nonatomic) NSInteger pageNo;
-@property (nonatomic, strong)ZXEmptyViewController *emptyViewController;
+@property (nonatomic, strong) ZXEmptyViewController *emptyViewController;
 
-@property (nonatomic, strong)ZXModalTransitionDelegate *transitonModelDelegate;
+@property (nonatomic, strong) ZXModalTransitionDelegate *transitonModelDelegate;
 
 @end
-
-static NSString * const reuse_Cell  = @"Cell";
-static NSString * const reuse_FooterView  = @"FooterView";
-static NSString * const reuse_HeaderView  = @"HeaderView";
 
 
 @implementation SellerOrderAllController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"2222";
-    // Do any additional setup after loading the view.
+
     [self setUI];
 
     [self setData];
 }
-
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    
-//    [[IQKeyboardManager sharedManager]setEnable:NO] ;
-//    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:NO];
-//    
-//    
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    [IQKeyboardManager sharedManager].enable = YES;
-//    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
-//}
-//
-
 
 
 - (void)setUI
@@ -74,17 +50,15 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     self.tableView.backgroundColor = WYUISTYLE.colorBGgrey;
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderProductCell class]) bundle:nil] forCellReuseIdentifier:reuse_Cell];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderCellFooterView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:reuse_FooterView];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderCellHeaderView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:reuse_HeaderView];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderProductCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([OrderProductCell class])];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderCellFooterView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderCellFooterView class])];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderCellHeaderView class]) bundle:nil] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderCellHeaderView class])];
     
     
     ZXEmptyViewController *emptyVC =[[ZXEmptyViewController alloc] init];
     emptyVC.delegate = self;
     emptyVC.contentOffest = CGSizeMake(0, -50);
     self.emptyViewController = emptyVC;
-    
- 
 }
 
 
@@ -209,10 +183,10 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    OrderProductCell *cell = [tableView dequeueReusableCellWithIdentifier:reuse_Cell forIndexPath:indexPath];
+    OrderProductCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderProductCell class]) forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
-    if (self.dataMArray.count>indexPath.section)
+    if (self.dataMArray.count > indexPath.section)
     {
         GetOrderManagerModel *model = [self.dataMArray objectAtIndex:indexPath.section];
         [cell setData:[model.subBizOrders objectAtIndex:indexPath.item]];
@@ -232,9 +206,11 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    OrderCellHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuse_HeaderView];
-    [headerView setData:[self.dataMArray objectAtIndex:section]];
+    OrderCellHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderCellHeaderView class])];
     [headerView.shopNameBtn addTarget:self action:@selector(shopNameBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.dataMArray.count > section) {
+        [headerView setData:[self.dataMArray objectAtIndex:section]];
+    }
     return headerView;
 }
 
@@ -246,7 +222,7 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        cell = (OrderCellFooterView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:reuse_FooterView];
+        cell = (OrderCellFooterView *)[tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderCellFooterView class])];
     });
     CGFloat height = [cell getCellHeightWithContentData:[self.dataMArray objectAtIndex:section]];
     return height;
@@ -254,15 +230,16 @@ static NSString * const reuse_HeaderView  = @"HeaderView";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    OrderCellFooterView * footView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuse_FooterView];
-    [footView setData:[self.dataMArray objectAtIndex:section]];
+    OrderCellFooterView * footView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderCellFooterView class])];
     [footView.moreBtn addTarget:self action:@selector(moreBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     footView.moreBtn.tag = 200+section;
     footView.labelsTagsView.delegate = self;
     footView.labelsTagsView.tag = section;
+    if (self.dataMArray.count > section) {
+        [footView setData:[self.dataMArray objectAtIndex:section]];
+    }
     return footView;
 }
-
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

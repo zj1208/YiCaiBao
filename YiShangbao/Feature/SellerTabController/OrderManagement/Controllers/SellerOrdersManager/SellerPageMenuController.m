@@ -38,6 +38,39 @@
     [self setData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self requestOrderCount];
+    
+    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
+}
+
+- (void)setUI
+{
+    self.navigationItem.rightBarButtonItem = self.rightButtonItem;
+
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self addChildViewController:self.segPageController];
+    [self.view addSubview:self.segPageController.view];
+    
+    [self.segPageController.view addSubview:self.choseBtn];
+    CGRect bounds = [UIScreen mainScreen].bounds;
+    self.choseBtn.frame = CGRectMake(CGRectGetWidth(bounds)-60, 0, 60, 39);
+    
+    [self.view addSubview:self.searchBar];
+    self.searchBar.frame = CGRectMake(0, HEIGHT_NAVBAR, LCDW, 49);
+    [self.searchBar zx_setBorderWithTop:NO left:NO bottom:YES right:NO borderColor:UIColorFromRGB_HexValue(0xe5e5e5) borderWidth:0.5];
+
+    CGRect frame = self.view.frame;
+    CGFloat Y = CGRectGetMaxY(self.searchBar.frame);
+    frame.origin.y += Y;
+    frame.size.height -= Y;
+    self.segPageController.view.frame = frame;
+}
+
 -(UIBarButtonItem*)rightButtonItem{
     if (!_rightButtonItem) {
         
@@ -54,49 +87,19 @@
     return _rightButtonItem;
 }
 
-
-// 我的收入
-- (void)rightButtonItemAction:(id)sender
+- (UIButton *)choseBtn
 {
-//    [MobClick event:kUM_b_order_income];
-//    NSString *url = [NSString stringWithFormat:@"%@/trade/wallet?token={token}&ttid={ttid}",[WYUserDefaultManager getkAPP_H5URL]];
-//    [[WYUtility dataUtil]routerWithName:url withSoureController:self];
-    LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];
-    NSString *htmlUrl = localHtmlManager.LocalHtmlStringManagerModel.wallet;
-    [localHtmlManager loadHtml:htmlUrl forKey:HTMLKey_wallet withSoureController:self];
-}
+    if (!_choseBtn)
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn setImage:[UIImage imageNamed:@"ic_zhankai"] forState:UIControlStateNormal];
+        btn.adjustsImageWhenHighlighted = NO;
+        [btn addTarget:self action:@selector(choseBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 
-
-- (void)setUI
-{
-
-    self.navigationItem.rightBarButtonItem = self.rightButtonItem;
-
-//    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"searchfenlei_search"] style:UIBarButtonItemStyleDone target:self action:@selector(searchOrder:)];
-//    self.navigationItem.rightBarButtonItem = barItem;
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    CGRect bounds = [UIScreen mainScreen].bounds;
-    self.choseBtn.frame = CGRectMake(bounds.size.width-60, 0, 60, 39);
-    
-    [self.view addSubview:self.searchBar];
-    self.searchBar.frame = CGRectMake(0, HEIGHT_NAVBAR, LCDW, 49);
-    
-    [self.searchBar zx_setBorderWithTop:NO left:NO bottom:YES right:NO borderColor:UIColorFromRGB_HexValue(0xe5e5e5) borderWidth:0.5];
-
-    CGRect frame = self.view.frame;
-    CGFloat Y = CGRectGetMaxY(self.searchBar.frame);
-    frame.origin.y += Y;
-    frame.size.height -= Y;
-    self.segPageController.view.frame = frame;
-}
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    [self searchOrder:nil];
-    return NO;
+        _choseBtn = btn;
+    }
+    return _choseBtn;
 }
 
 - (ZXSegmentMenuView *)segmentMenuView
@@ -111,6 +114,22 @@
     }
     return _segmentMenuView;
 }
+
+
+- (ZXSegmentedPageController *)segPageController
+{
+    if (!_segPageController)
+    {
+        ZXSegmentedPageController *segVC = [[ZXSegmentedPageController alloc]init];
+        segVC.segmentFontSize = 15.f;
+        segVC.segmentHeight = 40.f;
+        segVC.delegate = self;
+        segVC.segmentMinimumItemSpacing = 26.f;
+        _segPageController = segVC;
+    }
+    return _segPageController;
+}
+
 // 每个类型的订单数量【1-8种类型】包括待确认
 - (NSMutableArray *)getNSegmentTitlesWithOrderCountModel:(NSArray *)orderCountModels
 {
@@ -130,13 +149,7 @@
     return mTitles;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self requestOrderCount];
-    
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-}
+
 
 - (UISearchBar *)searchBar
 {
@@ -163,6 +176,7 @@
     return _searchBar;
 }
 
+#pragma mark - setData
 
 // 3.23,去掉待确定一页
 - (void)setData
@@ -184,34 +198,66 @@
         [self.dataMArray addObject:vc];
     }
     
-//    self.extendedLayoutIncludesOpaqueBars = YES;
     self.segPageController.segmentTitles = self.segTitles;
     self.segPageController.viewControllers = self.dataMArray;
- 
-    
-    
+    //弹框选择
     self.segmentMenuView.itemTitles = self.segTitles;
 
-    _orderCountsMArray = [NSMutableArray array];
+    self.orderCountsMArray = [NSMutableArray array];
     
     
     //先加载pageController的某个controller
     if (self.orderListStatus >0)
     {
-          [_segPageController setSelectedPageIndex:self.orderListStatus-1 animated:YES];
+          [self.segPageController setSelectedPageIndex:self.orderListStatus-1 animated:YES];
     }
     else
     {
-          [_segPageController setSelectedPageIndex:self.orderListStatus animated:YES];
+          [self.segPageController setSelectedPageIndex:self.orderListStatus animated:YES];
     }
+    
+    
     SellerOrderAllController *vc = [self.dataMArray objectAtIndex:self.orderListStatus];
     vc.orderListStatus = self.orderListStatus;
+    
     [vc.tableView.mj_header beginRefreshing];
     
     [self requestCleanOrderMark];
 }
 
-#pragma mark - 清除商铺新订单
+
+- (NSMutableArray *)dataMArray
+{
+    if (!_dataMArray)
+    {
+        _dataMArray = [NSMutableArray array];
+    }
+    return _dataMArray;
+}
+
+
+#pragma mark - searchBarDelegate
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [self searchOrder:nil];
+    return NO;
+}
+
+#pragma mark -
+
+- (void)searchOrder:(id)sender
+{
+    [MobClick event:kUM_b_ordersearch];
+
+    SellerOrderSearchController *vc = (SellerOrderSearchController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderSearchController];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark - 请求
+
+#pragma mark -清除商铺新订单
 
 - (void)requestCleanOrderMark
 {
@@ -224,80 +270,41 @@
 
 - (void)requestOrderCount
 {
+    WS(weakSelf);
     [[[AppAPIHelper shareInstance]hsOrderManagementApi]getOrderStatusCountWithRoleType:[WYUserDefaultManager getUserTargetRoleType] success:^(id data) {
         
-        [_orderCountsMArray removeAllObjects];
-        [_orderCountsMArray addObjectsFromArray:data];
+        [weakSelf.orderCountsMArray removeAllObjects];
+        [weakSelf.orderCountsMArray addObjectsFromArray:data];
         
-        NSMutableArray *mArray = [self getNSegmentTitlesWithOrderCountModel:data];
-        self.segPageController.segmentTitles = mArray;
-        [MBProgressHUD zx_hideHUDForView:self.view];
+        NSMutableArray *mArray = [weakSelf getNSegmentTitlesWithOrderCountModel:data];
+        weakSelf.segPageController.segmentTitles = mArray;
+        [MBProgressHUD zx_hideHUDForView:weakSelf.view];
         
     } failure:^(NSError *error) {
         
-        [MBProgressHUD zx_hideHUDForView:self.view];
+        [MBProgressHUD zx_hideHUDForView:weakSelf.view];
     }];
 }
 
 
-- (ZXSegmentedPageController *)segPageController
+
+
+#pragma mark - Action
+
+#pragma mark -我的收入
+// 我的收入
+- (void)rightButtonItemAction:(id)sender
 {
-    if (!_segPageController)
-    {
-        ZXSegmentedPageController *segVC = [[ZXSegmentedPageController alloc]init];
-        segVC.segmentFontSize = 15.f;
-        segVC.segmentHeight = 40.f;
-        segVC.delegate = self;
-        segVC.segmentMinimumItemSpacing = 26.f;
-        [self addChildViewController:segVC];
-        [self.view addSubview:segVC.view];
-        _segPageController = segVC;
-    }
-    return _segPageController;
+//    [MobClick event:kUM_b_order_income];
+//    NSString *url = [NSString stringWithFormat:@"%@/trade/wallet?token={token}&ttid={ttid}",[WYUserDefaultManager getkAPP_H5URL]];
+//    [[WYUtility dataUtil]routerWithName:url withSoureController:self];
+    LocalHtmlStringManager *localHtmlManager = [LocalHtmlStringManager shareInstance];
+    NSString *htmlUrl = localHtmlManager.LocalHtmlStringManagerModel.wallet;
+    [localHtmlManager loadHtml:htmlUrl forKey:HTMLKey_wallet withSoureController:self];
 }
 
-
-- (NSMutableArray *)dataMArray
-{
-    if (!_dataMArray)
-    {
-        NSMutableArray *mArray = [NSMutableArray array];
-        _dataMArray = mArray;
-    }
-    return _dataMArray;
-}
-
-
-
-- (void)searchOrder:(id)sender
-{
-    [MobClick event:kUM_b_ordersearch];
-
-    SellerOrderSearchController *vc = (SellerOrderSearchController *)[self zx_getControllerWithStoryboardName:sb_SellerOrder controllerWithIdentifier:SBID_SellerOrderSearchController];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
-}
-
-
-- (UIButton *)choseBtn
-{
-    if (!_choseBtn)
-    {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundColor:[UIColor clearColor]];
-        [btn setImage:[UIImage imageNamed:@"ic_zhankai"] forState:UIControlStateNormal];
-        btn.adjustsImageWhenHighlighted = NO;
-        [btn addTarget:self action:@selector(popMenuView:) forControlEvents:UIControlEventTouchUpInside];
-
-        [self.segPageController.view addSubview:btn];
-        _choseBtn = btn;
-    }
-    return _choseBtn;
-}
-
-
-
-- (void)popMenuView:(UIButton *)sender
+#pragma mark - 选择订单状态
+- (void)choseBtnAction:(UIButton *)sender
 {
     [MobClick event:kUM_b_listopen];
 
@@ -307,7 +314,6 @@
 
 
 #pragma mark - ZXSegmentPageControllerDelegate
-
 
 - (void)zx_segmentPageControllerWithSegmentView:(ZXSegmentedControl *)segmentedControl willDisplayCell:(ZXSegmentCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {

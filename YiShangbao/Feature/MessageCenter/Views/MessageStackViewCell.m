@@ -13,14 +13,38 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-    self.menuIconCollectionView.columnsCount = 4;
-    self.menuIconCollectionView.minimumInteritemSpacing = 15.f;
+}
 
-    CGFloat width = [self.menuIconCollectionView getItemAverageWidthInTotalWidth:LCDW columnsCount:self.menuIconCollectionView.columnsCount sectionInset:self.menuIconCollectionView.sectionInset minimumInteritemSpacing:self.menuIconCollectionView.minimumInteritemSpacing];
-    self.menuIconCollectionView.itemSize = CGSizeMake(width,width+10);
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setUI];
+        
+    }
+    return self;
+}
 
-    self.menuIconCollectionView.placeholderImage = AppPlaceholderImage;
+- (void)setUI
+{
+    [self.contentView addSubview:self.menuIconCollectionView];
+    [self.menuIconCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.contentView);
+    }];
+}
+
+- (ZXMenuIconCollectionView *)menuIconCollectionView
+{
+    if (!_menuIconCollectionView) {
+        ZXMenuIconCollectionView *view = [[ZXMenuIconCollectionView alloc] init];
+        view.columnsCount = 4;
+        view.minimumInteritemSpacing = 15.f;
+        CGFloat width = [view getItemAverageWidthInTotalWidth:LCDW columnsCount:view.columnsCount sectionInset:view.sectionInset minimumInteritemSpacing:view.minimumInteritemSpacing];
+        view.itemSize = CGSizeMake(width,width+10);
+        view.placeholderImage = AppPlaceholderImage;
+        _menuIconCollectionView = view;
+    }
+    return _menuIconCollectionView;
 }
 
 - (void)setData:(id)data

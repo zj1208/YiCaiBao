@@ -38,14 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
-//    NSString *userID = [[[NIMSDK sharedSDK] loginManager] currentAccount];
-//    NSLog(@"userId =%@",userID);
     [self creatUI];
     [self setData];
-//    UINavigationItem *item = self.navigationController.navigationBar.topItem;
-//    NSLog(@"%@",item);
-   
 }
 
 - (void)dealloc{
@@ -83,8 +77,7 @@
     NSLog(@"%@",self.navigationItem.backBarButtonItem);
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WYMessageListTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"Cell"];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MessageStackViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageStackViewCell"];
-
+    [self.tableView registerClass:[MessageStackViewCell class] forCellReuseIdentifier:NSStringFromClass([MessageStackViewCell class])];
     
     ZXEmptyViewController *emptyVC =[[ZXEmptyViewController alloc] init];
     emptyVC.delegate =self;
@@ -133,14 +126,13 @@
     [[[AppAPIHelper shareInstance] messageAPI] getAbbrMsgListWithsuccess:^(id data) {
         
         MessageModel *model  = (MessageModel *)data;
-        self.messageModel = model;
-        [_dataMArray removeAllObjects];
-        [_dataMArray addObjectsFromArray:model.list];
+        weakSelf.messageModel = model;
+        [weakSelf.dataMArray removeAllObjects];
+        [weakSelf.dataMArray addObjectsFromArray:model.list];
         
-        [_emptyViewController hideEmptyViewInController:weakSelf hasLocalData:_dataMArray.count>0?YES:NO];
+        [weakSelf.emptyViewController hideEmptyViewInController:weakSelf hasLocalData:weakSelf.dataMArray.count>0?YES:NO];
         [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
-//        [weakSelf performSelector:@selector(endRefreshing) withObject:nil afterDelay:2.f];
         [[NSNotificationCenter defaultCenter]postNotificationName:Noti_TabBarItem_Message_unreadCount object:nil];
         
     } failure:^(NSError *error) {
@@ -148,7 +140,7 @@
         [weakSelf.tableView.mj_header endRefreshing];
         if (weakSelf.recentSessions.count==0)
         {
-            [_emptyViewController addEmptyViewInController:weakSelf hasLocalData:_dataMArray.count>0?YES:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
+            [weakSelf.emptyViewController addEmptyViewInController:weakSelf hasLocalData:weakSelf.dataMArray.count>0?YES:NO error:error emptyImage:ZXEmptyRequestFaileImage emptyTitle:ZXEmptyRequestFaileTitle updateBtnHide:NO];
         }
     }];
 
@@ -237,10 +229,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section ==0)
     {
-        MessageStackViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageStackViewCell" forIndexPath:indexPath];
+        MessageStackViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MessageStackViewCell class]) forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.menuIconCollectionView.delegate = self;
         cell.menuIconCollectionView.flowLayoutDelegate = self;

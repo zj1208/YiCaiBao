@@ -69,15 +69,24 @@ static NSString *kOrder_Post_closeRefundOrder =@"mtop.deal.seller.refundAndClose
 
 typedef NS_ENUM(NSInteger, SellerOrderListStatus)
 {
+    ///全部
     SellerOrderListStatus_All = 0,
-    SellerOrderListStatus_ToBeConfirmed = 1,//待确认
-    SellerOrderListStatus_ToBePaid = 2,//待支付
-    SellerOrderListStatus_WaitForDelivery = 3,//待发货
-    SellerOrderListStatus_Refunding = 4,//退款中
-    SellerOrderListStatus_Deliveried = 5,//已发货
-    SellerOrderListStatus_ToBeCommit = 6,//待评价
-    SellerOrderListStatus_TradeSuccessfully = 7,//交易成功
-    SellerOrderListStatus_TradeClose = 8,//交易关闭
+    ///待确认
+    SellerOrderListStatus_ToBeConfirmed = 1,
+    ///待支付
+    SellerOrderListStatus_ToBePaid = 2,
+    ///待发货
+    SellerOrderListStatus_WaitForDelivery = 3,
+    ///退款中
+    SellerOrderListStatus_Refunding = 4,
+    ///已发货
+    SellerOrderListStatus_Deliveried = 5,
+    ///待评价
+    SellerOrderListStatus_ToBeCommit = 6,
+    ///交易成功
+    SellerOrderListStatus_TradeSuccessfully = 7,
+    ///交易关闭
+    SellerOrderListStatus_TradeClose = 8,
 
 };
 

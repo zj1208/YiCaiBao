@@ -18,12 +18,13 @@
 #import "ProductSearchCell.h"
 
 @interface ProductSearchController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,ZXEmptyViewControllerDelegate,UISearchControllerDelegate>
-@property (nonatomic, strong)UISearchBar *searchBar;
 
-@property (nonatomic,strong) NSMutableArray *dataMArray;
+@property (nonatomic, strong) UISearchBar *searchBar;
+
+@property (nonatomic, strong) NSMutableArray *dataMArray;
 
 @property (nonatomic) NSInteger pageNo;
-@property (nonatomic,assign) NSInteger totalPage;
+@property (nonatomic, assign) NSInteger totalPage;
 
 @property (nonatomic, strong) ZXEmptyViewController *emptyViewController;
 @property (nonatomic, strong) UISearchController *searchController;

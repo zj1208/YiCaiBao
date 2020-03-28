@@ -92,13 +92,34 @@
    }
  }
  */
+
 // 只返回data节点的数据到上层，"success" : false,单纯提示的;
+///错误回调
 /*
  "result" : {
  "code" : "password_error",
  "data" : null,
  "success" : false,
  "msg" : "密码错误"
+ }
+ */
+///成功回调
+/*
+ {
+   "meta" : {
+   "api" : "mtop.app.updateSoundSetting",
+   "v" : "1.0",
+   "lang" : "zh_CN",
+   "mat" : "",
+   "teminal" : "iphone",
+   "ttid" : "5.2.1_ysb@iphone"
+   },
+"result" : {
+   "code" : "",
+   "data" : null,
+   "success" : true,
+   "msg" : ""
+   }
  }
  */
 @implementation BaseHttpAPI
@@ -249,9 +270,6 @@ NSInteger const kAPPErrorCode_Token = 5001;
         //如果code标志是token错误，则特殊处理
         if ([code isEqualToString:kToken_Code_Value_Invalid] ||[code isEqualToString:kToken_Code_Value_Disabled])
         {
-            //            NSString *message =[NSString stringWithFormat:@"您的登录已失效，请重新登录！\n 老token：%@",[UserInfoUDManager getToken]];
-            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"token坏了" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            //            [alert show];
             NSError * error = [self customErrorWithObject:@"您的登录已失效，请重新登录！" errorCode:kAPPErrorCode_Token userInfoErrorCode:nil];
             //可以区分不同api，处理不同业务
             [UserInfoUDManager reLoginingWithTokenErrorAPI:[meta objectForKey:@"api"]];
