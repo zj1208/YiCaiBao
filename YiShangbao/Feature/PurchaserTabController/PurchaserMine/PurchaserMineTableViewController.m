@@ -141,6 +141,7 @@
         [_messageBadgeButton setBadgeValue:0];
         return;
     }
+    WS(weakSelf);
     [[[AppAPIHelper shareInstance] messageAPI] getshowMsgCountWithsuccess:^(id data) {
         
         NSNumber *system = [data objectForKey:@"system"];
@@ -152,13 +153,13 @@
         NSInteger total =[system integerValue]+[market integerValue]+[trade integerValue]+[todo integerValue] +antsteam.integerValue;
         NSInteger nimValue = [[[NIMSDK sharedSDK]conversationManager]allUnreadCount];
         NSInteger badgeValue = nimValue +total;
-        [_messageBadgeButton setBadgeValue:(badgeValue)];
+        [weakSelf.messageBadgeButton setBadgeValue:(badgeValue)];
     } failure:^(NSError *error) {
         
         if ([[[NIMSDK sharedSDK]conversationManager]allUnreadCount]>0)
         {
             NSInteger nimValue = [[[NIMSDK sharedSDK]conversationManager]allUnreadCount];
-            [_messageBadgeButton setBadgeValue:nimValue];
+            [weakSelf.messageBadgeButton setBadgeValue:nimValue];
         }
     }];
 }

@@ -120,7 +120,6 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 - (void)setUI{
     
     self.view.backgroundColor = WYUISTYLE.colorBGgrey;
-//    self.collectionView.backgroundColor = self.view.backgroundColor;
     
     ZXEmptyViewController *emptyVC =[[ZXEmptyViewController alloc] init];
     emptyVC.delegate = self;
@@ -168,7 +167,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 
 - (void)addNavigationBarView
 {
-    _stausBarStyle =UIStatusBarStyleDefault;
+    self.stausBarStyle =UIStatusBarStyleDefault;
 
     ZXCustomNavigationBar *navigationBar = [ZXCustomNavigationBar zx_viewFromNib];
     [self.view addSubview:navigationBar];
@@ -188,12 +187,12 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 - (void)createScaleImageView
 {
     self.collectionView.backgroundColor = [UIColor clearColor];
-    _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LCDW, LCDW*100.f/375.0)];
-    _topImageView.backgroundColor = UIColorFromRGB_HexValue(0xBF352D);
+    self.topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LCDW, LCDW*100.f/375.0)];
+    self.topImageView.backgroundColor = UIColorFromRGB_HexValue(0xBF352D);
 //    UIImage *image = [UIImage zx_getGradientImageFromHorizontalTowColorWithSize:CGSizeMake(LCDW, LCDW*100.f/375.0) startColor:UIColorFromRGB(255.f, 180.f, 94.f) endColor:UIColorFromRGB(243.f, 117.f, 80.f)];
 //    _topImageView.image =image;
-    [self.view insertSubview:_topImageView belowSubview:self.collectionView];
-    _topImageView.hidden = YES;
+    [self.view insertSubview:self.topImageView belowSubview:self.collectionView];
+    self.topImageView.hidden = YES;
 }
 - (void)newFunctionGuideOfNextStep:(id)noti
 {
@@ -215,14 +214,14 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 
 - (void)setData{
 
-    _contentInsetTop = 0;
+    self.contentInsetTop = 0;
 //    if (@available(iOS 11.0, *))
 //    {
 //        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
 //        self.flowLayout.sectionInsetReference = UICollectionViewFlowLayoutSectionInsetFromSafeArea;
 //    }
     self.collectionView.contentInset = UIEdgeInsetsMake(64-20, 0, 0, 0);
-    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(64-20+ _contentInsetTop, 0, 0, 0);
+    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(64-20+ self.contentInsetTop, 0, 0, 0);
 
     self.infiniteDataMArray = [NSMutableArray array];
     self.mustReadNotiMArray = [NSMutableArray array];
@@ -313,7 +312,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
         }
         else
         {
-            CGFloat alpha = (offsetY>0 && offsetY<=_contentInsetTop)?offsetY/_contentInsetTop:1.f;
+            CGFloat alpha = (offsetY > 0 && offsetY <= self.contentInsetTop)? offsetY/self.contentInsetTop : 1.f;
             [self.customNavigationBar zx_setBarBackgroundContainerAlpha:alpha animated:YES];
         }
     }
@@ -356,7 +355,7 @@ static NSString * const reuse_FooterViewIdentifier = @"Footer";
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return _stausBarStyle;
+    return self.stausBarStyle;
 }
 
 #pragma mark - 检查更新及通知跳转
